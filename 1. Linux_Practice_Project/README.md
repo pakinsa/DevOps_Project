@@ -49,16 +49,37 @@ Operations:
 * ```grep "filename" GreatCommands.txt```: Find "filename" in the file called GreatCommands.txt
 ![alt text](img/grep.png "grep")
 
-```head greatCommands.txt```  : It displays the first 10 lines of the greatCommands.txt
+* ```head greatCommands.txt```  : It displays the first 10 lines of the greatCommands.txt
 ![alt text](img/head.png "head")
 
-```tail greatCommands.txt```:  It displays the last 10 lines of the greatCommands.txt
+* ```tail greatCommands.txt```:  It displays the last 10 lines of the greatCommands.txt
 ![alt text](img/tail.png "tail")
 
 
-```diff 12GreatCommands.txt Achievement.txt``` : Displays the difference between content of 12GreatCommands.txt and Achievement.txt
+* ```diff 12GreatCommands.txt Achievement.txt``` : Displays the difference between content of 12GreatCommands.txt and Achievement.txt
 ![alt text](img/diffa.png "diffa")
 ![alt text](img/diffb.png "diffb")
 
 
-```df -h```  : Displays human readable detials of file systems of Linux
+* ```df -h```  : Displays human readable detials of file systems of Linux
+![alt text](img/df-h.png "dfh")
+
+* ```mkdir -p second_folder/third_folder/fourth_folder```: Creates a nested folder up to fourth level with -p flag u to parent directory
+![alt text](nested_folder.png "nested")
+
+* ```sudo apt-get install tree```   : Installs directory tree in linux
+* ```tree first_folder/```   : Displays the hiercahy of nested folder
+![alt text](img/tree_nest_folder.png "tnf")
+
+
+```tree / -L 1```   : Displays level one directory of linus filesystem root 
+![alt text](img/tree_linux_root.png "tlr")
+
+
+```sudo ls -l /root```   : listing the root file of the linux OS you need superuser```
+![alt text](img/sudo_root.png "sudo")
+
+
+```wget raw.githubusercontent.com/pakinsa/Model-Training-..../master/predict.py``` : Downloads a specified file from github to your linux PC,e.g predict.py a python file
+![alt text](img/wget_to_github.png "wget")
+
