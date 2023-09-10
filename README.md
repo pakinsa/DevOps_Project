@@ -1,10 +1,12 @@
-# Welcome to my DevOps Project
+# Welcome To My DevOps Project
 ## Darey.io DevOps Training Bootcamp
-## Implemnts 32 Projects in DevOps
-
 
 ![alt text](img/DevOps.jpeg "DevOps")
 
+## Implements 32 Projects in DevOps
+
+
+
 * Project 1: Linux Practice Project
-* Project 2: Git Project
+* Project 2: GIT Project
 * Project 3: LAMP Stack Implementation

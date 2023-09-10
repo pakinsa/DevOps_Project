@@ -1,8 +1,9 @@
-# DevOps_Project
-Darey.io Project Based Learning
+# My DevOps_Project 
+## Project 1: Linux Pratice Project
+## Darey.io DevOps Bootcamp
 
-## Welcome to my Implementation of my Linux Pratice Project
 
-Linux Commands are the primary commands to communicate with the cloud devices
+![alt text](Linux_Practice_Project/img/linux.jpeg "DevOps")
 
-## I am trying to get it
+Linux Commands are the primary commands needed to communicate with the cloud devices
+
