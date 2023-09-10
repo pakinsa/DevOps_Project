@@ -112,15 +112,15 @@ Example: "-rwx r-x r- -": User(u) group(g) others(o) : Means users can read, wri
 ![alt text](img/chmod.png "chm")
 
 
-Read = 4
-Write = 2
-Execute = 1
-No permission = 0
+* Read = 4,
+* Write = 2,
+* Execute = 1,
+* No permission = 0.
 
-Read + Write + Execute = 7
-Read + Write = 6
-Read + Execute = 5
-Write + Execute = 3
+* Read + Write + Execute = 7,
+* Read + Write = 6,
+* Read + Execute = 5,
+* Write + Execute = 3.
 
 *```chmod 735 predict.py```   : changes the mode of the file predict.py into a read, write, exeutable for users, only write and execute for groups and read and execute for others  
 ![alt text](img/chmod735.png "chm")
