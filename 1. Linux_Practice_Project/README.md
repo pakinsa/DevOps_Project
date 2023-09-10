@@ -72,28 +72,28 @@ Operations:
 ![alt text](img/tree_nest_folder.png "tnf")
 
 
-```tree / -L 1```   : Displays level one directory of linus filesystem root 
+*```tree / -L 1```   : Displays level one directory of linus filesystem root 
 ![alt text](img/tree_linux_root.png "tlr")
 
 
-```sudo ls -l /root```   : listing the root file of the linux OS you need superuser
+*```sudo ls -l /root```   : listing the root file of the linux OS you need superuser
 ![alt text](img/sudo_root.png "sudo")
 
 
-```wget raw.githubusercontent.com/pakinsa/Model-Training-..../master/predict.py``` : Downloads a specified file from github to your linux PC,e.g predict.py a python file
+*```wget raw.githubusercontent.com/pakinsa/Model-Training-..../master/predict.py``` : Downloads a specified file from github to your linux PC,e.g predict.py a python file
 ![alt text](img/wget_to_github.png "wget")
 
 
-```sudo groupadd jun_engrs```  : Creates a new group called jun_engrs
-```sudo useradd -G jun_engrs tolu``` : Adds tolu as a user to the group jun_engrs
+*```sudo groupadd jun_engrs```  : Creates a new group called jun_engrs
+*```sudo useradd -G jun_engrs tolu``` : Adds tolu as a user to the group jun_engrs
 ![alt text](img/user_groups.png "user")
 
 
-```sudo chown tolu:brostle error.txt```   :change ownership of error.txt from brostle to tolu
+*```sudo chown tolu:brostle error.txt```   :change ownership of error.txt from brostle to tolu
 ![alt text](img/chown.png "own")
 
 
-```ls -l``` : to list files and directories with thier various formats
+*```ls -l``` : to list files and directories with thier various formats
 ![alt text](img/ls-l.png "ls-l")
 
 -rwrx. : When a display starts with hyphne(-), then that is a file, r is read, w is write and x is execute
@@ -102,13 +102,13 @@ dwrx: When a line of display starts with a (d), then that is a directory, r is r
 
 Example: "-rwx r-x r- -": User(u) group(g) others(o) : Means users can read, write and execute, while group can only read and execute but can't write, and others can only read.
 
-```chmod -c g+w filename```  :grants permissions to group to now write
+*```chmod -c g+w filename```  :grants permissions to group to now write
 
-```chmod -c o+x filename```  :grants the permissions to others to execute
+*```chmod -c o+x filename```  :grants the permissions to others to execute
 
-```chmod -c u-r filename```  :removes the permissions from users to read.
+*```chmod -c u-r filename```  :removes the permissions from users to read.
 
-```chmod -c u+x error.txt```  :grants permission for users to execute.
+*```chmod -c u+x error.txt```  :grants permission for users to execute.
 ![alt text](img/chmod.png "chm")
 
 
@@ -122,5 +122,5 @@ Read + Write = 6
 Read + Execute = 5
 Write + Execute = 3
 
-```chmod 735 predict.py```   : changes the mode of the file predict.py into a read, write, exeutable for users, only write and execute for groups and read and execute for others  
+*```chmod 735 predict.py```   : changes the mode of the file predict.py into a read, write, exeutable for users, only write and execute for groups and read and execute for others  
 ![alt text](img/chmod735.png "chm")
