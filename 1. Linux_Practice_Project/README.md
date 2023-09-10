@@ -3,7 +3,7 @@
 ## Darey.io DevOps Bootcamp
 
 
-![alt text](Linux_Practice_Project/img/Linux-Symbole.png "Linux")
+![alt text](img/Linux-Symbole.png "Linux")
 
 Linux Commands are the primary commands needed to communicate with the cloud devices
 
