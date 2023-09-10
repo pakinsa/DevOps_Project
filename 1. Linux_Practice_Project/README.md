@@ -8,31 +8,57 @@
 Linux Commands are the primary commands needed to communicate with the cloud devices
 
 Requirements:
-* 1. Download and install VirtualBox 
-* 2. Download and install Linux Ubuntu OS as a virtual Machine in VirtualBox
+* 1. Download and install VirtualBox from <https://www.virtualbox.org/wiki/Downloads>
+* 2. Download and install Linux Ubuntu Deskstop OS as a virtual Machine in VirtualBox from [Ubuntu](https://ubuntu.com/download/desktop)
 * 3. Configure settings ofVirtual Machine with 2 processors and 4GB RAM
 * 4. Install WSL Windows Subsystem for smooth dispaly and apprearance
 * 5. Find and Open App, Terminal
 
 
 Operations:
-* 1. ```sudo apt update``` : To update the dependencies
-* 2. ```sudo apt upgrade``` : To upgrade necessary packages
-* 3. ```pwd```     : To know your Present Working Directory
-* 4. ```ls```      : To list content of your presnt working directory
-* 5. ```mkdir Music```  : create a new directory called Music
-* 5. ```cd``` : change from directory from present working directory to another.
-* 6. ```touch Achievement.txt```  :  to create a new file called Achievement
+* ```sudo apt update``` : To update the dependencies
+![alt text](img/Sudo_apt_update.png "update") 
 
-* 7. ``` mv Achievement.txt Excellence```    : Move the file Achievement.txt to a directory named Excellence
+* ```sudo apt upgrade``` : To upgrade necessary packages
+![alt text](img/Sudo_apt_upgrade.png "upgrade") 
+
+* ```pwd``` : To know your Present Working Directory
+* ```ls```  : To list content of your presnt working directory
+* ```cd```  : Change from directory from present working directory to another.
+[alt text](img/cdpwdls.png "cd") 
+
+* ```mkdir Music```  : Creates a new directory called Music
+[alt text](img/mkdir.png "make") 
+
+* ```touch Achievement.txt``` : Creates a new file called Achievement
+* ```cat Achievement.txt```: To view content of the file Achievement.txt
+![alt text](img/cat.png "cat")
+
+* ``` mv Achievement.txt Excellence```: Move the file Achievement.txt to a directory named Excellence
 ![alt text](img/mv_achievement.png "achieve")
 
+* ```echo “I like DevOps” >> Achievement.txt```  : Append with double operator to the last line of the file the text "I like DevOps"
+![alt text](img/echo.png "echo")
 
-* 8. ```cat Achievement.txt``` : to view content of the file Achievement.txt
-* 9. ```ls -a``` : displays all directories and files including .(dot) files i.e hidden files.
+* ```ls -a```: Displays all directories and files including .(dot) files i.e hidden files.
+![alt text](img/Ls-a.png "lsa")
 
-* 10.```rmdir -p Songs```  : Removes the directory/folder called Songs and P represent Parent, specifying removing all subdirectory ofthe parent directory.
+* ```rmdir -p Songs```: Removes the directory/folder called Songs and -p represent Parent, specifying removing all subdirectory ofthe parent directory.
 ![alt text](img/rmdir.png "remove")
 
-* 11. ```grep "DevOps" GreatCommands.txt``` : Find "DevOps" in the file called GreatCommands.txt
+* ```grep "filename" GreatCommands.txt```: Find "filename" in the file called GreatCommands.txt
+![alt text](img/grep.png "grep")
 
+```head greatCommands.txt```  : It displays the first 10 lines of the greatCommands.txt
+![alt text](img/head.png "head")
+
+```tail greatCommands.txt```:  It displays the last 10 lines of the greatCommands.txt
+![alt text](img/tail.png "tail")
+
+
+```diff 12GreatCommands.txt Achievement.txt``` : Displays the difference between content of 12GreatCommands.txt and Achievement.txt
+![alt text](img/diffa.png "diffa")
+![alt text](img/diffb.png "diffb")
+
+
+```df -h```  : Displays human readable detials of file systems of Linux
