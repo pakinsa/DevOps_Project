@@ -25,10 +25,10 @@ Operations:
 * ```pwd``` : To know your Present Working Directory
 * ```ls```  : To list content of your presnt working directory
 * ```cd```  : Change from directory from present working directory to another.
-[alt text](img/cdpwdls.png "cd") 
+![alt text](img/cdpwdls.png "cd") 
 
 * ```mkdir Music```  : Creates a new directory called Music
-[alt text](img/mkdir.png "make") 
+![alt text](img/mkdir.png "make") 
 
 * ```touch Achievement.txt``` : Creates a new file called Achievement
 * ```cat Achievement.txt```: To view content of the file Achievement.txt
