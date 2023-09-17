@@ -29,7 +29,11 @@ Required Steps:
 
 
 
-* 10. Create a github accounts and repositories at [Git](https://github.com/)
+      ![alt text](img/08.firstCommit.png)
+
+
+
+* 20. Create a github accounts and repositories at [Git](https://github.com/)
 
       ![alt text](img/github.png "Github")
  
