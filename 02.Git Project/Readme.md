@@ -1,5 +1,5 @@
 # My DevOps_Project 
-## Project 2: GIT Pratice Project
+## Project 2: GIT Practice Project
 ### Darey.io DevOps Bootcamp
 ![alt text](img/01.git.png)
 
