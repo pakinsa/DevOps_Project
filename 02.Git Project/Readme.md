@@ -1,9 +1,8 @@
 # My DevOps_Project 
 ## Project 2: GIT Pratice Project
 ### Darey.io DevOps Bootcamp
+![alt text](img/01.git.png)
 
-
-![alt text](img/01.git.png "Git")
 
 Git Commands helps to collaborate on projects amongst technical teams 
 
@@ -47,6 +46,12 @@ Required Steps:
 
       ![alt text](img/11.git_diff.png)
 
+
+      `git ls-files`  : displays all files in your repository
+
+      ![alt text](img/11a.git_ls.png)
+
+
 * 9. `git branch branch_name`  : create a new branch
      `git branch`              : confirm branches available in your repository
      `git switch branch_name`  : switch to a specified branch_name  
@@ -84,19 +89,45 @@ to main branch with -m flag and tag with comment in quotation marks. Conflict re
 
 
 
-* 19. Create a github account at [Git](https://github.com/) 
+* 16. Create a github account at [Git](https://github.com/) 
       ![alt text](img/19.github.png "Github")
 
-      Create the repository on Github without adding a readme file and gitignore file. 
+* 17. Create the repository on Github without adding a readme file and gitignore file. 
       This allows seamless git remote repo addition without errors of "remote repository has an existing file"
       ![alt text](img/20.remoterepo.png)  
 
 
-      Copy the https of your remote repo
+* 18. Copy the https of your remote repo
 
       `git remote add origin https://github.com/pakinsa/Brostleprojects.git`  // attempts to add your github repo to your local repo.
       `git branch -m main`          //takes the Head, i.e the main branch of your github repo
       `git push -u origin main`     // connects it to the main branch of your local repo with -u flag for upstream
 
       ![alt text](img/21.git_remote.png)  
+
+* 19. git push --all  // push all branches to remotely
+      ![alt text](img/22.pushbranchremote.png)  
+      ![alt text](img/23.remote_branches.png)
+
+
+
+* 20. You can contribute to a project on GitHub by identifying and opening issues
+      ![alt text](img/24.issues.png)  
+
+
+* 21. You can solve issues in a project with pull request seeking a reviewer to merge into main if successful.
+      ![alt text](img/25.pullrequest.png)  
+
+
+* 22. Once pull request is approved, a merging take place by the assigned reviewer.
+      ![alt text](img/26.mergeremotepullrequest.png)  
+
+
+* 23. Take a look at number of issues, pull requests, commits made in a repository at insights
+      ![alt text](img/27.insights.png)  
+
+
+* 24. Finally sync your local repo with your remote repo.
+      `git pull` : With git pull from Bash, you update all changes made on your remote repo with your local repo.
+      ![alt text](img/28.pull_remotely.png)  
  
