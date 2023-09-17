@@ -56,7 +56,7 @@ Required Steps:
      `git branch`              : confirm branches available in your repository
      `git switch branch_name`  : switch to a specified branch_name  
 
-      ![alt text](img/12.branchswitchcommit.png)
+      ![alt text](img/12.branchswitchfirstcommit.png)
 
 * 10. `git merge -m "tag_comments_here" branchtobemerged` : merge commits of branch to main with flag -m with tag comments.
 
