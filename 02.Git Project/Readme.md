@@ -71,7 +71,7 @@ Required Steps:
 * 12. `git commit -a -m "tag_comments"` : e.g git commit -a -m "resolves conflict"  commits all changes with -a flag
 to main branch with -m flag and tag with comment in quotation marks. Conflict resolved.
 
-      ![alt text](img/15.conflict_resolution.png)
+      ![alt text](img/15.conflictresolution.png)
 
 
 * 13. `git branch -d FixImageText` : deletes a the branchname FixImagetext with flag -d
