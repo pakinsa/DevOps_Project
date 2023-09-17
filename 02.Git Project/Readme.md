@@ -1,6 +1,6 @@
 # My DevOps_Project 
 ## Project 2: GIT Pratice Project
-## Darey.io DevOps Bootcamp
+### Darey.io DevOps Bootcamp
 
 
 ![alt text](img/01.git.png "Git")
@@ -16,7 +16,7 @@ Required Steps:
 
      ![alt text](img/04.git_versionconfig.png "Gitv")
 
-* 3. Create a repository by first creating a folder with necessary files you might need
+* 3. Create a repository by first creating a folder with necessary  files you might need
 
      ![alt text](img/05.create_folder.png)
 
@@ -28,12 +28,75 @@ Required Steps:
       ![alt text](img/07.git_init_folder.png)
 
 
+* 5. `git commit` : my firstcommit was to rename a python file and was commited with this command
 
       ![alt text](img/08.firstCommit.png)
 
+     
+* 6. `git log --oneline` : view previous commits in one log with this command.
+
+     ![alt text](img/09.onelinelog.png)
 
 
-* 20. Create a github accounts and repositories at [Git](https://github.com/)
+* 7. `git rm filename.txt`  : delete by removing this filename
 
-      ![alt text](img/github.png "Github")
+      ![alt text](img/10.delete_file.png)
+
+
+* 8. `git diff`  : shows the difference in changes made to a file.
+
+      ![alt text](img/11.git_diff.png)
+
+* 9. `git branch branch_name`  : create a new branch
+     `git branch`              : confirm branches available in your repository
+     `git switch branch_name`  : switch to a specified branch_name  
+
+      ![alt text](img/12.branchswitchcommit.png)
+
+* 10. `git merge -m "tag_comments_here" branchtobemerged` : merge commits of branch to main with flag -m with tag comments.
+
+      ![alt text](img/12a.merge_branches.png)
+
+* 11. `git merge branch_name`  :    e.g git merge FixText created a merge conflict
+
+      ![alt text](img/13.mergeconflict.png)
+
+      ![alt text](img/14.sign_of_conflict.png)
+
+* 12. `git commit -a -m "tag_comments"` : e.g git commit -a -m "resolves conflict"  commits all changes with -a flag
+to main branch with -m flag and tag with comment in quotation marks. Conflict resolved.
+
+      ![alt text](img/15.conflict_resolution.png)
+
+
+* 13. `git branch -d FixImageText` : deletes a the branchname FixImagetext with flag -d
+
+      ![alt text](img/16.delete_branch.png)
+
+
+* 14. `git restore --unstaged "imagetotxt.py"`   : unstaged the file "imagetotxt.py" which was previously be staged for commit.
+
+      ![alt text](img/17.git_restore.png)
+      
+
+* 15. `git-h`  : get help with commands on git
+      ![alt text](img/18.git-h.png)
+
+
+
+* 19. Create a github account at [Git](https://github.com/) 
+      ![alt text](img/19.github.png "Github")
+
+      Create the repository on Github without adding a readme file and gitignore file. 
+      This allows seamless git remote repo addition without errors of "remote repository has an existing file"
+      ![alt text](img/20.remoterepo.png)  
+
+
+      Copy the https of your remote repo
+
+      `git remote add origin https://github.com/pakinsa/Brostleprojects.git`  // attempts to add your github repo to your local repo.
+      `git branch -m main`          //takes the Head, i.e the main branch of your github repo
+      `git push -u origin main`     // connects it to the main branch of your local repo with -u flag for upstream
+
+      ![alt text](img/21.git_remote.png)  
  
