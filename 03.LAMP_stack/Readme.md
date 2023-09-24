@@ -59,19 +59,23 @@
 
 5. #### Make an early visit to our public web server 
    At: 3.88.45.220  This gives you an error below,
-   because we have not added a http protocol on our inbound rule to the server.
+   because we have not added a http protocol on our inbound rule to the server
+
    ![alt_text](05a.earlyvisiterror.png) 
 
 
    Add a http protocol at port 80 as a new inbound rule
+
    ![alt_text](05b.createHTTP.png)
 
 
-   New inbound rule now successfully added.
+   New inbound rule now successfully added
+
    ![alt_text](05c.httpinboundrule.png)
 
 
    Apache now loads up from: Bash and Public IP at 3.88.45.220:80
+
    ![alt_text](05d.localhost1.png)
    ![alt_text](05e.apacheworks.png)
 
@@ -81,19 +85,25 @@
     ```sudo apt install mysql``` : This command installs mysql relational DBMS 
 
     ```sudo systemctl status mysql``` : Confirm mysql successfull installation and active
+
     ![alt_text](06a.mysqlrunning) 
 
    
     ```sudo mysql```  : Initialises the mysql database system
+
     ![alt_text](06b.enterintomysqlproper) 
 
-    ```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY `Password.1``
+
+    ```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Password.1'```
+
     ![alt_text](06c.rootmysqluserpasswrd)
     
     You can as well change the root user password with this command.
+
     ![alt_text](6d.changerootpasswrdmysql)
 
     Perform secure installation of mysql
+    
     ![alt_text](6e.mysqlsecureinstallation)
 
 
