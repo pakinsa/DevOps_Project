@@ -7,7 +7,7 @@
 ![alt text](img/00.lamp.png)
 
 ### Required Steps:
-1. #### Create and/or Signin into your AWS account
+1. #### Create and/or signin into your AWS account
 
    ![alt_text](01.signin_to_aws.png)
 
