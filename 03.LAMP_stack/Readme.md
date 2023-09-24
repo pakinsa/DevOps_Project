@@ -9,20 +9,20 @@
 ### Required Steps:
 1. #### Create and/or signin into your AWS account
 
-   ![alt_text](01.signin_to_aws.png)
+![alt_text](01.signin_to_aws.png)
 
 
 2. #### Launch an EC2 instance Server with Ubuntu OS pre-installed
 
-   ![alt_text](02a.launchEC2.png)
+![alt_text](02a.launchEC2.png)
 
    Create a Key Pair
    
-   ![alt_text](02b.key_pair.png)
+![alt_text](02b.key_pair.png)
 
    A running Instance
 
-   ![alt_text](02c.instance.png)
+![alt_text](02c.instance.png)
 
 
 3. #### Open GitBash or Powershell or Visual Studio code to coonect to a running instance
@@ -103,7 +103,7 @@
     ![alt_text](6d.changerootpasswrdmysql)
 
     Perform secure installation of mysql
-    
+
     ![alt_text](6e.mysqlsecureinstallation)
 
 
