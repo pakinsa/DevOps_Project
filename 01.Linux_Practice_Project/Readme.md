@@ -144,5 +144,12 @@ Example: "-rwx r-x r- -": User(u) group(g) others(o) : Means users can read, wri
 *```sudo /etc/init.d/mysql restart```  :  stop and restart mysql service 
 ![alt text](img/restartmysql.png)
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Success1'
+*```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Success1'```
+![alt text](img/changerootpasswrdmysql.png)
+
+*```sudo mv test.php /var/www/html```   : moves the test.php file into a directory /var/www/html
+*```find / -type f -name "test.php"```   : finds from the root directory filename test.php and the path to the file
+if you change test to * wildcard, *.php, will find out all php file from linux system from the root 
+![alt text](img/mvtestfile.png)
+
 

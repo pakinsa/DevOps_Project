@@ -14,15 +14,15 @@
 
 2. #### Launch an EC2 instance Server with Ubuntu OS pre-installed
 
-![alt_text](02a.launchEC2.png)
+   ![alt_text](02a.launchEC2.png)
 
    Create a Key Pair
    
-![alt_text](02b.key_pair.png)
+   ![alt_text](02b.key_pair.png)
 
    A running Instance
 
-![alt_text](02c.instance.png)
+   ![alt_text](02c.instance.png)
 
 
 3. #### Open GitBash or Powershell or Visual Studio code to coonect to a running instance
@@ -108,3 +108,67 @@
 
 
 
+
+
+Apache has been installed to serve content and MySQL has been installed to store and manage data.
+PHP is the component of our setup to that will process code to display dynamic content to the end-user.
+
+
+
+7. #### Install PHP
+
+    We shall need the ```php``` packages installed.
+    We shall need ```php-mysql```, a PHP module that allows PHP to communicate with MySql Databases. 
+    We shall also need ```libapache2-mod-php``` to enable Apache handle PHP files.
+
+    You can install the three at once with this command:
+
+    ```sudo apt install php libapache2-mod-php php-mysql```
+    ![alt_text](7a.3in1_command.png)
+
+    ```php -v```  : displays the version of our newly installed php
+    ![alt_text](7b.php_ver.png)
+
+
+
+8. #### Testing PHP
+
+    Test installed PHP with a new file called test.php 
+
+    ```sudo nano test.php``` create a text editor file called test.php  nano or vi can work here
+    ![alt_text](8a.writetestfile.png, 'write')
+
+    Copy and paste the code below inside the text file:
+
+    ```<?php```
+        ```$name = "Paul";```
+        ```echo "Hello World, My name is $name!";```
+    ```?>```
+    
+    Type Ctrl + O : save the text to file
+    Type Ctrl + X : to exit nano enviroment
+
+    ```cat test.php```  : To view content of the file test.php
+    ![alt_text](8b.cattestfile.png, 'cat')
+
+    ```sudo find / -type f -name "test.php"```   : Displays full path of the test.php file
+    ![alt_text](8c.findtest.png)
+
+
+    Let's test php on terminal first:
+
+    ```php test.php```  : Test on terminal
+    ![alt_text](8d.testonterminal.png)
+
+
+    Now we can test on browser. To test on browser, we need move our test.php file to
+    a directory popularly used to store php files in apache web server.
+
+    ```sudo mv test.php /var/www/html``` : moves the test.php file into a directory /var/www/html
+    ![alt_text](8e.mvtestfile.png)
+
+    Following this link, our PHP tested positive on the web Browser
+    [Test](http://3.89.26.213/test.php)
+    ![alt_text](8f.phpworks.png)
+
+    All thanks to :[Itslinuxfoss](https://itslinuxfoss.com/how-to-test-a-php-script-in-linux/#google_vignette)
