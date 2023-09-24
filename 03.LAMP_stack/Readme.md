@@ -124,9 +124,11 @@ PHP is the component of our setup to that will process code to display dynamic c
     You can install the three at once with this command:
 
     ```sudo apt install php libapache2-mod-php php-mysql```
+    
     ![alt_text](7a.3in1_command.png)
 
     ```php -v```  : displays the version of our newly installed php
+
     ![alt_text](7b.php_ver.png)
 
 
@@ -136,6 +138,7 @@ PHP is the component of our setup to that will process code to display dynamic c
     Test installed PHP with a new file called test.php 
 
     ```sudo nano test.php``` create a text editor file called test.php  nano or vi can work here
+
     ![alt_text](8a.writetestfile.png, 'write')
 
     Copy and paste the code below inside the text file:
@@ -149,10 +152,15 @@ PHP is the component of our setup to that will process code to display dynamic c
     Type Ctrl + X : to exit nano enviroment
 
     ```cat test.php```  : To view content of the file test.php
+
     ![alt_text](8b.cattestfile.png, 'cat')
 
+
+
     ```sudo find / -type f -name "test.php"```   : Displays full path of the test.php file
+
     ![alt_text](8c.findtest.png)
+
 
 
     Let's test php on terminal first:
@@ -161,14 +169,18 @@ PHP is the component of our setup to that will process code to display dynamic c
     ![alt_text](8d.testonterminal.png)
 
 
+
     Now we can test on browser. To test on browser, we need move our test.php file to
     a directory popularly used to store php files in apache web server.
 
     ```sudo mv test.php /var/www/html``` : moves the test.php file into a directory /var/www/html
+
     ![alt_text](8e.mvtestfile.png)
 
+
     Following this link, our PHP tested positive on the web Browser
+
     [Test](http://3.89.26.213/test.php)
     ![alt_text](8f.phpworks.png)
 
-    All thanks to :[Itslinuxfoss](https://itslinuxfoss.com/how-to-test-a-php-script-in-linux/#google_vignette)
+    All thanks to: [Itslinuxfoss](https://itslinuxfoss.com/how-to-test-a-php-script-in-linux/#google_vignette)
