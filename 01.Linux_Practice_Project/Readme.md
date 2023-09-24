@@ -125,3 +125,24 @@ Example: "-rwx r-x r- -": User(u) group(g) others(o) : Means users can read, wri
 
 *```chmod 735 predict.py```   : changes the mode of the file predict.py into a read, write, exeutable for users, only write and execute for groups and read and execute for others  
  ![alt text](img/chmod735.png "chm")
+
+
+*```sudo systemctl status apache2``` : know the status of apache in the server if it is running
+![alt text](img/statusapache.png)
+
+
+*```sudo mysql``` : enter into the mysql service, or use
+*```sudo mysql -p```  : flag -p is a prompt for password
+![alt text](img/entermysqlproper.png)
+
+
+
+*```sudo mysql_secure_installation``` : Install securely with the use of passwords for rootuser in mysql
+![alt text](img/mysqlsecureinstallation.png)
+
+
+*```sudo /etc/init.d/mysql restart```  :  stop and restart mysql service 
+![alt text](img/restartmysql.png)
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Success1'
+
