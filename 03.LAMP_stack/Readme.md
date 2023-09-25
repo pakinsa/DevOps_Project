@@ -124,7 +124,7 @@ PHP is the component of our setup to that will process code to display dynamic c
     You can install the three at once with this command:
 
     ```sudo apt install php libapache2-mod-php php-mysql```
-    
+
     ![alt_text](7a.3in1_command.png)
 
     ```php -v```  : displays the version of our newly installed php
@@ -137,7 +137,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     Test installed PHP with a new file called test.php 
 
-    ```sudo nano test.php``` create a text editor file called test.php  nano or vi can work here
+    ```sudo nano test.php``` create a new text editor file called test.php  nano or vi can work here
 
     ![alt_text](8a.writetestfile.png, 'write')
 
@@ -184,3 +184,77 @@ PHP is the component of our setup to that will process code to display dynamic c
     ![alt_text](8f.phpworks.png)
 
     All thanks to: [Itslinuxfoss](https://itslinuxfoss.com/how-to-test-a-php-script-in-linux/#google_vignette)
+
+
+9.  #### Virtual Hosting of Websites on Apache
+
+    ##### Create a root document that can hold several domain sites
+
+    ```sudo mkdir -p /var/www/lamppro.com/public_html```   : creates directory to store files of www.lamppro.com on Apache
+    ```sudo mkdir -p /var/www/lampguru.com/public_html```  : creates directory to store files of www.lampguru.com on Apache
+    
+
+    ##### Grant Permissions
+    ```sudo chown -R $USER:$USER /var/www/lamppro.com/public_html``` : change ownership and grant regular user privileges to work on the site
+    ```sudo chown -R $USER:$USER /var/www/lampguru.com/public_html```:change ownershipand grant regular user privileges to work on this site
+    '$USER' is a variable that stores credentials of any given user.
+
+
+    ```sudo chmod -R 755 /var/www``` : change mod of directories and subdirectories with flag -R to recursively grant operations of read, write, and execute according to users:7, group:5 and others:5
+
+    ![alt_text](9a.mkchomod.png)
+
+
+    ##### Create Default Pages for each Virtual Hosts.
+
+    ```nano /var/www/lamppro.com/public_html/index.html```  : No sudo here because we have given permissions to regular users, howver, this command creates a new html file called index.html has base for www.lamppro.com
+
+    ```nano /var/www/lampguru.com/public_html/index.html```  : No sudo here because we have given permissions to regular users, howver, this command creates a new html file called index.html has base for www.lampguru.com 
+
+
+    ##### Create New Virtual Host files
+
+    1. Copy the default configuration file over to the first domain uisng this command
+       ```sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lamppro.conf```
+       ```sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampguru.conf```
+
+
+       Write some edited config into the lamppro.conf file    
+    2. ```sudo nano /etc/apache2/sites-available/lamppro.conf``` :This file is to be edited to point a request to the lamppro domain
+       ```sudo nano /etc/apache2/sites-available/lampguru.conf```: This file is to be edited to point a request to the lampguru domain
+       The config file is edited to reflect the below in the 2 config files:
+       
+       ServerAdmin  admin@lamppro.com                                 admin@lampguru.com
+       ServerName   lamppro.com                                       lampguru.com
+       ServerAlias  www.lamppro.com                                   www.lampguru.com
+       Document Root /var/www/lamppro/public_html                     /var/www/lampguru/public_html
+
+
+    3. Enable the New Virtual Host Files 
+       Now that you have created your virtual host files, we must enable them
+       ```sudo a2ensite lamppro.com.conf```  : a2ensite is the tool to enable our virtual host website with the newly config file
+       ```sudo a2ensite lampguru.conf```  : a2ensite is the tool to enable our virtual host website with the newly config file
+
+       Before restart the Apache service
+       ```sudo a2dissite 000-default.conf```: Disable the default apache config file we used earlier
+
+       Again test for errors before restart:
+
+       ```sudo apache2ctl configtest```
+
+
+       Needs to restart Apachewith this command
+       ```systemctl reload apache2```  : Restarts apache service
+
+
+
+
+
+sudo echo 'Hello LAMP from hostname' $(curl -s http://3.86.25.36/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://3.86.25.36/latest/meta-data/public-ipv4) > /var/www/lamppro.com/public_html/index.html
+
+
+
+
+
+
+    All thansks to: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-20-04)
