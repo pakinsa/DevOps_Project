@@ -64,9 +64,9 @@ Required Steps:
 
 * 11. `git merge branch_name`  :    e.g git merge FixText created a merge conflict
 
-      ![alt text](img/13.mergeconflict.png)
+      ![alt text](./img/13.mergeconflict.png)
 
-      ![alt text](img/14.sign_of_conflict.png)
+      ![alt text](./img/14.sign_of_conflict.png)
 
 * 12. `git commit -a -m "tag_comments"` : e.g git commit -a -m "resolves conflict"  commits all changes with -a flag
 to main branch with -m flag and tag with comment in quotation marks. Conflict resolved.
