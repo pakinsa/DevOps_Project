@@ -104,7 +104,7 @@
 
     Perform secure installation of mysql
 
-    ![alt_text](./img/6e.mysqlsecureinstallation)
+    ![alt_text](./img/6e.mysqlsec)
 
 
 
