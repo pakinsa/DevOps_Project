@@ -9,20 +9,20 @@
 ### Required Steps:
 1. #### Create and/or signin into your AWS account
 
-![alt_text](01.signin_to_aws.png)
+![alt_text](./img/01.signin_to_aws.png)
 
 
 2. #### Launch an EC2 instance Server with Ubuntu OS pre-installed
 
-   ![alt_text](02a.launchEC2.png)
+   ![alt_text](./img/02a.launchEC2.png)
 
    Create a Key Pair
    
-   ![alt_text](02b.key_pair.png)
+   ![alt_text](./img/02b.key_pair.png)
 
    A running Instance
 
-   ![alt_text](02c.instance.png)
+   ![alt_text](./img/02c.instance.png)
 
 
 3. #### Open GitBash or Powershell or Visual Studio code to coonect to a running instance
@@ -31,12 +31,12 @@
    saved.  
    Copy and paste the SSH command to your SSH Client.
 
-   ![alt_text](03a.SSHclient.png)
+   ![alt_text](./img/03a.SSHclient.png)
 
 
    Successful Connection status to a running Ubuntu Cloud Server from local SSH Client: Git Bash
 
-   ![alt_text](03b.connect.png)
+   ![alt_text](./img/03b.connect.png)
 
 
 
@@ -44,15 +44,15 @@
 4. #### Install Apache version 2.0
 
    ```sudo apt update``` : update the linux OS with latest dependencies.
-   ![alt_text](04a.sudo_apt.png)
+   ![alt_text](./img/04a.sudo_apt.png)
    
 
    ```sudo apt install apache2```   :  This command installs apache version 2 on the Linux Server
-   ![alt_text](04b.installapachev2.png)
+   ![alt_text](./img/04b.installapachev2.png)
 
 
    ```sudo systemctl status apache2```  : This command checks the status of the apache if active
-    ![alt_text](04c.statusapache.png)
+    ![alt_text](./img/04c.statusapache.png)
 
 
 
@@ -61,23 +61,23 @@
    At: 3.88.45.220  This gives you an error below,
    because we have not added a http protocol on our inbound rule to the server
 
-   ![alt_text](05a.earlyvisiterror.png) 
+   ![alt_text](./img/05a.earlyvisiterror.png) 
 
 
    Add a http protocol at port 80 as a new inbound rule
 
-   ![alt_text](05b.createHTTP.png)
+   ![alt_text](./img/05b.createHTTP.png)
 
 
    New inbound rule now successfully added
 
-   ![alt_text](05c.httpinboundrule.png)
+   ![alt_text](./img/05c.httpinboundrule.png)
 
 
    Apache now loads up from: Bash and Public IP at 3.88.45.220:80
 
-   ![alt_text](05d.localhost1.png)
-   ![alt_text](05e.apacheworks.png)
+   ![alt_text](./img/05d.localhost1.png)
+   ![alt_text](./img/05e.apacheworks.png)
 
 
 6. #### Install MySQL
@@ -86,25 +86,25 @@
 
     ```sudo systemctl status mysql``` : Confirm mysql successfull installation and active
 
-    ![alt_text](06a.mysqlrunning) 
+    ![alt_text](./img/06a.mysqlrunning) 
 
    
     ```sudo mysql```  : Initialises the mysql database system
 
-    ![alt_text](06b.enterintomysqlproper) 
+    ![alt_text](./img/06b.enterintomysqlproper) 
 
 
     ```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Password.1'```
 
-    ![alt_text](06c.rootmysqluserpasswrd)
+    ![alt_text](./img/06c.rootmysqluserpasswrd)
     
     You can as well change the root user password with this command.
 
-    ![alt_text](6d.changerootpasswrdmysql)
+    ![alt_text](./img/6d.changerootpasswrdmysql)
 
     Perform secure installation of mysql
 
-    ![alt_text](6e.mysqlsecureinstallation)
+    ![alt_text](./img/6e.mysqlsecureinstallation)
 
 
 
@@ -125,11 +125,11 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ```sudo apt install php libapache2-mod-php php-mysql```
 
-    ![alt_text](7a.3in1_command.png)
+    ![alt_text](./img/7a.3in1_command.png)
 
     ```php -v```  : displays the version of our newly installed php
 
-    ![alt_text](7b.php_ver.png)
+    ![alt_text](./img/7b.php_ver.png)
 
 
 
@@ -139,7 +139,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ```sudo nano test.php``` create a new text editor file called test.php  nano or vi can work here
 
-    ![alt_text](8a.writetestfile.png, 'write')
+    ![alt_text](./img/8a.writetestfile.png, 'write')
 
     Copy and paste the code below inside the text file:
 
@@ -153,20 +153,20 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ```cat test.php```  : To view content of the file test.php
 
-    ![alt_text](8b.cattestfile.png, 'cat')
+    ![alt_text](./img/8b.cattestfile.png, 'cat')
 
 
 
     ```sudo find / -type f -name "test.php"```   : Displays full path of the test.php file
 
-    ![alt_text](8c.findtest.png)
+    ![alt_text](./img/8c.findtest.png)
 
 
 
     Let's test php on terminal first:
 
     ```php test.php```  : Test on terminal
-    ![alt_text](8d.testonterminal.png)
+    ![alt_text](./img/8d.testonterminal.png)
 
 
 
@@ -175,13 +175,13 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ```sudo mv test.php /var/www/html``` : moves the test.php file into a directory /var/www/html
 
-    ![alt_text](8e.mvtestfile.png)
+    ![alt_text](./img/8e.mvtestfile.png)
 
 
     Following this link, our PHP tested positive on the web Browser
 
     [Test](http://3.89.26.213/test.php)
-    ![alt_text](8f.phpworks.png)
+    ![alt_text](./img/8f.phpworks.png)
 
     All thanks to: [Itslinuxfoss](https://itslinuxfoss.com/how-to-test-a-php-script-in-linux/#google_vignette)
 
@@ -202,7 +202,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ```sudo chmod -R 755 /var/www``` : change mod of directories and subdirectories with flag -R to recursively grant operations of read, write, and execute according to users:7, group:5 and others:5
 
-    ![alt_text](9a.mkchomod.png)
+    ![alt_text](./img/9a.mkchomod.png)
 
 
     ##### Create Default Pages for each Virtual Hosts.
@@ -210,9 +210,9 @@ PHP is the component of our setup to that will process code to display dynamic c
     ```nano /var/www/lamppro.com/public_html/index.html```  : No sudo here because we have given permissions to regular users, howver, this command creates a new html file called index.html has base for www.lamppro.com
 
     ```nano /var/www/lampguru.com/public_html/index.html```  : No sudo here because we have given permissions to regular users, howver, this command creates a new html file called index.html has base for www.lampguru.com 
-    ![alt_text](9b.writeindexhtml.png)
-    ![alt_text](9b1.indexhtml.png)
-    ![alt_text](9b2.indexhtml.png)
+    ![alt_text](./img/9b.writeindexhtml.png)
+    ![alt_text](./img/9b1.indexhtml.png)
+    ![alt_text](./img/9b2.indexhtml.png)
 
     ##### Create New Virtual Host files
 
@@ -230,7 +230,7 @@ PHP is the component of our setup to that will process code to display dynamic c
        ServerName       lamppro.com                                           lampguru.com
        ServerAlias      www.lamppro.com                                       www.lampguru.com
        Document Root    /var/www/lamppro.com/public_html                      /var/www/lampguru.com/public_html
-      ![alt_text](03.LAMP_stack/img/9c.configfile.png)
+      ![alt_text](./img/9c.configfile.png)
 
     3. Enable the New Virtual Host Files 
 
@@ -247,7 +247,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
        ```sudo apache2ctl configtest```
 
-       ![alt_text](03.LAMP_stack/img/9d.a2ensite.png)
+       ![alt_text](./img/9d.a2ensite.png)
 
 
        Needs to restart Apachewith this command
