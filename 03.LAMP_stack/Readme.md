@@ -9,7 +9,7 @@
 ### Required Steps:
 1. #### Create and/or signin into your AWS account
 
-![alt_text](./img/01.signin_to_aws.png)
+![alt_text](./img/01signin.png)
 
 
 2. #### Launch an EC2 instance Server with Ubuntu OS pre-installed
