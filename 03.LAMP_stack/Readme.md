@@ -139,7 +139,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ```sudo nano test.php``` create a new text editor file called test.php  nano or vi can work here
 
-    ![alt_text](./img/8a.writetestfile.png, 'write')
+    ![alt_text](img/8a.writetestfile.png, 'write')
 
     Copy and paste the code below inside the text file:
 
