@@ -257,14 +257,14 @@ PHP is the component of our setup to that will process code to display dynamic c
        Now lets test if virtual host website configuration is working:
 
        We configure our windows PC to intercept request from localhost like a DNS server will act.
-       ![alt_text](03.LAMP_stack/img/9e.configtest.png)
+       ![alt_text](./img/9e.configtest.png)
 
 
        Our result:
        When <http://lampguru.com> is inputted to browser or public IP 54.208.161.104:80 is inputted to browser
        The lampguru.com site virtual host works. 
        
-       ![alt_text](03.LAMP_stack/mg/9f.lampguru.png)
+       ![alt_text](./img/9f.lampguru.png)
 
        
        Limitations:
