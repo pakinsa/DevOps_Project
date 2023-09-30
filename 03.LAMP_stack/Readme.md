@@ -190,8 +190,8 @@ PHP is the component of our setup to that will process code to display dynamic c
 
     ##### Create a root document that can hold several domain sites
 
-    ```sudo mkdir -p /var/www/lamppro.com/public_html```   : creates directory to store files of www.lamppro.com on Apache
-    ```sudo mkdir -p /var/www/lampguru.com/public_html```  : creates directory to store files of www.lampguru.com on Apache
+    ```sudo mkdir -p /var/www/lamppro.com/public_html```   : creates directory to store files of lamppro.com on Apache
+    ```sudo mkdir -p /var/www/lampguru.com/public_html```  : creates directory to store files of lampguru.com on Apache
     
 
     ##### Grant Permissions
@@ -261,10 +261,10 @@ PHP is the component of our setup to that will process code to display dynamic c
 
 
        Our result:
-       When<http://lampguru.com> is inputted to browser or public IP 54.208.161.104:80 is inputted to browser
+       When <http://lampguru.com> is inputted to browser or public IP 54.208.161.104:80 is inputted to browser
        The lampguru.com site virtual host works. 
        
-       ![alt_text](03.LAMP_stack\img\9f.lampguru.png
+       ![alt_text](03.LAMP_stack\img\9f.lampguru.png)
 
        
        Limitations:
