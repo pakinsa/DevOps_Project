@@ -64,7 +64,7 @@ Required Steps:
 
 * 11. `git merge branch_name`  :    e.g git merge FixText created a merge conflict
 
-      ![alt text](./img/13.mergeconflict.png)
+      ![alt text](./img/13.merge_conflict.png)
 
       ![alt text](./img/14.sign_of_conflict.png)
 
