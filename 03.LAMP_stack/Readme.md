@@ -210,51 +210,73 @@ PHP is the component of our setup to that will process code to display dynamic c
     ```nano /var/www/lamppro.com/public_html/index.html```  : No sudo here because we have given permissions to regular users, howver, this command creates a new html file called index.html has base for www.lamppro.com
 
     ```nano /var/www/lampguru.com/public_html/index.html```  : No sudo here because we have given permissions to regular users, howver, this command creates a new html file called index.html has base for www.lampguru.com 
-
+    ![alt_text](9b.writeindexhtml.png)
+    ![alt_text](9b1.indexhtml.png)
+    ![alt_text](9b2.indexhtml.png)
 
     ##### Create New Virtual Host files
 
     1. Copy the default configuration file over to the first domain uisng this command
-       ```sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lamppro.conf```
-       ```sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampguru.conf```
+       ```sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lamppro.com.conf```
+       ```sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampguru.com.conf```
 
 
        Write some edited config into the lamppro.conf file    
-    2. ```sudo nano /etc/apache2/sites-available/lamppro.conf``` :This file is to be edited to point a request to the lamppro domain
-       ```sudo nano /etc/apache2/sites-available/lampguru.conf```: This file is to be edited to point a request to the lampguru domain
+    2. ```sudo nano /etc/apache2/sites-available/lamppro.com.conf``` :This file is to be edited to point a request to the lamppro domain
+       ```sudo nano /etc/apache2/sites-available/lampguru.com.conf```: This file is to be edited to point a request to the lampguru domain
        The config file is edited to reflect the below in the 2 config files:
        
-       ServerAdmin  admin@lamppro.com                                 admin@lampguru.com
-       ServerName   lamppro.com                                       lampguru.com
-       ServerAlias  www.lamppro.com                                   www.lampguru.com
-       Document Root /var/www/lamppro/public_html                     /var/www/lampguru/public_html
-
+       ServerAdmin      admin@lamppro.com                                     admin@lampguru.com
+       ServerName       lamppro.com                                           lampguru.com
+       ServerAlias      www.lamppro.com                                       www.lampguru.com
+       Document Root    /var/www/lamppro.com/public_html                      /var/www/lampguru.com/public_html
+      ![alt_text](03.LAMP_stack/img/9c.configfile.png)
 
     3. Enable the New Virtual Host Files 
-       Now that you have created your virtual host files, we must enable them
-       ```sudo a2ensite lamppro.com.conf```  : a2ensite is the tool to enable our virtual host website with the newly config file
-       ```sudo a2ensite lampguru.conf```  : a2ensite is the tool to enable our virtual host website with the newly config file
 
        Before restart the Apache service
-       ```sudo a2dissite 000-default.conf```: Disable the default apache config file we used earlier
+       ```sudo a2dissite 000-default.conf```: Disable the default apache config file we copied content from earlier
 
-       Again test for errors before restart:
+
+       Now that you have created your virtual host files, we must enable them
+       ```sudo a2ensite lamppro.com.conf```  : a2ensite is the tool to enable our virtual host website with the newly config file
+       ```sudo a2ensite lampguru.com.conf```  : a2ensite is the tool to enable our virtual host website with the newly config file
+
+       
+       Again test for errors before restart and be sure virtual host configuration is OK:
 
        ```sudo apache2ctl configtest```
+
+       ![alt_text](03.LAMP_stack/img/9d.a2ensite.png)
 
 
        Needs to restart Apachewith this command
        ```systemctl reload apache2```  : Restarts apache service
 
 
+       Now lets test if virtual host website configuration is working:
+
+       We configure our windows PC to intercept request from localhost like a DNS server will act.
+       ![alt_text](03.LAMP_stack/img/9e.configtest.png)
+
+
+       Our result:
+       When<http://lampguru.com> is inputted to browser or public IP 54.208.161.104:80 is inputted to browser
+       The lampguru.com site virtual host works. 
+       
+       ![alt_text](03.LAMP_stack\img\9f.lampguru.png
+
+       
+       Limitations:
+       Unfortunately, the www.lamppro.com doesnt display like lampgurue, as the IP resolves to 
+       the same server with lampguru.com
+
+       Upon findings in Digital Ocean, it was revealed that a re-setup of apache
+       on linux with SSL on https port 443 is necessarily to allow one site to load from port 443
+       and the other to load from port 80 which prevents one from defaulting into the other.
 
 
 
-sudo echo 'Hello LAMP from hostname' $(curl -s http://3.86.25.36/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://3.86.25.36/latest/meta-data/public-ipv4) > /var/www/lamppro.com/public_html/index.html
 
-
-
-
-
-
-    All thansks to: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-20-04)
+      References:
+      All thanks to: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-20-04)
