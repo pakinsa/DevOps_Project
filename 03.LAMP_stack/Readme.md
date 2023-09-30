@@ -264,7 +264,7 @@ PHP is the component of our setup to that will process code to display dynamic c
        When <http://lampguru.com> is inputted to browser or public IP 54.208.161.104:80 is inputted to browser
        The lampguru.com site virtual host works. 
        
-       ![alt_text](03.LAMP_stack\img\9f.lampguru.png)
+       ![alt_text](03.LAMP_stack/mg/9f.lampguru.png)
 
        
        Limitations:
