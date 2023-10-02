@@ -1,6 +1,6 @@
 # My DevOps_Project 
 
-## Project 2: LAMP Stack Implementation Project
+## Project 3: LAMP Stack Implementation Project
 
 ### Darey.io DevOps Bootcamp
 
@@ -280,3 +280,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
       References:
       All thanks to: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-20-04)
+
+
+      Possible Future Projects:
+      [AWS Serverless LAMP](https://aws.amazon.com/blogs/compute/introducing-the-new-serverless-lamp-stack/)
