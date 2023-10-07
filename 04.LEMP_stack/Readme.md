@@ -4,7 +4,7 @@
 
 ### Darey.io DevOps Bootcamp
 
-![alt text](./img/00.lemp.png)
+   ![alt text](./img/00.lemp.png)
 
 ### Required Steps:
 1. ### Create and/or signin into your AWS account
@@ -184,6 +184,7 @@
 
 
 
+
 9. ### References:
 
    1.  [Digital Ocean: How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04)
@@ -194,11 +195,13 @@
 
 
 
+
+
 10. ### Further related projects
 
-   1. Implement LEMP Stack with SSL and live domain name
+    1. Implement LEMP Stack with SSL and live domain name
 
-   2. Implement LEMP Stack with SSL and deploy Wordpress for website hosting Service 
+    2. Implement LEMP Stack with SSL and deploy Wordpress for website hosting Service 
 
    
 
