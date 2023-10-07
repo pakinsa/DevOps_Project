@@ -182,6 +182,13 @@
     ![alt_text](./img/8g.mysqlphpworks.png)
 
 
+
+9. ### Further related projects
+
+   1. Implement LEMP Stack with SSL and live domain name
+
+   2. Implement LEMP Stack with SSL and deploy Wordpress for website hosting Service 
+
    
 
 9. ### References:
