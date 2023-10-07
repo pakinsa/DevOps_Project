@@ -191,7 +191,7 @@
 
    
 
-9. ### References:
+10. ### References:
 
    1.  [Digital Ocean: How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04)
 
