@@ -126,8 +126,9 @@
 
     Lets test Php again
     <http://54.211.205.161/info.php>
-    ![alt_text](./img/7f.phptestworks.png)  [In conclusion, Php test works on 7.4 and not on latest 8.1]
-<!In conclusion, Php test works on 7.4 and not on latest 8.1>
+    ![alt_text](./img/7f.phptestworks.png)  
+    [In conclusion, Php test works on 7.4 and not on latest 8.1]
+    <!In conclusion, Php test works on 7.4 and not on latest 8.1>
 
 
 
