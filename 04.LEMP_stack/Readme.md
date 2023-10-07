@@ -9,14 +9,14 @@
 ### Required Steps:
 1. ### Create and/or signin into your AWS account
 
-   ![alt_text](./img/01signin.png)
+   ![alt_text](./img/1a.signin.png)
 
 
 2. ### Launch an EC2 instance Server with Ubuntu OS pre-installed and Connect with Bash
 
-   ![alt_text](./img/02a.lemp_inst.png)
+   ![alt_text](./img/2a.lemp_inst.png)
 
-   ![alt_text](./img/02b.connect.png)
+   ![alt_text](./img/2b.connect.png)
 
 
 3. ### Install Nginx, the web Server
@@ -31,17 +31,17 @@
    ```sudo system disable nginx```    // disable nginx from starting at boot
    ```sudo system enable nginx```     // enable nginx to start at boot
 
-   ![alt_text](./img/03a.nginx_active.png)
-   ![alt_text](./img/03b.nginx.png)
+   ![alt_text](./img/3a.nginx_active.png)
+   ![alt_text](./img/3b.nginx.png)
 
     
 4. ### Installing MYSQL
 
    ```sudo apt install mysql-server```    // installs mysql as a DBMS to manage and store data
-   ``` sudo mysql_secure_installation```  // secure installaton, to change root user priveledges and password
+   ```sudo mysql_secure_installation```  // secure installaton, to change root user priveledges and password
     
-   ![alt_text](./img/04a.mysql.png)
-   ![alt_text](./img/04b.mysqlrootuser.png)
+   ![alt_text](./img/4a.mysql.png)
+   ![alt_text](./img/4b.mysqlrootuser.png)
 
     
 
@@ -124,11 +124,12 @@
        ```phpinfo();```
 
 
-    Lets test Php again
+    Lets test PHP again
     <http://54.211.205.161/info.php>
     ![alt_text](./img/7f.phptestworks.png)  
-    [In conclusion, Php test works on 7.4 and not on latest 8.1]
-    <!In conclusion, Php test works on 7.4 and not on latest 8.1>
+    
+    //In conclusion, Php test works on 7.4 and not on latest 8.1
+    
 
 
 
