@@ -126,8 +126,8 @@
 
     Lets test Php again
     <http://54.211.205.161/info.php>
-    ![alt_text](./img/7f.phptestworks.png)  //Php test works on 7.4 and not on latest 8.1
-
+    ![alt_text](./img/7f.phptestworks.png)  [In conclusion, Php test works on 7.4 and not on latest 8.1]
+<!In conclusion, Php test works on 7.4 and not on latest 8.1>
 
 
 
@@ -155,24 +155,27 @@
 
 
 
-    Let's create the PHP script that will connect to MySQL and query for content. Creating a new PHP file in your custom web root directory using your preferred editor. We’ll use nano for that:
+    Let's create the PHP script that will connect to MySQL and query for content. Creating a new PHP file in the custom web root directory using nano editor:
 
     ```sudo nano /var/www/lempguru.com/todo_list.php```   // create a php file with mysql commands to test that data can be fetched successfully
 
     ![alt_text](./img/8c.phpsriptmysql.png)
 
     Let's test <http://3.81.129.142/todo_list.php>
+
     Encountered  a strange error, due to the use of php 7.4 verison, apache was the default web server. 
-    Therefore I encountered the following error
+    Therefore I encountered the following .
     ![alt_text](./img/8d.error1.png)   
     ![alt_text](./img/8e.error2.png)
 
     To stop this error
     ```sudo /etc/init.d/apache2 stop```   //stop the apache server 
+
     ```sudo systemctl restart nginx```    //and restart the nginx
     ![alt_text](./img/8f.stopapacheerror.png)   
 
 
+    Let's test again
     <http://3.81.129.142/todo_list.php>
     ![alt_text](./img/8g.mysqlphpworks.png)
 
