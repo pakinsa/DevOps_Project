@@ -183,7 +183,18 @@
 
 
 
-9. ### Further related projects
+
+9. ### References:
+
+   1.  [Digital Ocean: How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04)
+
+   2. [Stack Overflow: nginx.service failed because the control process exited](https://stackoverflow.com/a/55164432)
+
+   3. [W3Schools: INSERT INTO Example](https://www.w3schools.com/sql/sql_insert.asp)
+
+
+
+10. ### Further related projects
 
    1. Implement LEMP Stack with SSL and live domain name
 
@@ -191,11 +202,5 @@
 
    
 
-10. ### References:
 
-   1.  [Digital Ocean: How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04)
-
-   2. [Stack Overflow: nginx.service failed because the control process exited](https://stackoverflow.com/a/55164432)
-
-   3. [W3Schools: INSERT INTO Example](https://www.w3schools.com/sql/sql_insert.asp)
 
