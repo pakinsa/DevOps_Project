@@ -7,15 +7,30 @@
 
 ![alt text](./img/00.shell-scripting.png)
 
+
+
+```touch mylearningscripts.sh```  // creates a script called "mylearningscript.sh"
+```ls```                         // list containing files
+
 ![Alt text](img/1a.touch&create.png)
 
+
+```which bash```                 // command to display the type of shell script: bash
 ![Alt text](img/2a.myfirstscript.png)
 
+
+```chmod  +x mylearningscripts.sh```  // command changes the mode of this script for to executable
 ![Alt text](img/2b.if_user_activation.png)
 
+
+A bash script that receives user input and chats
+</05.Shell_script/userinput.sh>   //userinput.sh can be found in the mylearningscripts.sh
 ![Alt text](img/3a.Userinput.png)
 
+
+</05.Shell_script/response.txt>  // response.txt contains responses saved from the chat
 ![Alt text](img/3b.Userinputresponse.png)
+
 
 ![Alt text](img/4a.Variables.png)
 
@@ -58,8 +73,14 @@
 
 
 
+
 #### Learning scripts
-```./mylearningscripts.sh```  // contains all appendix. Appendix contains all implemneted learning scripts
+```./mylearningscripts.sh```  
+// Contains appendix. Appendix contains all implemneted learning scripts
+// Some of appendix codes were corrected and edited with the use of BING AI
+
+
+
 
 
 #### Appendix
@@ -80,6 +101,9 @@
 8. forloops.sh
 
 9. backup.sh
+
+
+
 
 
 
