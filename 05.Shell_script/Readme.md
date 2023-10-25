@@ -24,7 +24,7 @@
 
 
 A bash script that receives user input and chats
-[UserInput](/userinput.sh)   //userinput.sh can be found in the mylearningscripts.sh
+[UserInput](DevOps_project/05.Shell_script/userinput.sh)   //userinput.sh can be found in the mylearningscripts.sh
 ![Alt text](img/3a.Userinput.png)
 
 [Response](/response.txt)  // response.txt contains responses saved from the chat
