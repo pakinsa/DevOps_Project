@@ -45,11 +45,6 @@
 
 ![Alt text](img/8a.installpython.png)
 
-#### Learning scripts
-```./mylearningscripts.sh```  // contians all appendix. Appendix contains all implemnetd learning scripts
-
-![Alt text](img/8a.installpython.png)
-
 ![Alt text](img/8b.awscli.png)
 
 ![Alt text](img/8c.installawscli.png)
@@ -63,8 +58,11 @@
 
 
 
-Appendix
+#### Learning scripts
+```./mylearningscripts.sh```  // contains all appendix. Appendix contains all implemneted learning scripts
 
+
+#### Appendix
 1. positionalvariables.sh
 
 2. userinput.sh
@@ -85,7 +83,8 @@ Appendix
 
 
 
-REFERENCES:
+#### REFERENCES:
+
 [FreeCodeCamp.org: Bash Scripting Tutorial for Beginners](https://www.youtube.com/watch?v=tK9Oc6AEnR4)
 
 [BeaBetterDev: How to install and configure the AWS CLI on Windows 10](https://www.youtube.com/watch?v=jCHOsMPbcV0)
