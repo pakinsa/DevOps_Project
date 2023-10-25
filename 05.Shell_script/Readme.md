@@ -24,10 +24,10 @@
 
 
 A bash script that receives user input and chats
-[UserInput](05.Shell_script/userinput.sh)   //userinput.sh can be found in the mylearningscripts.sh
+[UserInput](/userinput.sh)   //userinput.sh can be found in the mylearningscripts.sh
 ![Alt text](img/3a.Userinput.png)
 
-[Response](05.Shell_script/response.txt)  // response.txt contains responses saved from the chat
+[Response](/response.txt)  // response.txt contains responses saved from the chat
 ![Alt text](img/3b.Userinputresponse.png)
 
 
