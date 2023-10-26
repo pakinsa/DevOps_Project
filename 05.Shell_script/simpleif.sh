@@ -13,12 +13,12 @@
 # Use -eq or = to compare strings or numbers, not ==. The ==operator is used for pattern matching, not equality testing.
 # Should be consistent with capitalisation for your variables. Name is differet from NAME
 
-#echo "What is your name ?" 
-#read NAME
+echo "What is your name ?" 
+read NAME
 
-#if [ $NAME = "Brostle" ]
-#then 
-#    echo "Welcome Brostle to Darey.io"
-#else 
-#    echo "Kindly, visit www.darey.io to signup"
-#fi    # Use fi to close your if then statement
+if [ $NAME = "Brostle" ]
+then 
+    echo "Welcome Brostle to Darey.io"
+else 
+    echo "Kindly, visit www.darey.io to signup"
+fi    # Use fi to close your if then statement
