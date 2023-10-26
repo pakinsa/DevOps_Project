@@ -10,4 +10,4 @@
 * Project 2: GIT Project
 * Project 3: LAMP Stack Implementation
 * Project 4: LEMP Stack Implementation
-* Project 5: Linux Administration
+* Project 5: Shell Scripting
