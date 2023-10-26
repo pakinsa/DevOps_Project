@@ -5,7 +5,7 @@
 ### Darey.io DevOps Bootcamp
 
 
-![alt text](./img/00.shell-scripting.png)
+![alt_text](./img/00.shell-scripting.png)
 
 
 ### General Commands
@@ -13,7 +13,7 @@
 
 ```ls```                          list containing files
 
-![Alt text](img/1a.touch&create.png)
+![Alt_text](img/1a.touch&create.png)
 
 
 
@@ -127,7 +127,7 @@ Create new user and get access key
 
 ![Alt text](img/8e.userconfig.png)
 
-![Alt text](img/8f.getaccesskey.png)
+![Alt text](img/8f.getaccesskeys.png)
 
 
 AWS CLI Configure
@@ -136,10 +136,14 @@ AWS CLI Configure
 ![Alt_text](img/8g.awsconfigure.png)
 
 ```aws ec2 describe-instances```       Command describe the properties of all servers initiated on EC2 on AWS to the IAM User
-```aws ec2 describe-instance-types```  This command describe the physical and digital properties of available servers in AWS
-![Alt text](img/8h.brickwall1x.png)    But unfortunately, IAM user couldn't gain access. I tried using AWS CloudShell as well but same error.
 
-![Alt text](img/8i.brickwall2x.png)    Unfortunately, IAM user couldn't gain access. I couldnt gain access to AWS EC2 via AWS CLI for 3days.
+```aws ec2 describe-instance-types```  This command describe the physical and digital properties of available servers in AWS
+
+![Alt text](img/8h.brickwall1x.png)    
+But unfortunately, IAM user couldn't gain access. I tried using AWS CloudShell as well but same error.
+
+![Alt text](img/8i.brickwall2x.png)    
+Unfortunately, IAM user couldn't gain access. I couldnt gain access to AWS EC2 via AWS CLI for 3days.
 
 
 ### Solving the brickwall
