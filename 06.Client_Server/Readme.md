@@ -85,12 +85,12 @@ The principle is ssh keypair/path ubuntu@server-public-ip
 
 
 
-
-# Open port 3306 on mysqlserver by configuring the new inbound rule
-# and connect to mysqlserver from mysql_client server
-# Note for extra security, do not  allow all IP address to reach 
-# 'mysql_server' -only allow acccess only to specific local IP address of 
-# 'mysql_client'  
+#### New Inbound Rule
+Open port 3306 on mysqlserver by configuring the new inbound rule
+and connect to mysqlserver from mysql_client server
+Note for extra security, do not  allow all IP address to reach 
+'mysql_server' -only allow acccess only to specific local IP address of 
+'mysql_client'  
 
 To allow access tot the specific ip of the mysql-client. We get the private IP of mysql-client
 ![Alt_text](img/9a.findptirvateip.png)
@@ -123,11 +123,11 @@ Confirm single private ip of mysqlclient is configured
 
 
 
+#### Configure and Connect
 
-
-#### Configure mysql_server to allow connections from remote hosts,  
-#### and connect to mysqlserverDB engine from mysql_client server without SSH 
-#### but with mysql connect utility
+Configure mysql_server to allow connections from remote hosts,  
+and connect to mysqlserverDB engine from mysql_client server without SSH 
+but with mysql connect utility
 
 ![Alt_text](img/10.bindaddress.png)
 
@@ -141,9 +141,11 @@ After a full day of trying to connect remotely with an increased RAM Size of 1GB
 
 
 
-# Confirm successful remote Mysql_server DB, by running some mysql queries
+#### Show Database
 
-Howver, show Database from mysql_server is successful not mysql_client
+To Confirm successful remote connection from client to Mysql_server DB, by running some mysql queries
+
+However, show Database below from mysql_server is successful not from mysql_client
 
 ![Alt_text](img/11.showdatabases.png)
 
