@@ -129,12 +129,21 @@ Confirm single private ip of mysqlclient is configured
 #### and connect to mysqlserverDB engine from mysql_client server without SSH 
 #### but with mysql connect utility
 
-![Alt_text](img/10.bindaddress.PNG)
+![Alt_text](img/10.bindaddress.png)
 
 There are different ways to connect to a MySQL database engine without SSH using MySQL. One possible method is to edit the MySQL configuration file on the server and change the bind-address key to the server’s IP address instead of 127.0.0.1. Then, you need to allow the MySQL port 3306 on the firewall and configure the user and host permissions for authentication. After that, you can use the mysql command-line client or a graphical tool like MySQL Workbench to connect to the database
 
 
+After a full day of trying to connect remotely with an increased RAM Size of 1GB Ram micro EC2 CPU to 2GB Ram small EC2 
+![Alt text](img/11.unsolved_challenge.png)
+
+![Alt text](img/11b.troubleshoot.png)
+
+
+
 # Confirm successful remote Mysql_server DB, by running some mysql queries
+
+Howver, show Database from mysql_server is successful not mysql_client
 
 ![Alt_text](img/11.showdatabases.png)
 
@@ -149,12 +158,12 @@ There are different ways to connect to a MySQL database engine without SSH using
 
 #### References:
 
-1. https://devopscube.com/use-aws-cli-create-ec2-instance/
+1. [DevOpsCube: Use AWS CLI Create EC2 Instance](https://devopscube.com/use-aws-cli-create-ec2-instance/)
 
-2. https://www.w3schools.com/sql/
+2. [W3Schools: Sql](https://www.w3schools.com/sql/)
 
-3. https://devopscube.com/become-devops-engineer/
+3. [DevOpsCube: Become DevOps Engineer](https://devopscube.com/become-devops-engineer/)
 
-4. https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html
+4. [AWS: Security Group Rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html)
 
 
