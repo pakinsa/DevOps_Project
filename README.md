@@ -11,3 +11,4 @@
 * Project 3: LAMP Stack Implementation
 * Project 4: LEMP Stack Implementation
 * Project 5: Shell Scripting
+* Project 6: Client-Server Architecture
