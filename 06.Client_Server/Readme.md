@@ -7,8 +7,8 @@
 ![Alt_text](img/00.cli_server.png)
 
 
-#### Create 2 new servers with Linux Ubuntu OS Installed
-# namely mysql_server and mysql_client via PowerShell or Terminal
+#### Create 2 new servers 
+with Linux Ubuntu OS Installed namely mysql_server and mysql_client via PowerShell or Terminal
 Get the Ami-id from AWS Management Console
 ![Alt_text](img/01.Ami-id.png)
 
@@ -86,6 +86,7 @@ The principle is ssh keypair/path ubuntu@server-public-ip
 
 
 #### New Inbound Rule
+
 Open port 3306 on mysqlserver by configuring the new inbound rule
 and connect to mysqlserver from mysql_client server
 Note for extra security, do not  allow all IP address to reach 
