@@ -54,15 +54,15 @@ Launch two EC2 instances with Apache web server installed and configured. You ca
 
 It is also recommended to launch instances in separate Availability Zones to protect your applications from the failure of a single location. You can also use a load balancer to distribute traffic across multiple instances in different Availability Zones for better performance and fault tolerance
 
-Launch 3 serversfrom an Installed AWS-CLI
+Launch 3 servers from an Installed AWS-CLI
 ```aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 3 --instance-type t2.micro --key-name latestkeys2 --security-group-ids sg-0b21426e88f886da9 --subnet-id  subnet-0a0e3a8df801bcd0b --tag-specifications 'ResourceType=instance,Tags=[{Key=Name1,Value=Apache1},{Key=Name2,Value=Apache2},{Key=Name3,Value=Nginx}]'```   
 
 
-![Alt text](img/01a.EC2servers.png)
+![Alt text]./img/01a.EC2servers.png)
 
-![Alt text](img/01b.EC2servers.png)
+![Alt text](./img/01b.EC2servers.png)
 
-![Alt text](img/1c.Newrule.png)
+![Alt text](./img/1c.Newrule.png)
 
 
 
@@ -155,6 +155,7 @@ To copy text from within nano, you need to mark the text first by pressing Ctrl 
 
 Confusion trails on which of the 3 nginx file above I should edit.
 ```sudo nginx -t``` proved ```sudo nano /etc/nginx/conf.d/default.conf``` to be successfull but no result on the loadbalancer
+
 ```sudo nginx -t``` proved ```sudo nano /etc/nginx/sites-available/default``` to be successful and results in loadbalancing after visiting Digital Ocean.
 
 Restart nginx to apply the changes: ```sudo service nginx restart```
