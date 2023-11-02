@@ -268,8 +268,7 @@ PHP is the component of our setup to that will process code to display dynamic c
 
        
        Limitations:
-       Unfortunately, the www.lamppro.com doesnt display like lampgurue, as the IP resolves to 
-       the same server with lampguru.com
+       Unfortunately, the www.lamppro.com doesnt display like lampguru, as the IP resolves to the same server with lampguru.com
 
        Upon findings in Digital Ocean, it was revealed that a re-setup of apache
        on linux with SSL on https port 443 is necessarily to allow one site to load from port 443
