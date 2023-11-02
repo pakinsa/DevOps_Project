@@ -58,7 +58,7 @@ Launch 3 servers from an Installed AWS-CLI
 ```aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 3 --instance-type t2.micro --key-name latestkeys2 --security-group-ids sg-0b21426e88f886da9 --subnet-id  subnet-0a0e3a8df801bcd0b --tag-specifications 'ResourceType=instance,Tags=[{Key=Name1,Value=Apache1},{Key=Name2,Value=Apache2},{Key=Name3,Value=Nginx}]'```   
 
 
-![Alt text]./img/01a.EC2servers.png)
+![Alt text](./img/01a.EC2servers.png)
 
 ![Alt text](./img/01b.EC2servers.png)
 
