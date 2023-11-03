@@ -176,6 +176,11 @@ Test  load balancer by accessing its public IP address or domain name from a web
 ![Alt text](img/6c.loadbalapache2.png)
 
 
+### Further Projects:
+1. Mini-Project: Deploying Python Application With Nginx
+
+
+
 
 
 ### References:
@@ -183,4 +188,8 @@ Test  load balancer by accessing its public IP address or domain name from a web
 1. [TheGeekStuff: How to Setup Nginx as loadbalancer for Apache or Tomcat for HTTP/HTTPS](https://www.thegeekstuff.com/2017/01/nginx-loadbalancer/)
 
 2. [Digital Ocean: How to set up nginx loadbalancing](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-load-balancing)
+
+
+3. [Medium: Mini-Project: Deploying Python Application With Nginx](https://medium.com/swlh/mini-project-deploying-python-application-with-nginx-30f9b25b195)
+
 
