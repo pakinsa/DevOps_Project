@@ -4,13 +4,13 @@
 
 ### Darey.io DevOps Bootcamp
 
-#### Purpose: To configure two EC2 apache webserver  with nginx load balancer 
+### Purpose: To configure two EC2 apache webserver  with nginx load balancer 
 
 
 ![Alt text](img/00.loadbalancer.png)
 
 
-#### Why Port 8000 ?
+### Why Port 8000 ?
 There is no definitive answer to why apache webserver should serve on port 8000 and not port 80, as it depends on the configuration and preference of the server administrator. However, some possible reasons are:
 
 Port 80 is the default port for HTTP, so a lot of applications won’t use that by default to avoid clashing with existing applications that are using port 801. Port 8000 looks similar to 80, so you see that used a lot as an alternative port for web servers.
@@ -26,7 +26,7 @@ However, specifying port 8000 or 8080 or any other port is allowed if tthe app s
 
 
 
-#### Load Balancing Methods
+### Load Balancing Methods
 The following load balancing mechanisms (or methods) are supported in nginx: 
 
 Round-robin: requests to the application servers are distributed in a round-robin fashion
@@ -49,7 +49,7 @@ The default max_fails is 1 attempt. If we set to 3 attempts. This means that aft
 
 
 
-#### Lauch and Configure 3 EC2 servers:
+### Lauch and Configure 3 EC2 servers:
 
 Launch two EC2 instances with Apache web server installed and configured. You can use the same AMI image or create your own custom image. Make sure the security group of the instances allows inbound traffic on port 80 (HTTP) or 443 (HTTPS) from the load balancer.  
 
@@ -67,7 +67,7 @@ Launch 3 servers from an Installed AWS-CLI
 
 
 
-#### Connect VIA SSH
+### Connect VIA SSH
 
 Make sure PEM file is in the present working directory via Console
 or via CLI
@@ -82,7 +82,7 @@ For cli:
 ![Alt text](img/2c.sshnginx.png)
 
 
-#### Install Apache and Nginx
+### Install Apache and Nginx
 
 Update Linux and Install Apache v2 at the same time
 ```sudo apt update -y &&  sudo apt install apache2 -y```
@@ -96,7 +96,7 @@ Update Linux and Install Nginx at the same time
 ![Alt text](img/3b.nginxruns.png)
 
 
-#### Edit config files for Apache1 and 2 Servers
+### Edit config files for Apache1 and 2 Servers
 
 Edit config file on apache1 and apache2 servers to display it own public IP address
 
@@ -142,7 +142,7 @@ Edit config file on apache1 and apache2 servers to display it own public IP addr
 
 
 
-#### Edit config file for Nginx
+### Edit config file for Nginx
 
 Edit the nginx configuration file (/etc/nginx/nginx.conf) and define an upstream block with the IP addresses or domain names of the web servers. You can also choose a load balancing method, such as round-robin, least-connected, or ip-hash. 
 
