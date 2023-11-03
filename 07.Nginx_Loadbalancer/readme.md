@@ -10,6 +10,7 @@
 ![Alt text](img/00.loadbalancer.png)
 
 
+
 ### Why Port 8000 ?
 There is no definitive answer to why apache webserver should serve on port 8000 and not port 80, as it depends on the configuration and preference of the server administrator. However, some possible reasons are:
 
@@ -22,6 +23,7 @@ Port 80 is more likely to be blocked by firewalls or proxies than port 8000, whi
 Of course, these are not the only reasons why one might choose port 8000 over port 80, and there may be situations where port 80 is preferable or necessary. Ultimately, it is up to the server administrator to decide which port to use for their web server, and to configure it accordingly.
 
 However, specifying port 8000 or 8080 or any other port is allowed if tthe app severs are running on those ports and they need be stated into nginx config file upstream section. 
+
 
 
 
@@ -49,6 +51,7 @@ The default max_fails is 1 attempt. If we set to 3 attempts. This means that aft
 
 
 
+
 ### Lauch and Configure 3 EC2 servers:
 
 Launch two EC2 instances with Apache web server installed and configured. You can use the same AMI image or create your own custom image. Make sure the security group of the instances allows inbound traffic on port 80 (HTTP) or 443 (HTTPS) from the load balancer.  
@@ -67,6 +70,7 @@ Launch 3 servers from an Installed AWS-CLI
 
 
 
+
 ### Connect VIA SSH
 
 Make sure PEM file is in the present working directory via Console
@@ -82,6 +86,7 @@ For cli:
 ![Alt text](img/2c.sshnginx.png)
 
 
+
 ### Install Apache and Nginx
 
 Update Linux and Install Apache v2 at the same time
@@ -94,6 +99,7 @@ Update Linux and Install Nginx at the same time
 ```sudo apt update -y && sudo apt install nginx -y```
 
 ![Alt text](img/3b.nginxruns.png)
+
 
 
 ### Edit config files for Apache1 and 2 Servers
