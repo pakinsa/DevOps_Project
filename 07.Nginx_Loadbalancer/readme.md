@@ -8,6 +8,7 @@
 
 ![alt_text](07.Nginx_Loadbalancer\img\00.loadbalancer.png)
 ![Alt text](img/00.loadbalancer.png)
+![alt text](img/03.git_exe.png "Gitexe")
 
 #### Why Port 8000 ?
 There is no definitive answer to why apache webserver should serve on port 8000 and not port 80, as it depends on the configuration and preference of the server administrator. However, some possible reasons are:
@@ -58,11 +59,11 @@ Launch 3 servers from an Installed AWS-CLI
 ```aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 3 --instance-type t2.micro --key-name latestkeys2 --security-group-ids sg-0b21426e88f886da9 --subnet-id  subnet-0a0e3a8df801bcd0b --tag-specifications 'ResourceType=instance,Tags=[{Key=Name1,Value=Apache1},{Key=Name2,Value=Apache2},{Key=Name3,Value=Nginx}]'```   
 
 
-![Alt text](./img/01a.EC2servers.png)
+![Alt text](img/01a.EC2servers.png)
 
-![Alt text](./img/01b.EC2servers.png)
+![Alt text](img/01b.EC2servers.png)
 
-![Alt text](./img/1c.Newrule.png)
+![Alt text](img/1c.Newrule.png)
 
 
 
@@ -86,7 +87,7 @@ For cli:
 Update Linux and Install Apache v2 at the same time
 ```sudo apt update -y &&  sudo apt install apache2 -y```
 
-![Alt text](img/3.apacheruns.png)
+![Alt text](img/3a.apacheruns.png)
 
 
 Update Linux and Install Nginx at the same time

@@ -152,7 +152,7 @@ Confirm single private ip of mysqlclient is configured
 Configure mysql_server to allow connections from remote hosts,  
 and connect to mysqlserverDB engine from mysql_client server without SSH 
 but with mysql connect utility
-
+![alt text](img/10.bindaddress.png)
 ![Alt text](img/10.bindaddress.png)
 
 There are different ways to connect to a MySQL database engine without SSH using MySQL. One possible method is to edit the MySQL configuration file on the server and change the bind-address key to the server’s IP address instead of 127.0.0.1. Then, you need to allow the MySQL port 3306 on the firewall and configure the user and host permissions for authentication. After that, you can use the mysql command-line client or a graphical tool like MySQL Workbench to connect to the database
@@ -160,7 +160,7 @@ There are different ways to connect to a MySQL database engine without SSH using
 
 After a full day of trying to connect remotely with an increased RAM Size of 1GB Ram micro EC2 CPU to 2GB Ram small EC2
 
-![Alt text](img/11.unsolved_challenge.png)
+![Alt text](img/11a.unsolved_challenge.png)
 
 ![Alt text](img/11b.troubleshoot.png)
 
@@ -172,7 +172,7 @@ To Confirm successful remote connection from client to Mysql_server DB, by runni
 
 However, show Database below from mysql_server is successful not from mysql_client
 
-![Alt text](img/11.showdatabases.png)
+![Alt text](img/12.showdatabases.png)
 
 
 
