@@ -6,9 +6,9 @@
 
 #### Purpose: To configure two EC2 apache webserver  with nginx load balancer 
 
-![alt_text](07.Nginx_Loadbalancer\img\00.loadbalancer.png)
+
 ![Alt text](img/00.loadbalancer.png)
-![alt text](img/03.git_exe.png "Gitexe")
+
 
 #### Why Port 8000 ?
 There is no definitive answer to why apache webserver should serve on port 8000 and not port 80, as it depends on the configuration and preference of the server administrator. However, some possible reasons are:
@@ -126,7 +126,7 @@ Edit config file on apache1 and apache2 servers to display it own public IP addr
 ![Alt text](img/4c.newbrowserport.png)
 
 
-4. This HTML code has a functin that calls an external public ip for apache1 server
+4. This HTML code has a function that calls an external public ip for apache1 server
 
 ![Alt text](img/4d.htmlcode.png)
 
