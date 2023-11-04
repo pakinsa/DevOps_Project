@@ -4,15 +4,16 @@
 
 ### Darey.io DevOps Bootcamp
 
-### Purpose: To automated the configuration of two EC2 apache webserver  with nginx load balancer using Shell Scripting
+### Purpose: To automate the configuration of two EC2 apache webserver  with nginx load balancer using Shell Scripting
 
 ![Alt text](img/00.loadbal.png)
+
 
 
 We shall divide the automation script into two(2).
 
 ### First Script
-First Script contains :
+First Script contains commands to be used on AWS CLI :
 
 1. Create 2 new EC2 instances as webservers 1 & 2
 
@@ -27,15 +28,15 @@ First Script contains :
 
 3. Connect via SSH
 
-4. Update and Install Apache
+4. Update Ubuntu and Install Apache
 
-5. Edit configuration files in the 2 servers
+5. Edit configuration files of Apache in the 2 servers
 
 ***
 ips=($(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].PublicIpAddress' --output text))
 
 
-### Connect via SSH
+###### Connect via SSH
 for ip in "${ips[@]}"; do
     ssh -i C:/Users/user/Documents/Paul/DevOps_Project/latestkeys2.pem -o StrictHostKeyChecking=no ubuntu@$ip << EOF
     
@@ -67,14 +68,17 @@ EOF
 done
 ***
 
-
+```bash lastScript.sh```  Run the script as a bash executable file and see the operation
 
 ![Alt text](img/01a.operationstarted.png)
 
-![Alt text](img/01b.firstSSH.png)
+Connected SSH to First WebServer
+![Alt text](img/01b.firstSSH.png)   
 
+End of First WebServer Config and Connected to SSH of Second WebServer
 ![Alt text](img/01c.secondSSH.png)
 
+Operations Complete
 ![Alt text](img/01d.operationcomplete.png)
 
 
@@ -89,7 +93,7 @@ done
 
 
 
-```bash lastScript.sh```  Runs the script as a bash executable file
+
 
 
 
@@ -171,13 +175,19 @@ EOF2
 EOF
 ***
 
-
+```bash secondLastScript.sh```  Runs the script as a bash executable file
 
 ![Alt text](img/4a.lb_operationstarts.png)
 
+ Connected to NGINX via SSH
+
 ![Alt text](img/4b.lb_ssh.png)
 
+Ngnix confirmed Active
+
 ![Alt text](img/4c.lb_nginxrun.png)
+
+End of configuration
 
 ![Alt text](img/4d.lb_operationcomplete.png)
 
@@ -192,7 +202,7 @@ EOF
 ![Alt text](img/6.auto_lb.png)
 
 
-```bash secondLastScript.sh```  Runs the script as a bash executable file
+
 
 
 
