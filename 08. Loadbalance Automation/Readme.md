@@ -32,11 +32,10 @@ First Script contains commands to be used on AWS CLI :
 
 5. Edit configuration files of Apache in the 2 servers
 
-***
-ips=($(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].PublicIpAddress' --output text))
+Find two recently launched and currently running instances
+```ips=($(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].PublicIpAddress' --output text))```   
 
-
-###### Connect via SSH
+Connect via SSH
 for ip in "${ips[@]}"; do
     ssh -i C:/Users/user/Documents/Paul/DevOps_Project/latestkeys2.pem -o StrictHostKeyChecking=no ubuntu@$ip << EOF
     
@@ -112,9 +111,9 @@ Operations Complete
 #### Get the newNginx Server IP address.
 ```ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=NewNginx" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)```
 
-#### Get the WebServes IP addresses.
+#### Get the WebServers IP addresses.
 
-````ip1=($(aws ec2 describe-instances --filters "Name=tag:Name,Values=WebServer1" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].PublicIpAddress" --output text))```
+```ip1=($(aws ec2 describe-instances --filters "Name=tag:Name,Values=WebServer1" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].PublicIpAddress" --output text))```
 
 ```ip2=($(aws ec2 describe-instances --filters "Name=tag:Name,Values=WebServer2" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].PublicIpAddress" --output text))```
 
@@ -126,8 +125,7 @@ Operations Complete
 
 5. Edit configuration file for loadbalancing
 
-***
-ssh -i C:/Users/user/Documents/Paul/DevOps_Project/latestkeys2.pem -o StrictHostKeyChecking=no ubuntu@$ip << EOF
+```ssh -i C:/Users/user/Documents/Paul/DevOps_Project/latestkeys2.pem -o StrictHostKeyChecking=no ubuntu@$ip << EOF```
     
     # Update and Install Nginx
     sudo apt update -y && sudo apt install nginx -y
@@ -179,11 +177,11 @@ EOF
 
 ![Alt text](img/4a.lb_operationstarts.png)
 
- Connected to NGINX via SSH
+Connected to NGINX via SSH
 
 ![Alt text](img/4b.lb_ssh.png)
 
-Ngnix confirmed Active
+Ngnix Confirmed Active
 
 ![Alt text](img/4c.lb_nginxrun.png)
 
