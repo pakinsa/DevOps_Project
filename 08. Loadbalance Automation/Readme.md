@@ -36,8 +36,8 @@ Find two recently launched and currently running instances
 ```ips=($(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].PublicIpAddress' --output text))```   
 
 Connect via SSH
-***
-for ip in "${ips[@]}"; do
+
+```for ip in "${ips[@]}"; do```
     ssh -i C:/Users/user/Documents/Paul/DevOps_Project/latestkeys2.pem -o StrictHostKeyChecking=no ubuntu@$ip << EOF
     
     # Update and Install Apache
