@@ -77,7 +77,7 @@ Make sure PEM file is in the present working directory via Console
 or via CLI
 
 For cli: 
-```ssh -i C:/Users/user/Documents/Paul/latestkeys2.pem ubuntu@3.235.45.201```
+```ssh -i "C:/Users/user/Documents/Paul/latestkeys2.pem" ubuntu@3.235.45.201```
 
 ![Alt text](img/2a.sshapache1.png)
 
@@ -176,9 +176,10 @@ Test  load balancer by accessing its public IP address or domain name from a web
 ![Alt text](img/6c.loadbalapache2.png)
 
 
+
+
 ### Further Projects:
 1. Mini-Project: Deploying Python Application With Nginx
-
 
 
 

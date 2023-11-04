@@ -11,8 +11,8 @@ upstream myapps {
   # Load balancing method
   least_conn;
   # Web servers
-  server 44.204.143.1:8000;   # Public IP of Apache1 server
-  server 44.203.12.197:8000;  # Public IP of Apache2 server
+  server 44.204.143.1:8000;   # Public IP of Apache1 server with port
+  server 44.203.12.197:8000;  # Public IP of Apache2 server with port
 }
 
 server {
