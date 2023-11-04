@@ -6,8 +6,10 @@
 
 ### Purpose: To automated the configuration of two EC2 apache webserver  with nginx load balancer using Shell Scripting
 
+![Alt text](img/00.loadbal.png)
 
-We shall divide the automation script into 2.
+
+We shall divide the automation script into two(2).
 
 ### First Script
 First Script contains :

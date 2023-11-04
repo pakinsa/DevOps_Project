@@ -13,3 +13,4 @@
 * Project 5: Shell Scripting
 * Project 6: Client-Server Architecture
 * Project 7: Nginx Loadbalancer
+* Project 8: Loadbalance Automation
