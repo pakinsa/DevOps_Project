@@ -10,7 +10,15 @@
 
 
 
+Preequisites for this Project
+1. Install AWS CLI
+
+2. [AWS: AWS CLI v2 Documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+
+
 We shall divide the automation script into two(2).
+
+
 
 ### First Script
 First Script contains commands to be used on AWS CLI :
