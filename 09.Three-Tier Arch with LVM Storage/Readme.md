@@ -67,7 +67,7 @@ You can actually select the whole disk volume for partition
 
     ```sudo yum install lvm2 ```  installs lvm for storage management and utility
 
-    ```sudo lvmdiskscan```         Scans disks for all availlabo partitions after installation
+    ```sudo lvmdiskscan```         Scans disks for all available partitions after installation
 
     ![Alt text](img/2c.lvmdiskscan.png)
 
@@ -121,10 +121,13 @@ You can actually select the whole disk volume for partition
 
 9.  Finally,
 
+   ```sudo lsblk```
    ![Alt text](img/3d.interesting.png)
 
-    Format the logical volumes
-
+    
+   Format the logical volumes
+   ```sudo mkfs -t ext4 /dev/webdata-vg/apps-lv```
+   ```sudo mkfs -t ext4 /dev/webdata-vg/logs-lv```
    ![Alt text](img/3e.ext4format.png)  This format the logical volume with ext4. You can also format with other filesystem types e.g xfs,btrfs
 
 
@@ -156,7 +159,7 @@ You can actually select the whole disk volume for partition
 
    sudo blkid
 
-   Update /etc/fstab  with the UUIDs of app__lv in boot line and logs__lv in the other with the `sudo vi /etc/fstab`
+   Update /etc/fstab  with the UUIDs of app-lv in boot line and logs-lv in the other with the `sudo vi /etc/fstab`
 
    sudo mount -a
 
@@ -251,30 +254,168 @@ Test your setup
 
 
 
-
-
-
-
-```pvcreate xvdf1Create Physical Volume
-Create Logical Volume
-
-
-   d. Mount the apps-lv and apps-pv on /var/www/html
-
-4. 
-
-
-
 Part 2
 
 1. Launch 1 EC2 Instances with RedHart.(To Configure and install this Second Server as Database Server using MYSQL Server)
 
+![Alt text](img/6a.db_vols.png) 
+
+![Alt text](img/6b.vol.png) 
+Volume was attached from the Launch of Instance
+
 2. Create and attach 3 Volumes to the DB Server
 
-3. a. Change the block Devices name to : xvdf, xvdh, xvdg
-   b. Create partition in each
-   c. Divide partition into PV and LV
-   d. Mount the db-lv and db-pv on /db
+
+#### create a label for the attached volume
+***
+sudo parted -s /dev/xvdb mklabel msdos   
+sudo parted -s /dev/xvdc mklabel msdos
+sudo parted -s /dev/xvdd mklabel msdos
+***
+
+#### create Only One partition in each the attached volume
+***
+sudo parted -s /dev/xvdb mkpart primary ext4 1 10G
+sudo parted -s /dev/xvdc mkpart primary ext4 1 10G
+sudo parted -s /dev/xvdd mkpart primary ext4 1 10G
+***
+![Alt text](img/6c.lb_partition.png)
+
+
+#### Format the partitions
+***
+sudo mkfs.ext4 /dev/xvdb    
+sudo mkfs.ext4 /dev/xvdc
+sudo mkfs.ext4 /dev/xvdd    
+***
+![Alt text](img/6d.formatting.png)
+
+
+#### Install lvm
+***
+sudo yum install lvm2   installs lvm for storage management and utility
+sudo lvmdiskscan
+
+#### Create Physical Volumes
+***
+pvcreate /dev/xvdb1
+
+pvcreate /dev/xvdc1
+
+pvcreate /dev/xvdd1
+***
+![Alt text](img/6e.lvmscan.png)
+
+
+#### Create Volume Group(VG)
+***
+sudo vgcreate webdata-vg /dev/xvdb1 /dev/xvdc1 /dev/xvdd1  // Collate the physical volume into a volume group, which can be further divided into logical groups.
+
+sudo vgrename webdata-vg dbdata-vg     // Change name from webdata to dbdata-vg
+sudo vgdisplay                        // Display name  of vg
+sudo vgs                             //Diplay content of vg
+***
+
+![Alt text](img/6f.vg_create.png) 
+![Alt text](img/6g.x_vgname.png)
+
+
+#### Create the Logical Volume(LV) in the VG with relevant properties 
+
+***
+sudo lvcreate -n db-lv -L 13.5G dbdata-vg
+
+sudo lvcreate -n logs-lv -L 13.5G dbdata-vg
+
+sudo lvs lists and describe logical volumes available
+***
+![Alt text](img/6h.lv_create.png)
+
+
+#### Format LV
+***
+sudo mkfs -t ext4 /dev/dbdata-vg/db-lv
+sudo mkfs -t ext4 /dev/dbdata-vg/logs-lv
+***
+![Alt text](img/6i.format_lv.png)
+
+
+   
+#### Create Directory for Mounting, Mount, backup, Copy UUID and Update UUID
+***
+sudo mkdir -p /db    Make a directory to store webfiles, a default store location for linux distribution
+
+sudo mkdir -p /home/recovery/logs  Make a directory to store logs, -p flag is parent, parent directory
+***
+
+***
+sudo mount /dev/dbdata-vg/db-lv /db
+sudo rsync -av /var/log/. /home/recovery/logs/   rsync is a copy command that copies from /var/log/. to /home/recovery/logs directory
+
+sudo mount /dev/dbdata-vg/logs-lv /var/log
+
+sudo rsync -av /home/recovery/logs/. /var/log
+***
+![Alt text](img/6j.resync.png)
+
+
+
+```sudo blkid```  Get the UUID
+![Alt text](img/6k.db_UUID.png)
+
+
+Update /etc/fstab  with the UUIDs of db-lv in boot line and logs-lv in the other with the 
+`sudo vi /etc/fstab`
+a7d6683c-5b22-486e-b29d-cc616202683f logs--lv
+ea3ff10b-2ae7-490d-9348-4e83310c9983 db--lv
+![Alt text](img/6l.updateUUID.png)
+
+
+```sudo mount -a```
+`sudo systemctl daemon-reload`
+![Alt text](img/6m.ops_comp.png)
+
+
+
+#### Install MySQL Server
+
+sudo yum update
+sudo yum install mysql-server
+
+sudo systemctl status mysqld
+
+if not running
+
+sudo systemctl restart mysqld
+sudo systemctl enable mysqld
+
+
+sudo mysql
+sudo mysql -p   // for root user, please provide password
+mysql> CREATE DATABASE wordpress;
+mysql> CREATE DATABASE wordpress2;
+mysql> CREATE USER 'paul'@'localhost' IDENTIFIED BY 'mypassdove';
+mysql> CREATE USER 'tope'@'172.31.24.21' IDENTIFIED BY 'Willingly@123';  Password must be according to password requirement
+mysql> GRANT ALL ON wordpress.* TO 'tope'@'172.31.24.21';   //172.31.24.21 <Web-Server-Private-IP-Address>
+mysql> FLUSH PRIVILEGES;
+mysql> SHOW DATABASES;
+
+mysql> SELECT user FROM mysql.user;    displays a list of users on the BD
+mysql> SHOW GRANTS FOR 'tope'@'172.31.24.21';  display priviledges of a user
+
+
+
+
+![Alt text](img/7a.mysqlruns.png) 
+
+![Alt text](img/7b.serversideshow.png)
+
+
+
+
+
+
+d. Mount the db-lv and db-pv on /db
 
 4. a. Install MYSQL SERVER 
    b. Configure Root User
