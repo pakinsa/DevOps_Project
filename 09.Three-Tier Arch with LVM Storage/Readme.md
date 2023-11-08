@@ -7,7 +7,10 @@
 ### Purpose: Implement a Three Tier Architecture WordPress Website  with LVN Storage Management
 
 
-Steps are in Two Parts:
+![Alt text](img/00.three_tier.png)
+
+
+Projects steps are in Three Parts:
 
 Part 1
 
@@ -44,9 +47,9 @@ You can actually select the whole disk volume for partition
 
 
 3. Create Primary Partition in Volumes
-    ```sudo parted -s /dev/xvdf mkpart primary ext4 1 5G```  Command creates new partition in individual disk/volume xvdf
-    ```sudo parted -s /dev/xvdg mkpart primary ext4 1 5G```  Command creates new partition in individual disk/volume xvdg
-    ```sudo parted -s /dev/xvdh mkpart primary ext4 1 5G```  Command creates new partition in individual disk/volume xvdh
+    ```sudo parted -s /dev/xvdf mkpart primary ext4 1 10G```  Command creates new partition in individual disk/volume xvdf
+    ```sudo parted -s /dev/xvdg mkpart primary ext4 1 10G```  Command creates new partition in individual disk/volume xvdg
+    ```sudo parted -s /dev/xvdh mkpart primary ext4 1 10G```  Command creates new partition in individual disk/volume xvdh
 
     ![Alt text](img/2a.partition.png)
 
@@ -122,7 +125,7 @@ You can actually select the whole disk volume for partition
 9.  Finally,
 
    ```sudo lsblk```
-   ![Alt text](img/3d.interesting.png)
+   ![Alt text](img/3d.lsblk.png)
 
     
    Format the logical volumes
@@ -159,24 +162,26 @@ You can actually select the whole disk volume for partition
 
    sudo blkid
 
-   Update /etc/fstab  with the UUIDs of app-lv in boot line and logs-lv in the other with the `sudo vi /etc/fstab`
+   Update /etc/fstab  with the UUIDs of app-lv in boot line and logs-lv in the other with the 
+   
+   `sudo vi /etc/fstab`
 
-   sudo mount -a
+   `sudo mount -a`
 
-   sudo systemctl daemon-reload
+   `sudo systemctl daemon-reload`
 
    ***
  
-
-   ![Alt text](img/4a.copylogs.png) 
+  
+   ![Alt text](img/4a.resync.png) 
    
-   ![Alt text](img/4b.resync.png) 
+   ![Alt text](img/4b.blkid.png) 
    
-   ![Alt text](img/4c.blkid.png) 
+   ![Alt text](img/4c.vi.png) 
+   UUID="902391bc-1b25-467b-9254-62509d0a85bd  apps
+   UUID="28dee8af-8305-4c3b-8056-0319f1d3f301  logs
    
-   ![Alt text](img/4d.vi.png) 
-   
-   ![Alt text](img/4e.propermount.png) 
+   ![Alt text](img/4d.propermount.png) 
    
    ![Alt text](img/4f.df-h.png)
 
@@ -228,11 +233,9 @@ Configure SELinux Policies
     sudo setsebool -P httpd_can_network_connect=1
 
 
-Install MySQL Client
 
-Connect to remote MYSQL SERVER
 
-Test your setup 
+
 
 
 
@@ -261,6 +264,7 @@ Part 2
 ![Alt text](img/6a.db_vols.png) 
 
 ![Alt text](img/6b.vol.png) 
+
 Volume was attached from the Launch of Instance
 
 2. Create and attach 3 Volumes to the DB Server
@@ -269,14 +273,18 @@ Volume was attached from the Launch of Instance
 #### create a label for the attached volume
 ***
 sudo parted -s /dev/xvdb mklabel msdos   
+
 sudo parted -s /dev/xvdc mklabel msdos
+
 sudo parted -s /dev/xvdd mklabel msdos
 ***
 
 #### create Only One partition in each the attached volume
 ***
 sudo parted -s /dev/xvdb mkpart primary ext4 1 10G
+
 sudo parted -s /dev/xvdc mkpart primary ext4 1 10G
+
 sudo parted -s /dev/xvdd mkpart primary ext4 1 10G
 ***
 ![Alt text](img/6c.lb_partition.png)
@@ -284,8 +292,10 @@ sudo parted -s /dev/xvdd mkpart primary ext4 1 10G
 
 #### Format the partitions
 ***
-sudo mkfs.ext4 /dev/xvdb    
+sudo mkfs.ext4 /dev/xvdb 
+
 sudo mkfs.ext4 /dev/xvdc
+
 sudo mkfs.ext4 /dev/xvdd    
 ***
 ![Alt text](img/6d.formatting.png)
@@ -294,7 +304,10 @@ sudo mkfs.ext4 /dev/xvdd
 #### Install lvm
 ***
 sudo yum install lvm2   installs lvm for storage management and utility
+
 sudo lvmdiskscan
+
+
 
 #### Create Physical Volumes
 ***
@@ -309,15 +322,19 @@ pvcreate /dev/xvdd1
 
 #### Create Volume Group(VG)
 ***
-sudo vgcreate webdata-vg /dev/xvdb1 /dev/xvdc1 /dev/xvdd1  // Collate the physical volume into a volume group, which can be further divided into logical groups.
+sudo vgcreate webdata-vg /dev/xvdb1 /dev/xvdc1 /dev/xvdd1  // Collate the physical volume into a volume group, which can be further divided into logical groups.  // I should have used dbdata-vg here. I have to rename it.
 
 sudo vgrename webdata-vg dbdata-vg     // Change name from webdata to dbdata-vg
+
 sudo vgdisplay                        // Display name  of vg
+
 sudo vgs                             //Diplay content of vg
 ***
 
 ![Alt text](img/6f.vg_create.png) 
 ![Alt text](img/6g.x_vgname.png)
+
+
 
 
 #### Create the Logical Volume(LV) in the VG with relevant properties 
@@ -332,9 +349,11 @@ sudo lvs lists and describe logical volumes available
 ![Alt text](img/6h.lv_create.png)
 
 
+
 #### Format LV
 ***
 sudo mkfs -t ext4 /dev/dbdata-vg/db-lv
+
 sudo mkfs -t ext4 /dev/dbdata-vg/logs-lv
 ***
 ![Alt text](img/6i.format_lv.png)
@@ -379,10 +398,11 @@ ea3ff10b-2ae7-490d-9348-4e83310c9983 db--lv
 
 #### Install MySQL Server
 
+***
 sudo yum update
 sudo yum install mysql-server
 
-sudo systemctl status mysqld
+sudo systemctl status mysqld 
 
 if not running
 
@@ -400,7 +420,7 @@ mysql> GRANT ALL ON wordpress.* TO 'tope'@'172.31.24.21';   //172.31.24.21 <Web-
 mysql> FLUSH PRIVILEGES;
 mysql> SHOW DATABASES;
 
-mysql> SELECT user FROM mysql.user;    displays a list of users on the BD
+mysql> SELECT user FROM mysql.user;    displays a list of users on the DB
 mysql> SHOW GRANTS FOR 'tope'@'172.31.24.21';  display priviledges of a user
 
 
@@ -410,34 +430,67 @@ mysql> SHOW GRANTS FOR 'tope'@'172.31.24.21';  display priviledges of a user
 
 ![Alt text](img/7b.serversideshow.png)
 
+![Alt text](img/7c.usersMysql.png)
 
 
 
 
+Part 3:
 
-d. Mount the db-lv and db-pv on /db
+#### Remote Connection to Database : 
 
-4. a. Install MYSQL SERVER 
-   b. Configure Root User
-   c. Open port 3306 for WebServer only remote connection
+```sudo dnf install mysql```
+
+![Alt text](img/8a.instalmysqlclient.png)
+
+The syntax is: mysql -h host -P port -u user -p
+
+```mysql -h 172.31.42.143 -P 3306 -u tope -p```
+
+![Alt text](img/8a.remoteDB.png)
 
 
 
+#### Change the permissions and configuration so Apache could use WordPress
 
-(Altaro: Hyper-v Storage Best-Pratices)[https://www.altaro.com/hyper-v/hyper-v-storage-best-practices-configuration/]
+1. Make sure that the files and directories of your WordPress installation are owned by the Apache user (usually www-data) and group. 
+For example, if your WordPress files are in /var/www/html, you can use the command
 
-[Microsoft: Deploy Storage Spaces on a stand-alone server](https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/deploy-standalone-storage-spaces)
+```sudo chown www-data:www-data -R /var/www/html```
+
+
+2. Make sure that the files and directories of your WordPress installation have the correct permissions. You can use the chmod command to do this. For example, you can use the commands2:
+
+```sudo find /var/www/html -type d -exec chmod 755 {} \;```
+
+```sudo find /var/www/html -type f -exec chmod 644 {} \;```
+
+These commands will set the permissions of the directories to 755 (rwxr-xr-x) and the files to 644 (rw-r–r–), which means that the owner can read, write, and execute, while the group and others can only read and execute.
+
+3. Make sure that the Apache configuration file allows the use of mod_rewrite, which is a module that WordPress uses to create SEO-friendly URLs. You can use the a2enmod command to enable mod_rewrite. For example, you can use the command3:
+
+```sudo a2enmod rewrite```
+
+
+4. Make sure that the Apache configuration file sets the document root to the directory where your WordPress files are located. You can use a text editor to edit the configuration file, which is usually located at /etc/apache2/sites-available/000-default.conf.
+
+```sudo nano /etc/apache2/sites-available/000-default.conf.```
+
+
+
 
 
 
 #### REFERENCES
 
+1. (Altaro: Hyper-v Storage Best-Pratices)[https://www.altaro.com/hyper-v/hyper-v-storage-best-practices-configuration/]
 
+2. [Microsoft: Deploy Storage Spaces on a stand-alone server](https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/deploy-standalone-storage-spaces)
 
-1. [Brentozar: Does Separating Data and Log Files Make Your Server More Reliable?](https://www.brentozar.com/archive/2017/06/separating-data-log-files-make-server-reliable/)
+3. [Brentozar: Does Separating Data and Log Files Make Your Server More Reliable?](https://www.brentozar.com/archive/2017/06/separating-data-log-files-make-server-reliable/)
 
-2. [forbes.com: Why Migrate To The Cloud: The Basics, Benefits And Real-Life Examples](https://www.forbes.com/sites/forbestechcouncil/2021/03/12/why-migrate-to-the-cloud-the-basics-benefits-and-real-life-examples/?sh=127748385e27)
+4. [forbes.com: Why Migrate To The Cloud: The Basics, Benefits And Real-Life Examples](https://www.forbes.com/sites/forbestechcouncil/2021/03/12/why-migrate-to-the-cloud-the-basics-benefits-and-real-life-examples/?sh=127748385e27)
 
-3. [dba.stackexchange.com: SQL Server - Benefits of splitting databases across different logical drives](https://dba.stackexchange.com/questions/280269/sql-server-benefits-of-splitting-databases-across-different-logical-drives)
+5. [dba.stackexchange.com: SQL Server - Benefits of splitting databases across different logical drives](https://dba.stackexchange.com/questions/280269/sql-server-benefits-of-splitting-databases-across-different-logical-drives)
 
-4. [Unix&Linux: Why use UUIDs in /etc/fstab instead of device names? [duplicate]](https://unix.stackexchange.com/questions/423693/why-use-uuids-in-etc-fstab-instead-of-device-names)
+6. [Unix&Linux: Why use UUIDs in /etc/fstab instead of device names? [duplicate]](https://unix.stackexchange.com/questions/423693/why-use-uuids-in-etc-fstab-instead-of-device-names)
