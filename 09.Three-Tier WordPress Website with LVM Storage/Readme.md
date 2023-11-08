@@ -14,10 +14,10 @@ Projects steps are in Three Parts:
 
 ### Part 1
 
-1. Launch 1 EC2 Instances with RedHart (To Configure and install this First Server as WebServer using Apache)
+#### 1. Launch 1 EC2 Instance with RedHart (To Configure and install this First Server as WebServer using Apache)
 
 
-2. Create and attach 3 Volumes to the WebServer
+#### 2. Create and attach 3 Volumes to the WebServer
 
 ```lsblk``` This command lists information about all available or the specified block devices.
 
@@ -47,16 +47,16 @@ You can actually select the whole disk volume for partition
 
 #### 3. Create Primary Partition in Volumes
 
-```sudo parted -s /dev/xvdf mkpart primary ext4 1 10G```  Command creates new partition in individual disk/volume xvdf
+```sudo parted -s /dev/xvdf mkpart primary ext4 1 10G``` This command creates new partition in individual disk/volume xvdf
 
-```sudo parted -s /dev/xvdg mkpart primary ext4 1 10G```  Command creates new partition in individual disk/volume xvdg
+```sudo parted -s /dev/xvdg mkpart primary ext4 1 10G```  This command creates new partition in individual disk/volume xvdg
 
-```sudo parted -s /dev/xvdh mkpart primary ext4 1 10G```  Command creates new partition in individual disk/volume xvdh
+```sudo parted -s /dev/xvdh mkpart primary ext4 1 10G```  This command creates new partition in individual disk/volume xvdh
 
 ![Alt text](img/2a.partition.png)
 
 
-#### 4.Format individual partitions with EXT4 File system
+#### 4. Format individual partitions with EXT4 File system
 
 You can use any file system type, such as ext4, xfs, or btrfs
 
@@ -81,7 +81,7 @@ You can use any file system type, such as ext4, xfs, or btrfs
 
 
 
-#### 6.Create Physical Volumes
+#### 6. Create Physical Volumes
 ```pvcreate /dev/xvdf1```
 
 ```pvcreate /dev/xvdg1```
@@ -109,7 +109,7 @@ d. To create logical group, we shall collate the physical volumes into a volume 
 
 ```sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1```  Collate the physical volume into a volume group, which can be further divided into logical groups.
 
-```sudo vgs```   Check the volume group 13.96GB. This can be increased with the command `vgextend` with necessary arguments.
+```sudo vgs```   Check the volume group 27.93GB. This can be increased with the command `vgextend` with necessary arguments.
 
 ![Alt text](img/3a.vgs.png)
 
@@ -165,18 +165,18 @@ To update /etc/fstab with the UUIDs of app__lv and logs__lv, you need to first f
 
 
 *** 
-sudo mount /dev/webdata-vg/apps-lv /var/www/html/
+`sudo mount /dev/webdata-vg/apps-lv /var/www/html/`
 
-sudo rsync -av /var/log/. /home/recovery/logs/   rsync is a copy command that copies from /var/log/. to /home/recovery/logs directory
+`sudo rsync -av /var/log/. /home/recovery/logs/`   rsync is a copy command that copies from /var/log/. to /home/recovery/logs directory
 
-sudo mount /dev/webdata-vg/logs-lv /var/log
+`sudo mount /dev/webdata-vg/logs-lv /var/log`
 
-sudo rsync -av /home/recovery/logs/. /var/log
+`sudo rsync -av /home/recovery/logs/. /var/log`
 
-sudo blkid
+`sudo blkid`
 ***
 
-Update /etc/fstab  with the UUIDs of app-lv in boot line and logs-lv in the other with the 
+Update /etc/fstab  with the UUIDs of app-lv in boot line and logs-lv in the other
    
 `sudo vi /etc/fstab`
 
@@ -189,7 +189,9 @@ Update /etc/fstab  with the UUIDs of app-lv in boot line and logs-lv in the othe
 ![Alt text](img/4b.blkid.png) 
    
 ![Alt text](img/4c.vi.png) 
+
 UUID="902391bc-1b25-467b-9254-62509d0a85bd  apps
+
 UUID="28dee8af-8305-4c3b-8056-0319f1d3f301  logs
 
 
@@ -199,17 +201,18 @@ UUID="28dee8af-8305-4c3b-8056-0319f1d3f301  logs
 
 
 
+#### Installations
 
 `sudo yum -y update`
 
-Install Apache and all dependencies and start Apache
+##### Install Apache and all dependencies and start Apache
 
     sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
     sudo systemctl enable httpd
     sudo systemctl start httpd
 
 
-Install Php with all dependencies
+##### Install Php with all dependencies
 
     sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -222,12 +225,12 @@ Install Php with all dependencies
     setsebool -P httpd_execmem 1
 
 
-Restart Apache
+##### Restart Apache
 
     sudo systemctl restart httpd
 
 
-Download WordPress and copy to /var/www/html
+##### Download WordPress and copy to /var/www/html
 
     mkdir wordpress
     cd   wordpress
@@ -240,7 +243,7 @@ Download WordPress and copy to /var/www/html
 
 
 
-Configure SELinux Policies
+##### Configure SELinux Policies
 
     sudo chown -R apache:apache /var/www/html/wordpress
     sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
@@ -260,19 +263,19 @@ Configure SELinux Policies
 
 ### Part 2
 
-#### 1. Launch 1 EC2 Instances with RedHart.(To Configure and install this Second Server as Database Server using MYSQL Server)
+#### 1. Launch 1 EC2 Instance with RedHart. (To Configure and install this Second Server as Database Server using MYSQL)
 
 ![Alt text](img/6a.db_vols.png) 
 
 ![Alt text](img/6b.vol.png) 
 
-Volume was attached from the Launch of Instance
+Volume was attached from the launch of the Instance
 
 
 
 #### 2. Create and attach 3 Volumes to the DB Server
 
-Create a label for the attached volume
+    Create a label for the attached volume
 
     sudo parted -s /dev/xvdb mklabel msdos   
 
@@ -282,7 +285,7 @@ Create a label for the attached volume
 
 
 
-#### 3. Create Only One partition in each the attached volume
+#### 3. Create Only One partition in each of the attached volume
 
     sudo parted -s /dev/xvdb mkpart primary ext4 1 10G
 
@@ -325,13 +328,13 @@ Create a label for the attached volume
 
 #### 7. Create Volume Group(VG)
 
-    sudo vgcreate webdata-vg /dev/xvdb1 /dev/xvdc1 /dev/xvdd1   Collate the physical volume into a volume group, which can be further divided into logical groups.  Will have to rename this to dbdata-vg here. 
+    sudo vgcreate webdata-vg /dev/xvdb1 /dev/xvdc1 /dev/xvdd1  //Collate the physical volume into a volume group, which can be further divided into logical groups.  Will have to rename this to dbdata-vg here. 
 
-    sudo vgrename webdata-vg dbdata-vg    Change name from webdata to dbdata-vg
+    sudo vgrename webdata-vg dbdata-vg    //Change name from webdata to dbdata-vg
 
-    sudo vgdisplay                        Display name  of vg
+    sudo vgdisplay                        //Display name  of vg
 
-    sudo vgs                              Diplay content of vg
+    sudo vgs                             // Diplay content of vg
 
 ![Alt text](img/6f.vg_create.png) 
 
@@ -372,7 +375,7 @@ Create a label for the attached volume
 
     sudo mount /dev/dbdata-vg/db-lv /db
     
-    sudo rsync -av /var/log/. /home/recovery/logs/   rsync is a copy command that copies from /var/log/. to /home/recovery/logs directory
+    sudo rsync -av /var/log/. /home/recovery/logs/  //rsync is a copy command that copies from /var/log/. to /home/recovery/logs directory
 
     sudo mount /dev/dbdata-vg/logs-lv /var/log
 
@@ -382,7 +385,7 @@ Create a label for the attached volume
 
 
 
-```sudo blkid```  Get the UUID
+```sudo blkid```    Get the UUID
 
 ![Alt text](img/6k.db_UUID.png)
 
@@ -394,7 +397,7 @@ ea3ff10b-2ae7-490d-9348-4e83310c9983 db--lv
 ![Alt text](img/6l.updateUUID.png)
 
 
-```sudo mount -a```  Mount the logical volumes
+```sudo mount -a```     Mount the logical volumes
 
 `sudo systemctl daemon-reload`    Reload the system
 
@@ -409,25 +412,25 @@ ea3ff10b-2ae7-490d-9348-4e83310c9983 db--lv
 
     sudo systemctl status mysqld 
 
-If not running then
+    //if not running then
 
     sudo systemctl restart mysqld
     sudo systemctl enable mysqld
 
 
     sudo mysql
-    sudo mysql_secure_installation   For DB root user
-    sudo mysql -p    for root user, please provide password
+    sudo mysql_secure_installation   // For DB root user
+    sudo mysql -p    // for root user, please provide password
 
     mysql> CREATE DATABASE wordpress;
     mysql> CREATE USER 'paul'@'localhost' IDENTIFIED BY 'mypassdove';
-    mysql> CREATE USER 'tope'@'172.31.24.21' IDENTIFIED BY 'Willingly@123';  Password must be according to password requirement
-    mysql> GRANT ALL ON wordpress.* TO 'tope'@'172.31.24.21';   172.31.24.21 is the <Web-Server-Private-IP-Address>
+    mysql> CREATE USER 'tope'@'172.31.24.21' IDENTIFIED BY 'Willingly@123';  // Password must be according to password requirement
+    mysql> GRANT ALL ON wordpress.* TO 'tope'@'172.31.24.21'; //  172.31.24.21 is the <Web-Server-Private-IP-Address>
     mysql> FLUSH PRIVILEGES;
     mysql> SHOW DATABASES;
 
-    mysql> SELECT user FROM mysql.user;    displays a list of users on the DB
-    mysql> SHOW GRANTS FOR 'tope'@'172.31.24.21';  display priviledges of a user
+    mysql> SELECT user FROM mysql.user;   // displays a list of users on the DB
+    mysql> SHOW GRANTS FOR 'tope'@'172.31.24.21';  //display priviledges of a user
 
 
 ![Alt text](img/7a.mysqlruns.png) 
@@ -451,40 +454,42 @@ The syntax is: mysql -h host -P port -u user -p
 
 ```mysql -h 172.31.42.143 -P 3306 -u tope -p```
 
-![Alt text](img/8a.remoteDB.png)
+![Alt text](img/8b.remoteDB.png)
 
 
 
 #### Change the permissions and configuration so Apache could use WordPress
 
-1. Make sure that the files and directories of your WordPress installation are owned by the Apache user (usually www-data) and group. 
-For example, if your WordPress files are in /var/www/html, you can use the command
-
-```sudo chown www-data:www-data -R /var/www/html```
-
-
-2. Make sure that the files and directories of your WordPress installation have the correct permissions. You can use the chmod command to do this. For example, you can use the commands2:
-
-```sudo find /var/www/html -type d -exec chmod 755 {} \;```
-
-```sudo find /var/www/html -type f -exec chmod 644 {} \;```
-
-These commands will set the permissions of the directories to 755 (rwxr-xr-x) and the files to 644 (rw-r–r–), which means that the owner can read, write, and execute, while the group and others can only read and execute.
-
-3. Make sure that the Apache configuration file allows the use of mod_rewrite, which is a module that WordPress uses to create SEO-friendly URLs. You can use the a2enmod command to enable mod_rewrite. For example, you can use the command3:
-
-```sudo a2enmod rewrite```
+1. Making sure that the files and directories of WordPress installation are owned by the Apache user (usually www-data) and group. 
+   
+   ```sudo chown www-data:www-data -R /var/www/html```
 
 
-4. Make sure that the Apache configuration file sets the document root to the directory where your WordPress files are located. You can use a text editor to edit the configuration file, which is usually located at /etc/apache2/sites-available/000-default.conf. for Ubuntu Apache2
+2. Making sure that the files and directories of your WordPress installation have the correct permissions. 
+   
+   ```sudo find /var/www/html -type d -exec chmod 755 {} \;```
 
-```sudo nano /etc/apache2/sites-available/000-default.conf.```
+   ```sudo find /var/www/html -type f -exec chmod 644 {} \;```
 
-But for Redhart Apache,  
+   These commands will set the permissions of the directories to 755 (rwxr-xr-x) and the files to 644 (rw-r–r–), which means that the owner can read, write, and execute, while the group and others can only read and execute.
 
-```sudo nano /etc/httpd/conf/httpd.conf```  Be configured with  virtual Host@80; and Dcoument root pointing to /var/www/html where WordPress index.php file would be found.
+3. Making  sure that the Apache configuration file allows the use of mod_rewrite.
+   Which is a module that WordPress uses to create SEO-friendly URLs. 
+
+   ```sudo a2enmod rewrite```
+
+
+4. Making sure that the Apache configuration file sets the document root to the directory where  WordPress files are located. 
+   You can use a text editor to edit the configuration file, which is usually located at /etc/apache2/sites-available/000-default.conf. for Ubuntu Apache2
+
+   ```sudo nano /etc/apache2/sites-available/000-default.conf.```
+
+    But for Redhart Apache,  
+
+    ```sudo nano /etc/httpd/conf/httpd.conf```  Be configured with  virtual Host@80; and Dcoument root pointing to /var/www/html where WordPress index.php file would be found.
 
 ![Alt text](img/9a.editconfig.png)
+
 
 
 Having to stop and restart Instances.  I got this Error
@@ -494,7 +499,7 @@ Having to stop and restart Instances.  I got this Error
 
 
 
-5. Couldnt carry out this last step to serve WordPress on Browers.
+5. Couldnt carry out this last step to serve WordPress on Brower.
 
 To serve WordPress on Browser
 
@@ -520,7 +525,7 @@ To serve WordPress on Browser
 
 This index.php file can be further modified to add some extra functionality or security measures, such as checking for HTTPS or redirecting to a maintenance page 
 
-However, you should be careful not to modify the core WordPress files, as this could cause compatibility issues or break your site.
+However, one needs be careful not to modify the core WordPress files, as this could cause compatibility issues or break the site.
 
 
 To access the admin Interface or WordPress Dashboard visit www.localhost:port/wp-admin or https://example.com/wp-admin.
