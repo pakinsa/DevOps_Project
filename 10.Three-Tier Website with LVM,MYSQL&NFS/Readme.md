@@ -493,16 +493,29 @@ Apache must be installed first before mounting on /var/log/httpd for WebServer2
 
 
 
+```sudo umount -d /var/www```         // unmount mountpoint with NFS share from webserver1
+```sudo umount -d /var/log/httpd```  // unmount mountpoint with NFS share from Webserver2
+
+
+![Alt text](img/17aumoutwebservr1.png) 
+
+![Alt text](img/17b.umountwebserver2.png)
+
+
+
+    sudo umount -l /mnt/apps    // lazy unmount  device
+
+    sudo umount -l /mnt/logs    // lazy unmount device
+
+
+![Alt text](img/17c.unmountvol.png)
 
 
 
 
+#### REFERENCES:
 
-
-
-
-
-
+1. [Linux Handbook](https://linuxhandbook.com/umount-target-busy/)
 
 
 
