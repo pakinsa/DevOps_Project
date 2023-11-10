@@ -54,7 +54,7 @@ Project divided into 4 Parts
 
 
 
-### Part 3
+### Part 3 Web Server
 
 1. Launch 3 EC2 Instance with RedHart. 
 
@@ -68,7 +68,7 @@ Project divided into 4 Parts
 
 
 
-### Part 4
+### Part 4  Website Configurations
 
 1. Fork websource code from Darey.io Github
 
@@ -90,7 +90,7 @@ Project divided into 4 Parts
 
 
 
-Part1: NFS Server
+## Part1: NFS Server
 
 1. Set up an NFS server on an EC2 instance with RedHart with External Volumes
 
@@ -130,7 +130,7 @@ Part1: NFS Server
 
         sudo mkfs.xfs -f /dev/xvdg1    
 
-    ![Alt text](img/2b.formatwithXFS.png)
+    !![Alt text](img/02b.formatwithXFS.png)
 
 
     D. Install lvm
@@ -139,7 +139,7 @@ Part1: NFS Server
 
         sudo lvmdiskscan
 
-    ![Alt text](img/02c.lvmdiskscan.png)
+    ![Alt text](img/02c.lvminstall.png)
     
     
 3. Create PVs, VG, LVs and Format
@@ -336,7 +336,7 @@ Part1: NFS Server
 
 
 
-### Part 2: Database Server
+## Part 2: Database Server
 
 1. Set up an EC2 instance with Ubuntu 
 
@@ -388,7 +388,7 @@ Part1: NFS Server
 
 
 
-Part 3
+## Part 3 : WebServers
 
 1. Launch 3 EC2 Instance with RedHart as Webservers. 
 
@@ -473,7 +473,7 @@ Apache must be installed first before mounting on /var/log/httpd for WebServer2
 
 
 
-Part 4
+## Part 4: Website Configurations
 
 ![Alt text](img/14d.forked.png) 
 
