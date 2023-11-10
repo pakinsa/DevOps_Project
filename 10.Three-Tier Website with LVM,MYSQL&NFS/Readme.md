@@ -7,6 +7,9 @@
 ### Purpose: Implement a Three Tier Architecture Tooling Website with LVN Storage, MySQLDB and NFS 
 
 
+![Alt text](img/00.nfs.png)
+
+
 ### Outlined Steps
 
 1. Set up an NFS server on an EC2 instance and configure the NFS exports on the host server. You can use the nfs-utils package to install the NFS client and server on your EC2 instances.
@@ -78,16 +81,6 @@ Project divided into 4 Parts
 5. Create a new admin user 'myuser'and password on Webserver
 
 6. Visit tooling website/index.php and sigin in as 'myuser'
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -480,10 +473,18 @@ Apache must be installed first before mounting on /var/log/httpd for WebServer2
 
 
 
+Part 4
+
 ![Alt text](img/14d.forked.png) 
+
 ![Alt text](img/15a.deployed.png) 
+
 ![Alt text](img/15b.chown.png) 
+
 ![Alt text](img/15c.selinudisabled.png) 
+
+![Alt text](img/15d.htmlfold.png)
+
 ![Alt text](img/16.loginpageweb1.png)
 
  
