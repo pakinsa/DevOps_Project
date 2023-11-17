@@ -147,6 +147,21 @@
 
     
 
+2.  Ansible Development
+
+    a. Clone the jenkins-ansible repo down to your local machine
+
+    ![Alt text](img/02a.ansibleclone.png)
+
+
+    b. Create a new branch
+
+    
+    
+    c. Create in the new branch: 2 directories a. playbooks: to store playbooks  b. inventory: to store hosts
+
+    d. Create "common.yml" file inside "playbooks" directories and create inventory fils dev.yml, uat.yml, staging.yml and prod.yml for different development stages.
+    
 
     
 
