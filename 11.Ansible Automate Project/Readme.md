@@ -43,26 +43,15 @@
 
 3. Let the Server named Jenkins-Ansible Server be Ansible Control Node, and then create 5 new EC2 Instances as managed/child ansible nodes
     
-    a. Create 5 instances. 4 Redhart OS: 2 for webservers, 1 for NFS, 1 for DB. 1 Ubuntu Instance for load balancing
-    b. Configure their ports according to their relevant protocols and port numbers.
-    c. Configure the Jenkins-Ansible Control 
-    d. Configure SSH access to the managed nodes.
-    
+    a. Create 5 instances. 4 Redhart OS: 2 for webservers, 1 for NFS, 1 for DB. 1 Ubuntu Instance for Load Balancing
+    b. Configure their ports according to their relevant protocols and port numbers at Security
+    c. Configure the Jenkins-Ansible Control with SSH access to the managed nodes using SSH
     
 
-3. Create a playbook that installs and configures Apache and PHP on the 2 web server nodes, a playbook that installs and configures NFS on the NFS server node, a playbook that installs and configures MySQL on the DB server node, and a playbook that installs and configures HAProxy on the load balancer node.
+4. Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
 
 
-    a. Create an inventory folder in the github repo named: "ansible-config-mgt"
-    b.
-    
-
-
-4. Optional steps
-
-    a. Create a new branch on your main branch called
-    b. Edit the soucre code in github repo "ansible-config-mgt"
-    c. Confirm new soucr code automatically build into the "Jenkins-ansible" server
+5. Git pull request.
 
 
 
@@ -153,14 +142,121 @@
 
     ![Alt text](img/02a.ansibleclone.png)
 
+    Install Remote Development plugin in order to access files in remote servers
+    ![Alt text](img/02a2.installext.png)
+
 
     b. Create a new branch
 
+    ![Alt text](img/02b.newbranch.png) 
     
+       
     
-    c. Create in the new branch: 2 directories a. playbooks: to store playbooks  b. inventory: to store hosts
+    c. Create in the new branch: 2 directories a. playbooks: to store playbooks  b. inventory: to configure ansible hosts
 
-    d. Create "common.yml" file inside "playbooks" directories and create inventory fils dev.yml, uat.yml, staging.yml and prod.yml for different development stages.
+    d. Create "common.yml" file inside "playbooks" directories and create inventory files nameely dev.yml, uat.yml, staging.yml and prod.yml for different development stages.
+
+    ![Alt text](img/02c.invfiles.png)
+
+
+    
+3. Let the Server named Jenkins-Ansible Server be Ansible Control Node, and then create 5 new EC2 Instances as managed/child ansible nodes
+    
+    a. Create 5 instances. 4 Redhart OS: 2 for webservers, 1 for NFS, 1 for DB. 1 Ubuntu Instance for load balancing
+
+    ![Alt text](img/3a.instances.png)
+
+
+    b. Configure their ports according to their relevant protocols and port numbers at Security
+
+    Pick individual subnets and configure ports
+
+    ![Alt text](img/3b.portsconfig.png)
+
+
+    c. Configure and Connect the Jenkins-Ansible Control with SSH access to the managed nodes using SSH Agent
+
+    Ansible uses port 22 by default, which meansit needs be SSH into managed nodes. 
+
+    1. a.Change permission of the pem file so that EC2 can accept it.
+         Ensuring that the private jey file used on  Jenkins-Ansible is exact key used here for SSH agent.
+
+        ```chmod 400 latestkeys2.pem```
+
+        ![Alt text](img/3c.chmodkey.png)
+
+        
+        2. Copy by importing the pem key file from local machine to Jenkins-Ansible Server
+
+        ``` eval `ssh-agent -s` ```   Ensuring that SSH agent is running
+        
+        ``` ssh-add latestkeys2.pem```  Add SSH Agent 
+
+
+        But an error surfaced
+
+        ![Alt text](img/3d.keyerror.png)  
+
+
+
+        Need to install OpenSSH on local machine via PowerShell with Administrator
+
+            Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
+
+            Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+
+            Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+            Start-Service sshd
+
+            Set-Service -Name sshd -StartupType 'Automatic'
+
+
+        ![Alt text](img/3e.openSSH.png) 
+
+
+
+        OpenSSH now installed, and SSH Agent Identity added
+
+        ``` ssh-add latestkeys2.pem```  Add SSH Agent 
+
+        ![Alt text](img/3f.identityadded.png)
+
+
+
+        SSH to Jenkins-Ansible server via Public IP now successful
+        
+        `ssh -A ubuntu@54.88.177.247`  Command connects to the Jenkins-Ansible server
+
+        ![Alt text](img/3g.sshsuccess.png) 
+       
+        
+
+        List available SSH keys on this Server
+
+        `ssh-add -l`   command list available SSH keys on this server
+
+        ![Alt text](img/3h.listsshkeys.png)
+
+
+
+        Connect from Jenkins-Ansible control node to a managed node
+
+        `ssh -A ec2-user@72.44.42.6`   Connect as an example via OpenSSH to a redhart webserver
+
+        ![Alt text](img/3i.exampleSSH.png)
+
+
+
+
+    
+
+4. Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
+
+
+5. Git pull request.
+
+
     
 
     
