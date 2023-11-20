@@ -14,7 +14,7 @@
 
 ### Required Steps:
 
-#### Set up a webhook link from your source code repository (such as GitHub, Jira or Trello) to trigger a Jenkins job whenever there is a change in the code. This will allow to automate the deployment of your code to the managed nodes using Jenkins. This will help you to keep track of the history and status of your deployments.
+#### 1.Set up a webhook link from your source code repository (such as GitHub, Jira or Trello) to trigger a Jenkins job whenever there is a change in the code. This will allow to automate the deployment of your code to the managed nodes using Jenkins. This will help you to keep track of the history and status of your deployments.
 
     a. Create a new repo named ansible-config-mgt
     
@@ -27,7 +27,7 @@
     e. Allow and test Automatic job build to "Jenkins-ansible" server on main branch from your repo.
 
 
-#### Ansible Development
+#### 2.Ansible Development
 
     a. Clone the jenkins-ansible repo down to your local machine
 
@@ -39,17 +39,17 @@
     
 
 
-#### Let the Server named Jenkins-Ansible Server be Ansible Control Node, and then create 5 new EC2 Instances as managed/child ansible nodes
+#### 3.Let the Server named Jenkins-Ansible Server be Ansible Control Node, and then create 5 new EC2 Instances as managed/child ansible nodes
     
     a. Create 5 instances. 4 Redhart OS: 2 for webservers, 1 for NFS, 1 for DB. 1 Ubuntu Instance for Load Balancing
     b. Configure their ports according to their relevant protocols and port numbers at Security
     c. Configure the Jenkins-Ansible Control with SSH access to the managed nodes using SSH
     
 
-#### Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
+#### 4.Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
 
 
-#### Git pull request.
+#### 5.Git pull request.
 
 
 
