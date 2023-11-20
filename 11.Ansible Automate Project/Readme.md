@@ -226,7 +226,7 @@
 
         SSH to Jenkins-Ansible server via Public IP now successful
         
-        `ssh -A ubuntu@54.88.177.247`  Command connects to the Jenkins-Ansible server
+        `ssh -A ubuntu@54.88.177.247`  Command connects to the Jenkins-Ansible server @public address
 
         ![Alt text](img/3g.sshsuccess.png) 
        
@@ -242,7 +242,7 @@
 
         Connect from Jenkins-Ansible control node to a managed node
 
-        `ssh -A ec2-user@72.44.42.6`   Connect as an example via OpenSSH to a redhart webserver
+        `ssh -A ec2-user@72.44.42.6`   Connect as an example via OpenSSH to a redhart webserver public Ip
 
         ![Alt text](img/3i.exampleSSH.png)
 
@@ -251,13 +251,90 @@
 
     
 
-4. Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
+4. Create Playbook and Pull Request
+
+a. Create a playbooks commom.yml and inventory.dev
+
+![Alt text](img/4a.devymlplay.png) 
+
+![Alt text](img/4b.devplay.png) 
 
 
-5. Git pull request.
+
+b. Git pull request
 
 
-    
+![Alt text](img/4c.gitbranchpushed.png) 
+
+![Alt text](img/4d.mergedrequest.png) 
+
+![Alt text](img/4e.consoleoutput.png)  
+
+
+
+c. Confirm latest artifact
+
+`sudo ls /var/lib/jenkins/jobs/ansible/builds/8/archive` confirm latest artifact
+
+![Alt text](img/4f.confirmartifact.png)
+
+
+
+Lets test if wireshark works, however, needs to add SSH Identity Agent again before.
+
+![Alt text](img/4g.testwireshark.png)
+
+That means  ansible playbooks didnt trigger automatically    
+
+
+
+5. Run the Ansible Playbooks, Connect to Remote Jenkins-ansible Server
+
+
+a. Git Pull 
+
+`git checkout main` change back to Main
+
+`git pull`   sync main branch to the recent update
+
+![Alt text](img/4h.gitpullmain.png)
+
+
+
+
+
+b. Connect to Remote Jenkins-ansible Server
+
+Had challenges connecting to the Jenkins server for hours. I had to uninstall remote development extension earlier, and then install the Remote-SSH extension only. The configuration too was very confusing for me as to where the pem file actually needs to be either a path to the localhost pem file or the server pem file path.
+
+At last
+Host jenkins-ansible
+  HostName 54.88.177.247
+  User ubuntu
+  IdentityFile /Users/user/Documents/Paul/latestkeys2.pem
+
+
+![Alt text](img/5a.remoteconnect.png)
+
+
+c. Run Ansble playbook
+
+eval `ssh-agent -s` && ssh-add latestkeys2.pem && ssh-add -l
+
+the cd into the archive where the latest artifact is to avoid playbook not found error then
+
+ansible-playbook -i inventory/dev playbooks/common.yml
+
+![Alt text](img/5b.playedbook1.png) 
+
+![Alt text](img/5c.playedbook2.png) 
+
+![Alt text](img/5d.webservr2wireshark.png) 
+
+![Alt text](img/5e.lbwireshark.png)
+
+
+
 
     
 
