@@ -335,6 +335,18 @@ ansible-playbook -i inventory/dev playbooks/common.yml
 
 
 
+6a. 
+
+![Alt text](img/6a.moretaskgit.png) 
+
+![Alt text](img/6b.mergedmoretask.png)
+
+
+Key Lesson:
+
+The name change from dev.yml to dev in in the ansible repo worked, as files the declares hosts doesnt have to end with .yml. Then connection using ssh agent has to be reconnected per session for smooth running of ansible playbook on jenkins-ansible server. SSH agent is not like the usual SSH client 
+
+
 
     
 
@@ -346,3 +358,5 @@ ansible-playbook -i inventory/dev playbooks/common.yml
 1. [Ansible: The Inside Playbook](https://www.ansible.com/blog/intro-to-automation-webhooks-for-red-hat-ansible-automation-platform)
 
 2. [Jenkins: Linux](https://www.jenkins.io/doc/book/installing/linux/#debianubuntu)
+
+3. [Darey.io: End To End Project 11 (SSH | Ansible)](https://www.youtube.com/watch?v=uuhhOhWTrrs)
