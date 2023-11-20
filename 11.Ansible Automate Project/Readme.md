@@ -14,9 +14,7 @@
 
 ### Required Steps:
 
-
-
-1.  Set up a webhook link from your source code repository (such as GitHub, Jira or Trello) to trigger a Jenkins job whenever there is a change in the code. This will allow to automate the deployment of your code to the managed nodes using Jenkins. This will help you to keep track of the history and status of your deployments.
+#### Set up a webhook link from your source code repository (such as GitHub, Jira or Trello) to trigger a Jenkins job whenever there is a change in the code. This will allow to automate the deployment of your code to the managed nodes using Jenkins. This will help you to keep track of the history and status of your deployments.
 
     a. Create a new repo named ansible-config-mgt
     
@@ -29,7 +27,7 @@
     e. Allow and test Automatic job build to "Jenkins-ansible" server on main branch from your repo.
 
 
-2.  Ansible Development
+#### Ansible Development
 
     a. Clone the jenkins-ansible repo down to your local machine
 
@@ -41,17 +39,17 @@
     
 
 
-3. Let the Server named Jenkins-Ansible Server be Ansible Control Node, and then create 5 new EC2 Instances as managed/child ansible nodes
+#### Let the Server named Jenkins-Ansible Server be Ansible Control Node, and then create 5 new EC2 Instances as managed/child ansible nodes
     
     a. Create 5 instances. 4 Redhart OS: 2 for webservers, 1 for NFS, 1 for DB. 1 Ubuntu Instance for Load Balancing
     b. Configure their ports according to their relevant protocols and port numbers at Security
     c. Configure the Jenkins-Ansible Control with SSH access to the managed nodes using SSH
     
 
-4. Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
+#### Create a playbook, that installs wireshark on the 2webservers, and commons tasks on commom.yml
 
 
-5. Git pull request.
+#### Git pull request.
 
 
 
@@ -70,18 +68,18 @@
     
     ![Alt text](img/01d.ansibleversion.png)
 
-        sudo apt update && sudo apt install fontconfig openjdk-17-jre     Update the package index and install latest Java 17, which is required by Jenkins. 
+        sudo apt update && sudo apt install fontconfig openjdk-17-jre    //Update the package index and install latest Java 17, which is required by Jenkins. 
         
-        sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian/jenkins.io-2023.key   Add the Jenkins repository key to your system.
+        sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian/jenkins.io-2023.key   # Add the Jenkins repository key to your system.
 
-        echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null       Add the Jenkins repository to your system
+        echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null       # Add the Jenkins repository to your system
    
 
-        sudo apt update && sudo apt install jenkins -y          Update the package index again and install Jenkins
+        sudo apt update && sudo apt install jenkins -y         # Update the package index again and install Jenkins
         sudo systemctl status jenkins
         sudo systemctl start jenkins
         
-        sudo cat /var/lib/jenkins/secrets/initialAdminPassword    Find admin intial password here
+        sudo cat /var/lib/jenkins/secrets/initialAdminPassword   # Find admin intial password here
 
     ![Alt text](img/01e.jenkinsinboundrule.png)
 
