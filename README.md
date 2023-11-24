@@ -17,3 +17,4 @@
 * Project 9: Three-Tier WordPress Website with LVM Storage
 * Project 10: Three-Tier Website with LVM,MYSQL&NFS
 * Project 11: Ansible Automate Project
+* Project 12: Ansible Refactoring Project
