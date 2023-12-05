@@ -66,14 +66,16 @@
 ###### b. Create an EC2 server named "Jenkins-Ansible" and Install and configure with ansible and jenkins, and use Elastic Ip addressing to avoid change in IPs when you shut down instance
 
 ![Alt text](img/01c.elasticip.png) 
-    
-![Alt text](img/01d.ansibleversion.png)
+
+
+Install Jenkins with repository following this commands:    
 
     sudo apt update && sudo apt install fontconfig openjdk-17-jre    # Update the package index and install latest Java 17, which is required by Jenkins. 
         
-    sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian/jenkins.io-2023.key   # Add the Jenkins repository key to your system.
-
     echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null       # Add the Jenkins repository to your system
+
+
+    sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian/jenkins.io-2023.key   # Add the Jenkins repository key to your system.    # Get the public key to Jenkins Repository
    
 
     sudo apt update && sudo apt install jenkins -y         # Update the package index again and install Jenkins
@@ -90,7 +92,26 @@
     
     Jenkins
     Username : admin password: 8606b5271584416384a3c7e769937f7a
-    
+
+
+
+Install Ansible using the official Personal Package archive(PPA)
+
+    sudo apt update
+    sudo apt install software-properties-common
+    sudo add-apt-repository --yes --update ppa:ansible/ansible
+    sudo apt install ansible
+
+![Alt text](img/ansibleideas1.png)
+
+So that you get this kind of result, which is needed for the next project, where you use config file of ansible
+
+![Alt text](img/ansibleideas2.png)
+
+And not this
+
+![Alt text](img/01d.ansibleversion.png)
+
 
 
 ###### c. Create a freestyle project named "ansible" on Jenkins
@@ -99,9 +120,11 @@ Encountered 403 crumb invalid error
 
 ![Alt text](img/01g.403Jenkinserror.png) 
     
-To solve this, enable the CSRF Protection, allows forge request
+To solve this, enable the CSRF Protection, allows forge request. This can also be solved by generated tokens to github for webhook.
 
 ![Alt text](img/01h.403solutn.png)
+
+
 
 Create a new admin user
 
@@ -326,7 +349,7 @@ To run ansible playbooks first
 
 
 
-##### 6. More Task with Ansible Playbook and COnfirmation 
+##### 6. More Task with Ansible Playbook and Confirmation 
 
 ![Alt text](img/6a.moretaskgit.png) 
 
@@ -342,7 +365,9 @@ To run ansible playbooks first
 
 #### Key Lesson:
 
-The name change from dev.yml to dev in in the ansible repo worked, as files that declares remote hosts doesnt have to end with .yml. Then connection using ssh agent has to be reconnected per session for smooth running of ansible playbook on jenkins-ansible server. SSH agent is not like the usual SSH client 
+1. The name change from dev.yml to dev in in the ansible repo worked, as files that declares remote hosts doesnt have to end with .yml. Then connection using ssh agent has to be reconnected per session for smooth running of ansible playbook on jenkins-ansible server. SSH agent is not like the usual SSH client 
+
+2. How you install Ansible matters, as best to install with repository added, rather than simple package manager. This determines the result you have in ansible.
 
 
 
