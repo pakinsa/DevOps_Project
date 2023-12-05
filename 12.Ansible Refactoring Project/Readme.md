@@ -348,22 +348,22 @@ But this works
 
 7. The error below is seen to be a syntax error, but it became a debacle, that wont go away after several changes to the uat_webservers.yml.
 
-![Alt text](img/problem.png) 
+![Alt text](img/7a.problem.png) 
 
-![Alt text](img/mainproblem.png) 
+![Alt text](img/7b.mainproblem.png) 
 
-![Alt text](img/notworkd.png)   
+![Alt text](img/7c.notworkd.png)   
 
 These errors were as a result of uat_webservers.yml which was changed tons of times.
 
-![Alt text](img/whatvedone.png)
+![Alt text](img/7d.whatvedone.png)
 
 
 Lucab85 wrote an ansible role log4shell to solve this problem by scanning for the roles and override the "role not found" error, see the link in the references below.
 
 Though I installed it for this project but never worked.
 
-![Alt text](img/roles.png)
+![Alt text](img/7e.roles.png)
 
 
 
@@ -371,39 +371,39 @@ Though I installed it for this project but never worked.
 
 There are some ways to improve the readability and style of this playbook, such as: 
 
-Use consistent indentation and spacing. According to the YAML specification, indentation must be consistent and use the same number of spaces for each level. You can also use spaces around colons and dashes to make the playbook more readable. For example, you can use something like this:
+   Use consistent indentation and spacing. According to the YAML specification, indentation must be consistent and use the same number of spaces for each level. You can also use spaces around colons and dashes to make the playbook more readable. For example, you can use something like this:
 
----
-hosts: uat_webservers
-become: yes
-become_user: root
-become_method: sudo
-roles:
-  - role: webserver
+   ---
+   hosts: uat_webservers
+   become: yes
+   become_user: root
+   become_method: sudo
+   roles:
+     - role: webserver
 
-Use the name parameter to give a descriptive name to the playbook. This will help you identify the purpose and scope of the playbook, and also generate a meaningful output when you run the playbook. For example, you can use something like this:
+   Use the name parameter to give a descriptive name to the playbook. This will help you identify the purpose and scope of the playbook, and also generate a meaningful output when you run the playbook. For example, you can use something like this:
 
----
-- name: Deploy webserver role to uat_webservers hosts
-  hosts: uat_webservers
-  become: yes
-  become_user: root
-  become_method: sudo
-  roles:
-    - role: webserver
+   ---
+   - name: Deploy webserver role to uat_webservers hosts
+   hosts: uat_webservers
+   become: yes
+   become_user: root
+   become_method: sudo
+   roles:
+     - role: webserver
 
-Use the include_role module instead of the role keyword to apply the webserver role. This will allow you to use variables, loops, conditionals, and tags with the role, and also make the playbook more modular and reusable. For example, you can use something like this:
+   Use the include_role module instead of the role keyword to apply the webserver role. This will allow you to use variables, loops, conditionals, and tags with the role, and also make the playbook more modular and reusable. For example, you can use something like this:
 
----
-- name: Deploy webserver role to uat_webservers hosts
-  hosts: uat_webservers
-  become: yes
-  become_user: root
-  become_method: sudo
-  tasks:
-    - name: Include webserver role
-      include_role:
-        name: webserver
+   ---
+   - name: Deploy webserver role to uat_webservers hosts
+     hosts: uat_webservers
+     become: yes
+     become_user: root
+     become_method: sudo
+     tasks:
+       - name: Include webserver role
+         include_role:
+           name: webserver
 
 
 ![Alt text](img/6a.includekeyword.png)
@@ -430,7 +430,7 @@ Use the include_role module instead of the role keyword to apply the webserver r
 
 #### Future Projects:
 
-1. Write an ansible playbook that copy keygen public key into several hosts authorized_key file.
+1. Write an ansible playbook that copy keygen public key into several hosts authorized_key files.
 
 
 
