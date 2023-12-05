@@ -234,9 +234,6 @@ cd /var/lib/jenkins/jobs/save_artifacts/builds/8/archive/home/ubuntu/ansible-con
 
 
 
-
-76ffc918ee7c44f5bc4fcb34963bb130
-
 #### CONNECTION
 
    ansible all --list-hosts
@@ -264,16 +261,12 @@ To solve the connection problem to the managed nodes, use a passwordless connect
    
    ![Alt text](img/5d.webserverConnect.png)
 
-   Copy the key from the .pub file into the nano authorized_keys of the managed ansible node
+   Copy the key from the .pub file into the authorized_keys of the two managed ansible node which are uat_webserver1 and uat_webserver2
+   Copied the keygen from the id_rsa.pub file of the jenkins server into the authorized_keys files of the two managed ansible node which are uat_webserver1 and uat_webserver2.
+ 
 
 
-cd /home/ubuntu/ansible-config-mgt
-
-ansible-playbook -i /inventory/uat.yml playbooks/site.yml  --syntax-check
-
-
-
-#### KEY LESSONS:
+#### KEY LESSONS AND EXECUTION OF PLAYBOOK
 
 #####
 
@@ -301,7 +294,71 @@ And not this
 ![Alt text](img/ansibleversion.png)
 
 
-3. However, there are some ways to improve the readability and style of this playbook, such as:
+Connection have to be reestablished again after session timedout due to inaccessiblity to the Jenkins server due public key errror.
+Copied the keygen from the id_rsa.pub file of the jenkins server into the authorized_keys files of the two managed ansible node which are uat_webserver1 and uat_webserver2. This is what is called passwordless connection
+
+   ![Alt text](img/5e.ssh.png) 
+   
+   ![Alt text](img/5f.ssh2.png)
+
+
+3. `ansible-playbook -i /inventory/uat.yml playbooks/site.yml  --syntax-check`   can be used to test for syntax errors before actually running the playbook. If there are errors, it catches and if there no errors, it displays name of the playbook
+   ansible all --list-hosts
+
+   ansible -m ping all
+
+Use the above ansible commands to test connect your available hosts
+
+
+4. This commands `ansible-playbook -i /inventory/uat.yml playbooks/site.yml` didnt work, removing the `/` from it was what eventually work. Just as in the case of playbook/site.yml without a `/`
+i.e `ansible-playbook -i inventory/uat.yml playbooks/site.yml`
+
+
+
+
+5. Since save_artifacts job on our Jenkins server did not copy artifacts successfully to our target directory "ansible-config-artifact", then I had to git clone the ansible-config-mgt reposiotry to the jenkins-ansible server with this command:  
+`git clone https://github.com/pakinsa/ansible-config-mgt.git`
+
+To update jenkins server with latest changes directly fron git repo.
+
+   cd ~/ansible-config-mgt
+
+   git remote add origin https://github.com/pakinsa/ansible-config-mgt.git
+
+   git pull origin master
+
+
+
+6. Configure the config file in the /etc/ansible/ansible.cfg to point to the new path of where hosts inventory and roles are located. As ansible would always look into the /etc/ansible/ansible.cfg to run it hosts and roles by default.
+
+
+![Alt text](img/configworks.png)
+ 
+
+7. The error below is seen to be a syntax error, but it became a debacle, that wont go away after several changes to the uat_webservers.yml.
+
+![Alt text](img/problem.png) 
+
+![Alt text](img/mainproblem.png) 
+
+![Alt text](img/notworkd.png)   
+
+These errors were as a result of uat_webservers.yml which was changed tons of times.
+
+![Alt text](img/whatvedone.png)
+
+
+Lucab85 wrote an ansible role log4shell to solve this problem by scanning for the roles and override the "role not found" error, see the link in the references below.
+
+Though I installed it for this project but never worked.
+
+![Alt text](img/roles.png)
+
+
+
+8. Here with the use of BING AI: 
+
+There are some ways to improve the readability and style of this playbook, such as: 
 
 Use consistent indentation and spacing. According to the YAML specification, indentation must be consistent and use the same number of spaces for each level. You can also use spaces around colons and dashes to make the playbook more readable. For example, you can use something like this:
 
@@ -338,23 +395,31 @@ Use the include_role module instead of the role keyword to apply the webserver r
         name: webserver
 
 
+![Alt text](img/6a.includekeyword.png)
+
+
+![Alt text](img/6b.latest1.png) 
+
+
+![Alt text](img/6c.latest2.png)
+
+
+
+
+![Alt text](img/6d.ansibleworksweb1.png) 
+
+![Alt text](img/6e.ansibleworksweb2.png)
 
 
 
 
 
-#### EXECUTION
-
-Since copy artifact job didnt work for our target directory "ansible-config-artifact", then we git clone from our reposiotry tour jenkins-ansible server with this command:  `git clone https://github.com/pakinsa/ansible-config-mgt.git`
-
-2. Configure the config file in the /etc/ansible/ansible.cfg
 
 
 
-![Alt text](img/6a.ansibleworksweb1.png) 
+#### Future Projects:
 
-![Alt text](img/6b.ansibleworksweb2.png)
-
+1. Write an ansible playbook that copy keygen public key into several hosts authorized_key file.
 
 
 
