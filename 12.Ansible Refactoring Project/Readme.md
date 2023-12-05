@@ -15,7 +15,7 @@ Required Steps:
 
 ### STEP 1
 
-#### 1. Make a directory: 
+#### 1. Make a directory and Change mode: 
 
 `sudo mkdir /home/ubuntu/ansible-config-artifact` A directory to store artifacts in the Jenkins server
 
@@ -93,19 +93,20 @@ Create a new branch called Feature
 
 Update and restructure directory tree on this branch
 
-![Alt text](img/2b.folderstructure.png) 
+
+![Alt text](img/2b.folderstructure.png)
 
 
 
 Push a branch 
 
-![Alt text](img/2c.uninstallpullrequest.png) 
+![Alt text](img/2c.uninstallpullrequest.png)
 
 
 
 Run ansible on servers to uninstall Wireshark
 
-![Alt text](img/2d.uninstallwireshark.png) 
+![Alt text](img/2d.uninstallwireshark.png)
 
 ![Alt text](img/2e.uninstallwireshark.png)
 
@@ -160,14 +161,6 @@ By default, Ansible looks for roles in the following locations:
    * In the configured roles_path. The default search path is ~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles.
    * In the directory where the playbook file is located.
 
-However, for this project a new ansible.cfg file has to be created and roles_path specified therein, as /etc/ansible/ansible.cfg was not found
-
-![Alt text](img/3c.ansiblecfg.png) 
-
-
-![Alt text](img/3d.ansiblecfg.png)
-
-
 
    
 #### 3. Write a task playbook in the main.yml of task
@@ -177,7 +170,7 @@ However, for this project a new ansible.cfg file has to be created and roles_pat
    3. Ensure the tooling website is deployed to /var/www/html on the 2 UAT webservers
    4. Make Apache started service
 
-![Alt text](img/3e.taskplaybook.png)
+![Alt text](img/3c.taskplaybook.png)
 
 
 
@@ -221,7 +214,7 @@ However, for this project a new ansible.cfg file has to be created and roles_pat
 #### 5 Run Ansible Playbooks
 
 Before running an ansible playbook
-1. Ensure you connect to Jenkins-ansible server via OpenSSH
+1. Ensure to connect to Jenkins-ansible server via OpenSSH
 2. Open terminal
 3. Ensure pem key is in the directory available in the remote config file
 4. Run this command at home directory on Jenkins: eval `ssh-agent -s` && ssh-add latestkeys2.pem && ssh-add -l
@@ -236,39 +229,51 @@ cd /var/lib/jenkins/jobs/save_artifacts/builds/8/archive/home/ubuntu/ansible-con
 
 #### CONNECTION
 
+Confirm if available host are connected
+
    ansible all --list-hosts
 
    ansible -m ping all
 
 ![Alt text](img/5a.nodeserror.png)
 
+
 To solve the connection problem to the managed nodes, use a passwordless connection. Which uses public/private key together
 
-   step1
+Step 1
 
-   ssh-keygen
-   press Enter for passphrase (do not input any character or word)
+Connect to Jenkins Server Remotely:
 
-   ![Alt text](img/5a.nodeserror.png) 
+![Alt text](img/5b.remoteconnect.png)
+
+
+Step 2
+
+`ssh-keygen` Run command on Jenkins server and  press Enter for passphrase (do not input any character or word)
    
-   ![Alt text](img/5b.remoteconnect.png) 
-   
-   ![Alt text](img/5c.keygen.png) 
+   ![Alt text](img/5b2.keygen.png) 
    
    ![Alt text](img/5c.remotepublickey.png) 
+
+
+Copy the key from the id_rsa.pub file into the authorized_keys of the two managed ansible node which are uat_webserver1 and uat_webserver2
+Copied the keygen from the id_rsa.pub file of the jenkins server into the authorized_keys files of the two managed ansible node which are uat_webserver1 and uat_webserver2.
+
 
    ![Alt text](img/5c2.nanoauthorizedkey.png)
    
    ![Alt text](img/5d.webserverConnect.png)
 
-   Copy the key from the .pub file into the authorized_keys of the two managed ansible node which are uat_webserver1 and uat_webserver2
-   Copied the keygen from the id_rsa.pub file of the jenkins server into the authorized_keys files of the two managed ansible node which are uat_webserver1 and uat_webserver2.
+
+
  
+
+
+
 
 
 #### KEY LESSONS AND EXECUTION OF PLAYBOOK
 
-#####
 
 1. Ansible is not a service running on linux. So you cant do `systemctl status ansible`. It gives you an error.
 
@@ -301,6 +306,8 @@ Copied the keygen from the id_rsa.pub file of the jenkins server into the author
    
    ![Alt text](img/5f.ssh2.png)
 
+   ![Alt text](img/5g.addsshtonode.png)
+
 
 3. `ansible-playbook -i /inventory/uat.yml playbooks/site.yml  --syntax-check`   can be used to test for syntax errors before actually running the playbook. If there are errors, it catches and if there no errors, it displays name of the playbook
    ansible all --list-hosts
@@ -331,8 +338,12 @@ To update jenkins server with latest changes directly fron git repo.
 
 6. Configure the config file in the /etc/ansible/ansible.cfg to point to the new path of where hosts inventory and roles are located. As ansible would always look into the /etc/ansible/ansible.cfg to run it hosts and roles by default.
 
+This config file did not work
+![Alt text](img/6f.sdefansiblecfg.png)
 
-![Alt text](img/configworks.png)
+
+But this works
+![Alt text](img/6g.configworks.png)
  
 
 7. The error below is seen to be a syntax error, but it became a debacle, that wont go away after several changes to the uat_webservers.yml.
