@@ -317,7 +317,7 @@ Copied the keygen from the id_rsa.pub file of the jenkins server into the author
 Use the above ansible commands to test connect your available hosts
 
 
-4. This commands `ansible-playbook -i /inventory/uat.yml playbooks/site.yml` didnt work, removing the `/` from it was what eventually work. Just as in the case of playbook/site.yml without a `/`
+4. This commands `ansible-playbook -i /inventory/uat.yml playbooks/site.yml` didnt work, but removing the `/` from it works. Just as in the case of playbook/site.yml without a `/`
 i.e `ansible-playbook -i inventory/uat.yml playbooks/site.yml`
 
 
@@ -443,5 +443,5 @@ There are some ways to improve the readability and style of this playbook, such 
 [DevOps Techstack: End to End Project 1](https://www.youtube.com/@devops-techstack)
 
 
-[Galaxy Ansible](https://galaxy.ansible.com/ui/standalone/roles/lucab85/ansible_role_log4shell/)
+[Ansible Galaxy](https://galaxy.ansible.com/ui/standalone/roles/lucab85/ansible_role_log4shell/)
 
