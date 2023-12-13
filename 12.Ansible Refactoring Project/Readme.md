@@ -339,11 +339,11 @@ To update jenkins server with latest changes directly fron git repo.
 6. Configure the config file in the /etc/ansible/ansible.cfg to point to the new path of where hosts inventory and roles are located. As ansible would always look into the /etc/ansible/ansible.cfg to run it hosts and roles by default.
 
 This config file did not work
-![Alt text](img/6f.sdefansiblecfg.png)
+![Alt text](img/6e.sdefansiblecfg.png)
 
 
 But this works
-![Alt text](img/6g.configworks.png)
+![Alt text](img/6f.configworks.png)
  
 
 7. The error below is seen to be a syntax error, but it became a debacle, that wont go away after several changes to the uat_webservers.yml.
