@@ -170,7 +170,7 @@ By default, Ansible looks for roles in the following locations:
    3. Ensure the tooling website is deployed to /var/www/html on the 2 UAT webservers
    4. Make Apache started service
 
-![Alt text](img/3c.taskplaybook.png)
+![Alt text](img/3e.taskplaybook.png)
 
 
 
