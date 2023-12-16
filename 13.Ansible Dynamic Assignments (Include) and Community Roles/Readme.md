@@ -122,7 +122,7 @@ We created those those new role directories above to mysql, nginx, apache respec
 
 ### 4. Create the static_assignments files for each service
 
-mysql.yml
+mysql_db.yml
 
 ![Alt text](img/4a.mysqlstaticfile.png)
 
@@ -130,21 +130,19 @@ nginx_lb.yml
 
 ![Alt text](img/4b.nginxlbstaticfile.png)
 
-apache_webs.yml
-
-![Alt text](img/4b.nginxlbstaticfile.png)
-
-
-
-
 
 
 
 ### 5. Configure their main.yml file in their Defaults Folder
 
 
+![Alt text](img/5a.mysqleditconfig.png)
 
+![Alt text](img/5b.replaceansiblebuiltmodule.png)
 
+![Alt text](img/5c.apachemainconfig.png)
+
+![Alt text](img/5d.nginxmainconfig.png)
 
 
 
@@ -175,6 +173,12 @@ You will activate load balancer, and enable nginx by setting these in the respec
 enable_nginx_lb: true
 load_balancer_is_required: true
 
+or
+
+
+enable_apache_lb: true
+load_balancer_is_required: true
+
 
 ![Alt text](img/6a.dynauatyml.png)
 
@@ -187,7 +191,7 @@ For every iteration, we need declare which software to installed to show dynamic
 thatis why these declaration needs be done, to enable apache if apache is loaded from our
 static assigmnment or nginx, if loaded from static assignment.
 
-
+Using hosts and roles inside a role task file, is not allowed. You can only use hosts and roles at the top level of a playbook, not inside a role
 
 ### Configure Hosts, with respective Private Ip address of the servers
 
@@ -207,10 +211,6 @@ static assigmnment or nginx, if loaded from static assignment.
 ![Alt text](img/7c.apache.png) 
 
 ![Alt text](img/7c.db.yml.png) 
-
-![Alt text](img/7c.mysqleditconfig.png) 
-
-![Alt text](img/7c.replaceansiblebuiltmodule.png) 
 
 ![Alt text](img/7d.msql.png) 
 
