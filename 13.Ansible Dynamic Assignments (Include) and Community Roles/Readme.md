@@ -147,7 +147,7 @@ nginx_lb.yml
 
 The main difference between import_tasks and include_tasks is that import_tasks is processed at the time of parsing, while include_tasks is processed at the time of execution. This means that import_tasks can use variables defined in the playbook scope, but not in the task or block scope, while include_tasks can use variables from any source.
 
-# leadnginx.yml
+leadnginx.yml
 - name: use nginx loadbalancer
   hosts: all
   become: true
@@ -158,7 +158,7 @@ The main difference between import_tasks and include_tasks is that import_tasks 
 
 To use include_tasks, you just need to replace the import_tasks keyword with include_tasks in your playbook. For example:
 
-# leadnginx.yml
+leadnginx.yml
 - name: use nginx loadbalancer
   hosts: all
   become: true
@@ -226,6 +226,8 @@ Using hosts and roles inside a role task file, is not allowed. You can only use 
 ### 7. comfirm its task to be upto date
 
 ![Alt text](img/7a.apache.png) 
+
+![Alt text](img/7b.leadnginx.png)
 
 ![Alt text](img/7b.db.yml.png) 
 
