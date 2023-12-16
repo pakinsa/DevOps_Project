@@ -227,15 +227,15 @@ Using hosts and roles inside a role task file, is not allowed. You can only use 
 
 ![Alt text](img/7a.apache.png) 
 
-![Alt text](img/7b.leadnginx.png)
-
 ![Alt text](img/7b.db.yml.png) 
 
 ![Alt text](img/7c.msql.png) 
 
 ![Alt text](img/7d.mysql2.png) 
 
-![Alt text](img/7e.leadnginx.png) 
+![Alt text](img/7e.leadnginx1.png) 
+
+![Alt text](img/7e.leadnginx2.png)
 
 ![Alt text](img/7e.mainngnixdyna.png) 
 
