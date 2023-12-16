@@ -145,6 +145,27 @@ nginx_lb.yml
 ![Alt text](img/5d.nginxmainconfig.png)
 
 
+The main difference between import_tasks and include_tasks is that import_tasks is processed at the time of parsing, while include_tasks is processed at the time of execution. This means that import_tasks can use variables defined in the playbook scope, but not in the task or block scope, while include_tasks can use variables from any source.
+
+# leadnginx.yml
+- name: use nginx loadbalancer
+  hosts: all
+  become: true
+  tasks:
+    - name: import tasks from another file
+      import_tasks: nginx_lb.yml
+      when: load_balancer_is_required
+
+To use include_tasks, you just need to replace the import_tasks keyword with include_tasks in your playbook. For example:
+
+# leadnginx.yml
+- name: use nginx loadbalancer
+  hosts: all
+  become: true
+  tasks:
+    - name: include tasks from another file
+      include_tasks: nginx_lb.yml
+      when: load_balancer_is_required
 
 
 ### 6. Ensure the Dev.yml in Dynamnic Assignment specifies either Nginx or Apache
@@ -204,19 +225,21 @@ Using hosts and roles inside a role task file, is not allowed. You can only use 
 
 ### 7. comfirm its task to be upto date
 
-![Alt text](<img/7a.loadbalancer decider.png>)
+![Alt text](img/7a.apache.png) 
 
-![Alt text](img/7b.leadnginx.png) 
+![Alt text](img/7b.db.yml.png) 
 
-![Alt text](img/7c.apache.png) 
+![Alt text](img/7c.msql.png) 
 
-![Alt text](img/7c.db.yml.png) 
+![Alt text](img/7d.mysql2.png) 
 
-![Alt text](img/7d.msql.png) 
+![Alt text](img/7e.leadnginx.png) 
 
-![Alt text](img/7e.mysql.png)
+![Alt text](img/7e.mainngnixdyna.png) 
 
+![Alt text](img/7f.nginxdynamic.png) 
 
+![Alt text](img/7f.nginxdynamic2.png)
 
 
 
