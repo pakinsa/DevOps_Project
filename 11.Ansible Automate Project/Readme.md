@@ -329,6 +329,10 @@ To run ansible playbooks first
 
     eval `ssh-agent -s` && ssh-add latestkeys2.pem && ssh-add -l
 
+    if no such file or directory found error shows up, please run:
+
+    ssh-add "C:\Users\user\Documents\Paul\latestkeys2.pem"
+
     CD into the archive where the latest artifact is to avoid playbook not found error then
 
     ansible-playbook -i inventory/dev playbooks/common.yml

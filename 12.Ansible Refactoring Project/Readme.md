@@ -310,9 +310,24 @@ Copied the keygen from the id_rsa.pub file of the jenkins server into the author
 
 
 3. `ansible-playbook -i /inventory/uat.yml playbooks/site.yml  --syntax-check`   can be used to test for syntax errors before actually running the playbook. If there are errors, it catches and if there no errors, it displays name of the playbook
+
+   ssh-copy-id -f -i .ssh/id_rsa.pub ec2-user@34.238.53.229
+
    ansible all --list-hosts
 
    ansible -m ping all
+
+   ansible all -m ping -v
+
+   sudo su
+
+   hostnamectl set-hostname webserver1
+
+   sudo rm -rf inventory.txt
+
+
+
+   
 
 Use the above ansible commands to test connect your available hosts
 

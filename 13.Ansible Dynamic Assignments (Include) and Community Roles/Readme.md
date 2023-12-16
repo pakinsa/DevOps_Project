@@ -6,7 +6,7 @@
 
 ### Purpose: Automate using Ansible with Include Module 
 
-
+![Alt text](img/00.ansiblerefactoring.png)
 
 When the import module is used, all statements are pre-processed at the time playbooks are parsed. Meaning, when you execute site.yml playbook, Ansible will process all the playbooks referenced during the time it is parsing the statements. This also means that, during actual execution, if any statement changes, such statements will not be considered. Hence, it is static.
 
@@ -91,18 +91,18 @@ To install and Configure MySQl, Nginx and Apache using GeerLingGuy Ansible Roles
 
     ansible-galaxy role install geerlingguy.mysql    : To install ansible role that installs mysql from geerlingguy
 
-    sudo mv geerlingguy.mysql/ mysql         : move all content to new directory called  mysql. It renames the folder to mysql
+    sudo mv geerlingguy.mysql/ mysql         : move all content to new directory called  mysql. It creates the folder by itself
 
 
 
     ansible-galaxy role install geerlingguy.nginx     
 
-    sudo mv geerlingguy.nginx/ nginx_lb           : move all content to new directory called  nginx_lb. It renames the folder to nginx_lb
+    sudo mv geerlingguy.nginx/ nginx           : move all content to new directory called  nginx_lb. It creates the folder by itself
 
     
     ansible-galaxy role install geerlingguy.apache
 
-    sudo mv geerlingguy.apache/ apache_webs     : move all content to new directory called  apache_webs. It renames the folder to apache_webs
+    sudo mv geerlingguy.apache/ apache    : move all content to new directory called  apache. It creates the folder by itself 
 
 
     
@@ -111,7 +111,7 @@ To install and Configure MySQl, Nginx and Apache using GeerLingGuy Ansible Roles
     mv mysql nginx  : rename a directory from mysql to nginx
 
 
-We renamed those installed role directories above to mysql, nginx_lb, apache_webs respectively for the following reasons:
+We created those those new role directories above to mysql, nginx, apache respectively for the following reasons:
 
 1. To organize your roles into subfolders based on their functionality or purpose.
 2. To customize the role configuration or behavior without modifying the original source code.  
@@ -200,13 +200,33 @@ static assigmnment or nginx, if loaded from static assignment.
 
 ### 7. comfirm its task to be upto date
 
+![Alt text](<img/7a.loadbalancer decider.png>)
+
+![Alt text](img/7b.leadnginx.png) 
+
+![Alt text](img/7c.apache.png) 
+
+![Alt text](img/7c.db.yml.png) 
+
+![Alt text](img/7c.mysqleditconfig.png) 
+
+![Alt text](img/7c.replaceansiblebuiltmodule.png) 
+
+![Alt text](img/7d.msql.png) 
+
+![Alt text](img/7e.mysql.png)
+
+
+
+
 
 
 ### References:
 
 1. [ProgrammingKnowledge2: How To Generate A Personal Access Token In GitHub And Use It To Push Using Git](https://www.youtube.com/watch?v=iLrywUfs7yU)
 
-
-
 2. [Galaxy Ansible](https://galaxy.ansible.com/ui/standalone/roles/geerlingguy/mysql/)
+
+
+3. [DEVOPS-TECHSTACK: Ansible - Zero to Hero](https://www.youtube.com/@devops-techstack/playlists)
 

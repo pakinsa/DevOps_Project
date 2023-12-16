@@ -18,3 +18,4 @@
 * Project 10: Three-Tier Website with LVM,MYSQL&NFS
 * Project 11: Ansible Automate Project
 * Project 12: Ansible Refactoring Project
+* Project 13: Ansible Dynamic Assignment(Include) and Community Roles
