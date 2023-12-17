@@ -7,7 +7,7 @@
 ### Purpose: Learning IP addressing, Subnetting and Cidr Notations.
 
 
-![Alt text](00.network.png)
+![Alt text](img/00.network.png)
 
 
 
@@ -22,7 +22,7 @@ There are two versions of IP addresses: IPv4 and IPv6. IPv4 is the original vers
 
 Subnetting is the process of dividing a network into two or more smaller networks. It helps to improve IP addressing efficiency and network security. A subnet mask is a number that distinguishes the network address and the host address within an IP address.
 
-![Alt text](01.Ip_addr.png)
+![Alt text](img/01.ip_addr.png)
 
 
 A subnet mask is a 32-bit number that defines a range of IP addresses available within a network. It allows subnetting, the process of dividing a network into smaller subnets, to make the routing of data more efficient and secure. A subnet mask is used by the router to identify the network address from the IP address. 
@@ -83,7 +83,7 @@ c. It may increase security risks due to NAT.
 
 * Small network class: This class is suitable for networks that have less than 254 hosts, such as a home network. This class requires a Class C IP address, which provides a small number of network IDs and host IDs. For example, the IP address 192.168.1.6 belongs to a small network class, with a subnet mask of 255.255.255.0.
 
-![Alt text](02.network&ip.png)
+![Alt text](img/02.network&ip.png)
 
 #### Identifying the class of an IP address
 
