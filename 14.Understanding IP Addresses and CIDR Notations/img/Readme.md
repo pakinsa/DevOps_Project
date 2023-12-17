@@ -42,13 +42,17 @@ Classless addressing was introduced in 1993 to overcome these limitations. It us
 Some advantages of classless addressing are:
 
 a. It can support networks with up to 2^32 hosts.
+
 b. It can support multicast and anycast addressing.
+
 c. It can use private IP addresses for internal networks.
 
 Some disadvantages of classless addressing are:
 
 a. It requires more complex routing algorithms and protocols.
+
 b. It may cause fragmentation or packet loss due to variable length headers.
+
 c. It may increase security risks due to NAT.
 
 
@@ -79,7 +83,7 @@ c. It may increase security risks due to NAT.
 
 * Small network class: This class is suitable for networks that have less than 254 hosts, such as a home network. This class requires a Class C IP address, which provides a small number of network IDs and host IDs. For example, the IP address 192.168.1.6 belongs to a small network class, with a subnet mask of 255.255.255.0.
 
-![Alt text](03.network&ip.png)
+![Alt text](02.network&ip.png)
 
 #### Identifying the class of an IP address
 
