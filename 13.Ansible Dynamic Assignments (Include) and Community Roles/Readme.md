@@ -148,6 +148,7 @@ nginx_lb.yml
 The main difference between import_tasks and include_tasks is that import_tasks is processed at the time of parsing, while include_tasks is processed at the time of execution. This means that import_tasks can use variables defined in the playbook scope, but not in the task or block scope, while include_tasks can use variables from any source.
 
 leadnginx.yml
+
 - name: use nginx loadbalancer
   hosts: all
   become: true
@@ -159,6 +160,7 @@ leadnginx.yml
 To use include_tasks, you just need to replace the import_tasks keyword with include_tasks in your playbook. For example:
 
 leadnginx.yml
+
 - name: use nginx loadbalancer
   hosts: all
   become: true
@@ -208,9 +210,10 @@ The same must work with apache LB, so you can switch it by setting respective en
 To test this, you can update inventory for each environment and run Ansible against each environment.
 
 
-For every iteration, we need declare which software to installed to show dynamic assignment
-thatis why these declaration needs be done, to enable apache if apache is loaded from our
-static assigmnment or nginx, if loaded from static assignment.
+For every iteration, we need declare which software to installed to show dynamic assignment that is why these declarations needs be done, to enable apache if apache is loaded from our static assigmnment or nginx, if loaded from static assignment.
+
+
+Taking note that in general, Ansible uses the last defined value for a given variable, but some sources have higher precedence than others. For example, variables defined in a playbook will override variables defined in an inventory, and variables passed at the command line will override variables defined in a playbook.
 
 Using hosts and roles inside a role task file, is not allowed. You can only use hosts and roles at the top level of a playbook, not inside a role
 
