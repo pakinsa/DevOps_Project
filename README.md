@@ -6,7 +6,7 @@
 ## Implements 32 Projects in DevOps
 
 
-* Project 1: Linux Practice Project
+* Project 1: Linux Practice Project:  https://github.com/pakinsa/DevOps_Project/tree/241a79a8cfbe0c81341e66b5334a1f2a216daaea/01.Linux_Practice_Project 
 * Project 2: GIT Project
 * Project 3: LAMP Stack Implementation
 * Project 4: LEMP Stack Implementation
