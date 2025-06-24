@@ -31,18 +31,18 @@ However, specifying port 8000 or 8080 or any other port is allowed if tthe app s
 ### Load Balancing Methods
 The following load balancing mechanisms (or methods) are supported in nginx: 
 
-Round-robin: requests to the application servers are distributed in a round-robin fashion
+*Round-robin:* requests to the application servers are distributed in a round-robin fashion
 
-Least-connected: next request is assigned to the server with the least number of active connections
+*Least-connected:* next request is assigned to the server with the least number of active connections
 
-Ip-hash: a hash-function is used to determine what server should be selected for the next request (based on the client’s IP address). This is helpful when you want to have persistence or stick connection of the incoming request. 
+*Ip-hash:* a hash-function is used to determine what server should be selected for the next request (based on the client’s IP address). This is helpful when you want to have persistence or stick connection of the incoming request. 
 
-Weighted round Robin: similar to the Round Robin algorrithm, but servers are assigned based on requests based on their capabilities
+*Weighted round Robin:* similar to the Round Robin algorrithm, but servers are assigned based on requests based on their capabilities
 
-Weighted Least Connections: similar to  Least Connections Algorithm,
+*Weighted Least Connections:* similar to  Least Connections Algorithm,
 but servers are assigned different weight of connections based on their capabilities.
 
-Timeout Options for the Individual Servers – max_fails and fail_timeout:
+*Timeout Options for the Individual Servers – max_fails and fail_timeout:*
 
 The default fail_timeout is 10 seconds. If we set to 30 seconds. This means that within 30 seconds if there were x number of failed attempts (as defined by max_fails), then the server will be unavailable. Also, the server will remain unavailable for 30 seconds.
 
