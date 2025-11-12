@@ -22,33 +22,37 @@ echo Welcome!
 # echo "My name is ${NAME}"   # You can also declare a Variable this way.
 
 # Variables with positional arguments
-./postionalvariables.sh
+./01.postionalvariables.sh
 
 # Variables with User Input 
-./userinput.sh
+./02.userinput.sh
 
 # Basic calulations operations
-./calulations.sh
+./03.calulations.sh
 
 
 
 # CONDITIONAL STATEMENTS: IF, CASE, FOR and WHILE LOOPs
 
 # Simple IF Structure
-./simpleif.sh
+./04.simpleif.sh
 
 # Comparisms
-./greatercalc.sh
+./05.greatercalc.sh
 
 # Case statements
-./casestudy.sh
+./06.casestudy.sh
 
 # Simple For loop  and  Advance For Loops
-./forloops.sh
+./07.forloops.sh
 
 
 
 
 # BACKUP OPERATION
 # Backup operation with timestamp
-./backup.sh
+./08.backup.sh
+
+
+# Run a Multiplication Table Script
+./09.multiplication_table.sh
