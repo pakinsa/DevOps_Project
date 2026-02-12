@@ -19,20 +19,20 @@
 
 ![alt_image](img/01.vpc_setup.png)
 
-[alt_image](img/02.vpc_setup.png)
+![alt_image](img/02.vpc_setup.png)
 
-[alt_image](img/03.vpc_workflow.png)
+![alt_image](img/03.vpc_workflow.png)
 
-[alt_image](img/04.subnets.png)
+![alt_image](img/04.subnets.png)
 
-[alt_image](img/05.IGW.png)
+![alt_image](img/05.IGW.png)
 
-[alt_image](img/06.rtb.png)
+![alt_image](img/06.rtb.png)
 
 
-[alt_image](img/6a.attach_to_S3_gateway.png)
+![alt_image](img/6a.attach_to_S3_gateway.png)
 
-[alt_image](img/6b.attached_rt_to_S3_gateway.png)
+![alt_image](img/6b.attached_rt_to_S3_gateway.png)
 
 
 
@@ -77,13 +77,13 @@ You need create them accordingt o this order due to reference to other security 
 Create all 6 groups with only the non-referencing rules (e.g., inbound from CIDR, outbound to ssm_endpoint_sg or data_sg where possible).
 Then in a second pass, edit each one to add the cross-SG references (they'll all exist by then).
 
-[alt_image](img/07a.all_sgs_created.png)
+![alt_image](img/07a.all_sgs_created.png)
 
-[alt_image](img/07b.all_sgs_rules.png)
+![alt_image](img/07b.all_sgs_rules.png)
 
-[alt_image](img/07a.all_sgs_created.png)
+![alt_image](img/07a.all_sgs_created.png)
 
-[alt_image](img/07b.all_sgs_rules.png)
+![alt_image](img/07b.all_sgs_rules.png)
 
 
 
@@ -92,13 +92,13 @@ This is required so instances can register with SSM and allow Session Manager co
 
 * Create SSM Instance role
 
-[alt_image](img/08a.SSM_IAM.png)
+![alt_image](img/08a.SSM_IAM.png)
 
-[alt_image](img/08b.SSM_IAM_role.png)
+![alt_image](img/08b.SSM_IAM_role.png)
 
-[alt_image](img/08c.SSM_IAM_role.png)
+![alt_image](img/08c.SSM_IAM_role.png)
 
-[alt_image](img/08d.SSM_IAM_role.png)
+![alt_image](img/08d.SSM_IAM_role.png)
 
 
 * Create SSM endpoints
@@ -108,27 +108,27 @@ This is required so instances can register with SSM and allow Session Manager co
   -  Service name = com.amazonaws.us-east-1.ec2messages
 
 
-[alt_image](img/09a.SSM_endpoint_01.png)
+![alt_image](img/09a.SSM_endpoint_01.png)
 
-[alt_image](img/09b.SSM_endpoint_01.png)
+![alt_image](img/09b.SSM_endpoint_01.png)
 
-[alt_image](img/09c.SSM_endpoint_01_subnets.png)
-
-
-[alt_image](img/10a.SSM_endpoints_02.png)
-
-[alt_image](img/10b.SSM_endpoints_02.png)
-
-[alt_image](img/10c.SSM_endpoints_02.png)
+![alt_image](img/09c.SSM_endpoint_01_subnets.png)
 
 
-[alt_image](img/11a.SSM_endpoints_03.png)
+![alt_image](img/10a.SSM_endpoints_02.png)
 
-[alt_image](img/11b.SSM_endpoints_03.png)
+![alt_image](img/10b.SSM_endpoints_02.png)
 
-[alt_image](img/11c.SSM_endpoints_03.png)
+![alt_image](img/10c.SSM_endpoints_02.png)
 
-[alt_image](img/11d.all_endpoints_ssm.png)
+
+![alt_image](img/11a.SSM_endpoints_03.png)
+
+![alt_image](img/11b.SSM_endpoints_03.png)
+
+![alt_image](img/11c.SSM_endpoints_03.png)
+
+![alt_image](img/11d.all_endpoints_ssm.png)
 
 
 
@@ -143,17 +143,18 @@ This is required so instances can register with SSM and allow Session Manager co
   VPC = three-tier-vpc
   Health checks: Protocol = HTTP, Path = / or /health, Success codes = 200–399, Time out = 6s, Interval = 30s, Healthy threshold = 3, Unhealthy = 2
 
-[alt_image](img/12a.web_tier_tg.png)
 
-[alt_image](img/12b.web_tier_tg.png)
+![alt_image](img/12a.web_tier_tg.png)
 
-[alt_image](img/12c.web_tier_tg.png)
+![alt_image](img/12b.web_tier_tg.png)
 
-[alt_image](img/12d.web_tier_tg.png)
+![alt_image](img/12c.web_tier_tg.png)
 
-[alt_image](img/12e.web_tier_tg.png)
+![alt_image](img/12d.web_tier_tg.png)
 
-[alt_image](img/12f.web_tier_tg.png)
+![alt_image](img/12e.web_tier_tg.png)
+
+![alt_image](img/12f.web_tier_tg.png)
 
 
 
@@ -163,13 +164,13 @@ This is required so instances can register with SSM and allow Session Manager co
   VPC = three-tier-vpc
   Health checks: Protocol = HTTP, Path = /health (add this route in your Node.js app), Success codes = 200, Time out = 6s, Interval = 30s, Healthy threshold = 3, Unhealthy = 2
 
-[alt_image](img/13a.app_tier_tg.png)
+![alt_image](img/13a.app_tier_tg.png)
 
-[alt_image](img/13b.app_tier_tg.png)
+![alt_image](img/13b.app_tier_tg.png)
 
-[alt_image](img/13c.app_tier_tg.png)
+![alt_image](img/13c.app_tier_tg.png)
 
-[alt_image](img/13d.app_tier_tg.png)
+![alt_image](img/13d.app_tier_tg.png)
 
 
 ### Create Load Balancers
@@ -177,28 +178,28 @@ EC2 → Load Balancers → Create Application Load Balancer (repeat twice):
 web-alb: Internet-facing, subnets = both public, SG = web-alb-sg, Listener HTTP:80 → forward to web-tg
 app-alb: Internal, subnets = both public, SG = app-alb-sg, Listener HTTP:3000 → forward to app-tg
 
-[alt_image](img/14a.web_alb_01.png)
+![alt_image](img/14a.web_alb_01.png)
 
-[alt_image](img/14b.web_alb_02.png)
+![alt_image](img/14b.web_alb_02.png)
 
-[alt_image](img/14c.web_alb_03.png)
+![alt_image](img/14c.web_alb_03.png)
 
-[alt_image](img/14c.web_alb_04.png)
+![alt_image](img/14c.web_alb_04.png)
 
-[alt_image](img/14c.web_alb_05.png)
+![alt_image](img/14c.web_alb_05.png)
 
 
-[alt_image](img/15a.app_alb_01.png)
+![alt_image](img/15a.app_alb_01.png)
 
-[alt_image](img/15b.app_alb_02.png)
+![alt_image](img/15b.app_alb_02.png)
 
-[alt_image](img/15c.app_alb_03.png)
+![alt_image](img/15c.app_alb_03.png)
 
-[alt_image](img/15d.app_alb_04.png)
+![alt_image](img/15d.app_alb_04.png)
 
-[alt_image](img/15e.app_alb_05.png)
+![alt_image](img/15e.app_alb_05.png)
 
-[alt_image](img/15f.alb_all.png)
+![alt_image](img/15f.alb_all.png)
 
 
 
@@ -221,17 +222,17 @@ app-alb: Internal, subnets = both public, SG = app-alb-sg, Listener HTTP:3000 �
     aws s3 cp backend-build.zip s3://paul-3tier-artifacts/ # you can upload via S3 console
 ```
 
-[alt_image](img/16a.git_clone_&_frontend.png)
+![alt_image](img/16a.git_clone_&_frontend.png)
 
-[alt_image](img/16b.frontend_&_build.png)
+![alt_image](img/16b.frontend_&_build.png)
 
-[alt_image](img/16c.S3_bucket_creation.png)
+![alt_image](img/16c.S3_bucket_creation.png)
 
-[alt_image](img/16d.S3_upload_frontend.png)
+![alt_image](img/16d.S3_upload_frontend.png)
 
-[alt_image](img/16e.backendbuild_S3.png)
+![alt_image](img/16e.backendbuild_S3.png)
 
-[alt_image](img/16f.s3_zipped_code_uploads.png)
+![alt_image](img/16f.s3_zipped_code_uploads.png)
 
  
 
@@ -241,9 +242,9 @@ app-alb: Internal, subnets = both public, SG = app-alb-sg, Listener HTTP:3000 �
 
   * Create db subnet group
 
-[alt_image](img/17a.DB_subnet_grp.png)
+![alt_image](img/17a.DB_subnet_grp.png)
 
-[alt_image](img/17b.DB_subnet_grp.png)
+![alt_image](img/17b.DB_subnet_grp.png)
 
   * Create database:
     RDS → Create database
@@ -254,25 +255,25 @@ app-alb: Internal, subnets = both public, SG = app-alb-sg, Listener HTTP:3000 �
     SG = db-sg, Public access = No
     Advanced config: db_name
 
-[alt_image](img/17c.DB_options.png)
+![alt_image](img/17c.DB_options.png)
 
-[alt_image](img/17e.DB_credentials.png)
+![alt_image](img/17e.DB_credentials.png)
 
-[alt_image](img/17f.DB_type.png)
+![alt_image](img/17f.DB_type.png)
 
-[alt_image](img/17g.DB_sg_subnet.png)
+![alt_image](img/17g.DB_sg_subnet.png)
 
-[alt_image](img/17h.DB_port.png)
+![alt_image](img/17h.DB_port.png)
 
-[alt_image](img/17i.initial_DB_name.png)
+![alt_image](img/17i.initial_DB_name.png)
 
-[alt_image](img/17j.enable_DB_backup.png)
+![alt_image](img/17j.enable_DB_backup.png)
 
-[alt_image](img/17k.DB_price.png)
+![alt_image](img/17k.DB_price.png)
 
-[alt_image](img/17l.three_tier_db_books.png)
+![alt_image](img/17l.three_tier_db_books.png)
 
-[alt_image](img/17m.DB_all.png)  
+![alt_image](img/17m.DB_all.png)  
     
 
 
@@ -414,21 +415,21 @@ sudo systemctl restart nginx
 ```
   
   
-  [alt_image](img/18a.Web_tier_LT.png)
+  ![alt_image](img/18a.Web_tier_LT.png)
 
-  [alt_image](img/18b.web_ec2_instance_lt.png)
+  ![alt_image](img/18b.web_ec2_instance_lt.png)
 
-  [alt_image](img/18c.web_lt_sg.png)
+  ![alt_image](img/18c.web_lt_sg.png)
 
-  [alt_image](img/18d.web_lt_resource.png)
+  ![alt_image](img/18d.web_lt_resource.png)
 
-  [alt_image](img/18e.web_lt_iam-ssm_role.png)
+  ![alt_image](img/18e.web_lt_iam-ssm_role.png)
 
-  [alt_image](img/18f.no_change.png)
+  ![alt_image](img/18f.no_change.png)
 
-  [alt_image](img/18g.token_mhops.png)
+  ![alt_image](img/18g.token_mhops.png)
 
-  [alt_image](img/18h.web_user_data.png)
+  ![alt_image](img/18h.web_user_data.png)
 
 
 
@@ -557,11 +558,11 @@ sudo -u ec2-user pm2 save
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
 ```
  
-  [alt_image](img/19a.app_user_data.png)
-  [alt_image](img/19b.app_ec2_isntances.png)
-  [alt_image](img/19c.app_sg.png)
-  [alt_image](img/19d.app_ssm_role.png)
-  [alt_image](img/19e.app_user_data.png)
+  ![alt_image](img/19a.app_user_data.png)
+  ![alt_image](img/19b.app_ec2_isntances.png)
+  ![alt_image](img/19c.app_sg.png)
+  ![alt_image](img/19d.app_ssm_role.png)
+  ![alt_image](img/19e.app_user_data.png)
 
 
   
@@ -576,31 +577,31 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
     Scaling policies: Target tracking → CPU utilization = 70%
 
 
-    [alt_image](img/20a.web_asg.png)
+  ![alt_image](img/20a.web_asg.png)
 
-    [alt_image](img/20b.web_asg_01.png)
+  ![alt_image](img/20b.web_asg_01.png)
 
-    [alt_image](img/20c.web_asg_02.png)
+  ![alt_image](img/20c.web_asg_02.png)
 
-    [alt_image](img/20d.web_asg_03.png)
+  ![alt_image](img/20d.web_asg_03.png)
 
-    [alt_image](img/20e.web_asg_04.png)
+  ![alt_image](img/20e.web_asg_04.png)
 
-    [alt_image](img/20f.web_asg_05.png)
+  ![alt_image](img/20f.web_asg_05.png)
 
-    [alt_image](img/20h.web_asg_07.png)
+  ![alt_image](img/20h.web_asg_07.png)
 
-    [alt_image](img/20j.web_asg_09.png)
+  ![alt_image](img/20j.web_asg_09.png)
 
-    [alt_image](img/20i.web_asg_08.png)
+  ![alt_image](img/20i.web_asg_08.png)
 
-    [alt_image](img/20k.web_asg_10.png)
+  ![alt_image](img/20k.web_asg_10.png)
 
-    [alt_image](img/20l.web_asg_11.png)
+  ![alt_image](img/20l.web_asg_11.png)
 
-    [alt_image](img/20m.web_asg_12.png)
+  ![alt_image](img/20m.web_asg_12.png)
 
-    [alt_image](img/20n.web_asg_13.png)
+  ![alt_image](img/20n.web_asg_13.png)
 
         
   * app-asg:
@@ -610,25 +611,25 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
     Group size: Min = 2, Desired = 2, Max = 3  # formerly max=4 but due unstablity we reduced to 3.
     Scaling policies: Target tracking → CPU utilization = 70%
 
-    [alt_image](img/20o.app_asg_14.png)
+    ![alt_image](img/20o.app_asg_14.png)
 
-    [alt_image](img/20p.app_asg_15.png)
+    ![alt_image](img/20p.app_asg_15.png)
 
-    [alt_image](img/20q.app_asg_16.png)
+    ![alt_image](img/20q.app_asg_16.png)
 
-    [alt_image](img/20r.app_asg_17.png)
+    ![alt_image](img/20r.app_asg_17.png)
 
-    [alt_image](img/20s.app_asg.png)
+    ![alt_image](img/20s.app_asg.png)
 
  
 
-    [alt_image](img/21a.lt_all.png)
+    ![alt_image](img/21a.lt_all.png)
 
-    [alt_image](img/21b.asg_all.png)
+    ![alt_image](img/21b.asg_all.png)
 
-    [alt_image](img/21c.asg_all_01.png)
+    ![alt_image](img/21c.asg_all_01.png)
 
-    [alt_image](img/21d.asg_all_02.png)
+    ![alt_image](img/21d.asg_all_02.png)
 
   
 
@@ -638,17 +639,17 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 
 ##### * **Error 1:  Infrastructure Instability**
     
-   [alt_image](img/22a.error1_instability.png)
+   ![alt_image](img/22a.error1_instability.png)
 
-   [alt_image](img/22b.error1_instability_red_alarm.png)
+   ![alt_image](img/22b.error1_instability_red_alarm.png)
 
-   [alt_image](img/22c.error1_instability_high_alarm_cloudwatch.png)
+   ![alt_image](img/22c.error1_instability_high_alarm_cloudwatch.png)
 
-   [alt_image](img/22d.error1_instability.png)
+   ![alt_image](img/22d.error1_instability.png)
 
-   [alt_image](img/22e.error1_instability_above_2_min_instances.png)
+   ![alt_image](img/22e.error1_instability_above_2_min_instances.png)
 
-   [alt_image](img/22f.error_1_instability.png)
+   ![alt_image](img/22f.error_1_instability.png)
 
 
 
@@ -657,11 +658,11 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 
     - We uncheck ELastic LoadBalancer Health Checks
     
-    [alt_image](img/22g.main_solution_error1_instability_01.png)
+    ![alt_image](img/22g.main_solution_error1_instability_01.png)
 
     - We reduced Max capacity from 4 to 3 in app-asg
 
-    [alt_image](img/22h.main_solution_error1_instability_02.png)
+    ![alt_image](img/22h.main_solution_error1_instability_02.png)
 
     
 
@@ -669,25 +670,25 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 
 ##### * **Error 2:** Nginx not found on Web Servers & Bad Gateway
 
-  [alt_image](img/23a.error2a_bad_gateway.png)
+  ![alt_image](img/23a.error2a_bad_gateway.png)
 
-  [alt_image](img/23b.error2b_nginx_not_found.png)
+  ![alt_image](img/23b.error2b_nginx_not_found.png)
 
 
   * **Solution to Error 2:**
 
     -  We updated wlaunch tier template to start the install and enable Nginx at launch
     
-      [alt_image](img/23c.main_solution_error2_01.png)
+      ![alt_image](img/23c.main_solution_error2_01.png)
 
     
 
 
 ##### * **Error 3:** App Tier Tg & Instances Unhealthy
 
-  [alt_image](img/24.error3_unhealthy_app_instances.png)  
+  ![alt_image](img/24.error3_unhealthy_app_instances.png)  
 
-  [alt_image](img/25a.no_S3_access.png)
+  ![alt_image](img/25a.no_S3_access.png)
 
  
   * **Solution to Error 3:**
@@ -758,11 +759,11 @@ For App
 ```sudo ss -tulpn | grep :3000```
 
 
-  [alt_image](img/24a.main_solution_error3_01.png)
+  ![alt_image](img/24a.main_solution_error3_01.png)
 
-  [alt_image](img/24b.main_solution_error3_02.png)
+  ![alt_image](img/24b.main_solution_error3_02.png)
 
-  [alt_image](img/24c.main_solution_error3_03.png)
+  ![alt_image](img/24c.main_solution_error3_03.png)
 
   
 
@@ -796,11 +797,11 @@ Terminate the instance, transfer to ASG, so we might not need the internet for a
 
 - **Solution to error 3, 4, 5, & 6**
 
-[alt_image](img/25b.main_solution_01.png)
+![alt_image](img/25b.main_solution_01.png)
 
-[alt_image](img/25c.main_solution_02.png)
+![alt_image](img/25c.main_solution_02.png)
 
-[alt_image](img/25d.main_solution_03.png)
+![alt_image](img/25d.main_solution_03.png)
 
 
 
@@ -808,17 +809,17 @@ Terminate the instance, transfer to ASG, so we might not need the internet for a
 
 #### Result
 
-  [alt_image](img/31.DB.png)
+  ![alt_image](img/31.DB.png)
 
-  [alt_image](img/31.wb.png)
+  ![alt_image](img/31.wb.png)
 
-  [alt_image](img/31a.result_nginx_alive_db_int_lb.png)
+  ![alt_image](img/31a.result_nginx_alive_db_int_lb.png)
 
-  [alt_image](img/32a.final_dashboard.png)
+  ![alt_image](img/32a.final_dashboard.png)
 
-  [alt_image](img/32b.web_alb.png)
+  ![alt_image](img/32b.web_alb.png)
 
-  [alt_image](img/33c.dashboard.png)
+  ![alt_image](img/33c.dashboard.png)
 
   
 
