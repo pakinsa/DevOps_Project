@@ -223,15 +223,14 @@ If we are to keep everything private and test ffctivly. The only option is this:
    
    ![Alt text](img/19.3_SSM_endPoints.png)
 
-   ![Alt text](img/20.Confirm_node_online.png.dns_hostnames_activated&saved.png)
+   ![Alt text](img/20.Confirm_node_online.png)
    
-
-
+   
 10. Connect and Test:
    EC2 console → select Requester instance → Connect → Session Manager → Connect.
    Run ping 172.16.0.6 (Accepter private IP) to test peering.
 
-   ![Alt text](img/21a.copy_accepter_ip.png)
+   ![Alt text](img/21.copy_accepter_ip.png)
 
    ![Alt text](img/22.click_connect_requester.png)
 
