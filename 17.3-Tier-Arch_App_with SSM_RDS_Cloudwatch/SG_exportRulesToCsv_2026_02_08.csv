@@ -1,0 +1,16 @@
+GroupId,GroupName,Type,IpProtocol,FromPort,ToPort,IpRanges,Ipv6Ranges,PrefixListIds,UserIdGroupPairs
+sg-0ded526cb91a8580b,app_ec2_sg,Inbound/Ingress,tcp,3000,3000,,,,sg-0af26a3070f00c1a5
+sg-0ded526cb91a8580b,app_ec2_sg,Outbound/Egress,tcp,80,80,0.0.0.0/0,,,
+sg-0ded526cb91a8580b,app_ec2_sg,Outbound/Egress,tcp,3306,3306,,,,sg-01fd2be4ee8a52d49
+sg-0ded526cb91a8580b,app_ec2_sg,Outbound/Egress,tcp,443,443,0.0.0.0/0,,,
+sg-0b8dcc184746fe0b9,web_ec2_sg,Inbound/Ingress,tcp,80,80,,,,sg-001cb774acb68b16d
+sg-0b8dcc184746fe0b9,web_ec2_sg,Outbound/Egress,tcp,80,80,0.0.0.0/0,,,
+sg-0b8dcc184746fe0b9,web_ec2_sg,Outbound/Egress,tcp,3000,3000,,,,sg-0af26a3070f00c1a5
+sg-0b8dcc184746fe0b9,web_ec2_sg,Outbound/Egress,tcp,443,443,0.0.0.0/0,,,
+sg-0af26a3070f00c1a5,app_alb_sg,Inbound/Ingress,tcp,3000,3000,,,,sg-0b8dcc184746fe0b9
+sg-0af26a3070f00c1a5,app_alb_sg,Outbound/Egress,tcp,3000,3000,10.0.0.0/16,,,
+sg-001cb774acb68b16d,web_alb_sg,Inbound/Ingress,tcp,80,80,0.0.0.0/0,,,
+sg-001cb774acb68b16d,web_alb_sg,Outbound/Egress,tcp,80,80,10.0.0.0/16,,,
+sg-01fd2be4ee8a52d49,data_sg,Inbound/Ingress,tcp,3306,3306,,,,sg-0ded526cb91a8580b
+sg-0b89c86377902d753,ssm_endpoint_sg,Inbound/Ingress,tcp,443,443,10.0.0.0/16 (enter the VPC CIDR),,,
+sg-0b89c86377902d753,ssm_endpoint_sg,Outbound/Egress,"'-1",,,0.0.0.0/0,,,
