@@ -724,7 +724,7 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 
 
 For Web
-# Check if the Dashboard file exists locally
+##### Check if the Dashboard file exists locally
 ```ls -l /usr/share/nginx/html/index.html```  
 
 ```cat /usr/share/nginx/html/index.html```
@@ -736,25 +736,25 @@ For Web
 ```sudo systemctl restart nginx```
 
 
-# Check if Nginx is serving the Dashboard (should show HTML)
+##### Check if Nginx is serving the Dashboard (should show HTML)
 ```curl -i http://localhost/```
 
-# Check if Nginx is correctly proxying to the App ALB (should show JSON)
+##### Check if Nginx is correctly proxying to the App ALB (should show JSON)
 ```curl -i http://localhost/health```   
 
-# Check the port listened to
+##### Check the port listened to
 ```sudo ss -tulpn | grep LISTEN```   
 ```sudo nginx -t```
 
 
 For App
-# Check if the Node.js app is alive
+##### Check if the Node.js app is alive
 ```curl -i http://localhost:3000/health```
 
-# Check if the Database connection is working
+##### Check if the Database connection is working
 ```curl -i http://localhost:3000/api/books```
 
-# To see the port app tier is listening
+##### To see the port app tier is listening
 ```sudo netstat -tunlp | grep 3000```
 ```sudo ss -tulpn | grep :3000```
 
@@ -824,7 +824,7 @@ Terminate the instance, transfer to ASG, so we might not need the internet for a
   
 
 
-## Cleanup (very important – avoid surprise bills)
+### Cleanup (very important – avoid surprise bills)
 
 1. Delete Auto Scaling Groups → force delete instances
 2. Delete Launch Templates
