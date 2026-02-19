@@ -903,6 +903,6 @@ While UserData is great for simple setups, professional teams often use more adv
 
 ### References
 
-https://github.com/Learn-It-Right-Way/lirw-react-node-mysql-app
+[Learn it Right](https://github.com/Learn-It-Right-Way/lirw-react-node-mysql-app)
 
 https://youtu.be/6rsJlfpwnP4?si=xarWsxArSgk13JkF 
