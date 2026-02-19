@@ -515,7 +515,7 @@ EOF
 # 9. DYNAMIC DATABASE INITIALIZATION
 # This runs your SQL schema and seeds the data automatically
 SQL_DATA=$(cat <<EOF
-CREATE TABLE IF NOT EXISTS author (
+CREATE TABLE IF NOT EXISTS authors (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   birthday date NOT NULL,
@@ -525,7 +525,7 @@ CREATE TABLE IF NOT EXISTS author (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS book (
+CREATE TABLE IF NOT EXISTS books (
   id int NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   releaseDate date NOT NULL,
@@ -533,19 +533,19 @@ CREATE TABLE IF NOT EXISTS book (
   pages int NOT NULL,
   createdAt date NOT NULL,
   updatedAt date NOT NULL,
-  authorId int DEFAULT NULL,
+  authorsId int DEFAULT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_author FOREIGN KEY (authorId) REFERENCES author (id)
+  CONSTRAINT FK_authors FOREIGN KEY (authorsId) REFERENCES authors (id)
 ) ENGINE=InnoDB;
 
 -- Only insert if the table is empty to avoid duplicate errors
-INSERT INTO author (id, name, birthday, bio, createdAt, updatedAt) 
-SELECT 1, 'J.K. Rowling', '1965-07-31', 'British author...', '2024-05-29', '2024-05-29'
-WHERE NOT EXISTS (SELECT 1 FROM author WHERE id = 1);
+INSERT INTO authors (id, name, birthday, bio, createdAt, updatedAt) 
+SELECT 1, 'J.K. Rowling', '1965-07-31', 'British authors...', '2024-05-29', '2024-05-29'
+WHERE NOT EXISTS (SELECT 1 FROM authors WHERE id = 1);
 
-INSERT INTO book (id, title, releaseDate, description, pages, createdAt, updatedAt, authorId)
+INSERT INTO books (id, title, releaseDate, description, pages, createdAt, updatedAt, authorsId)
 SELECT 1, 'Harry Potter and the Sorcerer''s Stone', '1997-07-26', 'Magical powers...', 223, '2024-05-29', '2024-05-29', 1
-WHERE NOT EXISTS (SELECT 1 FROM book WHERE id = 1);
+WHERE NOT EXISTS (SELECT 1 FROM books WHERE id = 1);
 EOF
 )
 
@@ -724,7 +724,7 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 
 
 For Web
-# Check if the Dashboard file exists locally
+##### Check if the Dashboard file exists locally
 ```ls -l /usr/share/nginx/html/index.html```  
 
 ```cat /usr/share/nginx/html/index.html```
@@ -736,25 +736,25 @@ For Web
 ```sudo systemctl restart nginx```
 
 
-# Check if Nginx is serving the Dashboard (should show HTML)
+##### Check if Nginx is serving the Dashboard (should show HTML)
 ```curl -i http://localhost/```
 
-# Check if Nginx is correctly proxying to the App ALB (should show JSON)
+##### Check if Nginx is correctly proxying to the App ALB (should show JSON)
 ```curl -i http://localhost/health```   
 
-# Check the port listened to
+##### Check the port listened to
 ```sudo ss -tulpn | grep LISTEN```   
 ```sudo nginx -t```
 
 
 For App
-# Check if the Node.js app is alive
+##### Check if the Node.js app is alive
 ```curl -i http://localhost:3000/health```
 
-# Check if the Database connection is working
+##### Check if the Database connection is working
 ```curl -i http://localhost:3000/api/books```
 
-# To see the port app tier is listening
+##### To see the port app tier is listening
 ```sudo netstat -tunlp | grep 3000```
 ```sudo ss -tulpn | grep :3000```
 
@@ -824,7 +824,7 @@ Terminate the instance, transfer to ASG, so we might not need the internet for a
   
 
 
-## Cleanup (very important – avoid surprise bills)
+### Cleanup (very important – avoid surprise bills)
 
 1. Delete Auto Scaling Groups → force delete instances
 2. Delete Launch Templates
@@ -903,6 +903,6 @@ While UserData is great for simple setups, professional teams often use more adv
 
 ### References
 
-https://github.com/Learn-It-Right-Way/lirw-react-node-mysql-app
+[Learn it Right](https://github.com/Learn-It-Right-Way/lirw-react-node-mysql-app)
 
 https://youtu.be/6rsJlfpwnP4?si=xarWsxArSgk13JkF 
