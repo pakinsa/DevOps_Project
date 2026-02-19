@@ -515,7 +515,7 @@ EOF
 # 9. DYNAMIC DATABASE INITIALIZATION
 # This runs your SQL schema and seeds the data automatically
 SQL_DATA=$(cat <<EOF
-CREATE TABLE IF NOT EXISTS author (
+CREATE TABLE IF NOT EXISTS authors (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   birthday date NOT NULL,
@@ -525,7 +525,7 @@ CREATE TABLE IF NOT EXISTS author (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS book (
+CREATE TABLE IF NOT EXISTS books (
   id int NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   releaseDate date NOT NULL,
@@ -533,19 +533,19 @@ CREATE TABLE IF NOT EXISTS book (
   pages int NOT NULL,
   createdAt date NOT NULL,
   updatedAt date NOT NULL,
-  authorId int DEFAULT NULL,
+  authorsId int DEFAULT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_author FOREIGN KEY (authorId) REFERENCES author (id)
+  CONSTRAINT FK_authors FOREIGN KEY (authorsId) REFERENCES authors (id)
 ) ENGINE=InnoDB;
 
 -- Only insert if the table is empty to avoid duplicate errors
-INSERT INTO author (id, name, birthday, bio, createdAt, updatedAt) 
-SELECT 1, 'J.K. Rowling', '1965-07-31', 'British author...', '2024-05-29', '2024-05-29'
-WHERE NOT EXISTS (SELECT 1 FROM author WHERE id = 1);
+INSERT INTO authors (id, name, birthday, bio, createdAt, updatedAt) 
+SELECT 1, 'J.K. Rowling', '1965-07-31', 'British authors...', '2024-05-29', '2024-05-29'
+WHERE NOT EXISTS (SELECT 1 FROM authors WHERE id = 1);
 
-INSERT INTO book (id, title, releaseDate, description, pages, createdAt, updatedAt, authorId)
+INSERT INTO books (id, title, releaseDate, description, pages, createdAt, updatedAt, authorsId)
 SELECT 1, 'Harry Potter and the Sorcerer''s Stone', '1997-07-26', 'Magical powers...', 223, '2024-05-29', '2024-05-29', 1
-WHERE NOT EXISTS (SELECT 1 FROM book WHERE id = 1);
+WHERE NOT EXISTS (SELECT 1 FROM books WHERE id = 1);
 EOF
 )
 
