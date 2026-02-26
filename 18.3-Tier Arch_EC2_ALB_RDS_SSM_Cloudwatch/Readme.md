@@ -206,21 +206,35 @@ app-alb: Internal, subnets = both public, SG = app-alb-sg, Listener HTTP:3000 â†
 
 ### ### Create S3
 
-* Git clone repo, Build, & upload code Zip file to S3 
+- Git clone repo, Build, & upload code Zip file to S3 
 
+  * ```git clone https://github.com/pakinsa/react_node_rds.com```   
+
+  * We installed ```npm install dotenv``` for our backend then we ran ```npm run build``` in backend directory
+
+    For Backend:
 ```bash
-    git clone https://github.com/pakinsa/react_node_rds.com    
-    
-    cd frontend/
-    npm install && npm run build
-    zip -r frontend-build.zip .
-    aws s3 cp frontend-build.zip s3://paul-3tier-artifacts/ # you can upload via S3 console
-
-    cd backend/
-    npm install
-    zip -r backend-build.zip .
-    aws s3 cp backend-build.zip s3://paul-3tier-artifacts/ # you can upload via S3 console
+cd backend
+npm install dotenv mysql2  # Install these so the code knows how to use .env and RDS
+# DO NOT run 'npm run build' here (Standard Node.js backends don't need a build step)
+rm -rf node_modules       # Remove this to make the ZIP small (User Data installs it for you)
+zip -r ../backend-build.zip ./*
+aws s3 cp backend-build.zip s3://paul-3tier-artifacts/ # you can upload via S3 console
 ```
+
+
+  * We ran ```npm run build``` for frontend for S3 in frontend directory 
+
+  For Frontend:
+```bash
+cd frontend
+npm install              # Ensure all React dependencies are there
+npm run build            # This creates the 'dist' folder (The Actual Website)
+cd dist
+zip -r ../../frontend-build.zip ./*
+aws s3 cp frontend-build.zip s3://paul-3tier-artifacts/ # you can upload via S3 console
+```
+
 
 ![alt_image](img/16a.git_clone_&_frontend.png)
 
@@ -293,9 +307,10 @@ sudo dnf update -y
 sudo dnf install -y nginx unzip awscli
 
 # 2. Variables
-S3_BUCKET="paul-3tier-artifacts"
+S3_BUCKET="paul-3tier-zip"
 ZIP_FILE="frontend-build.zip"
-APP_ALB_DNS="internal-app-tier-alb-2037459119.us-east-1.elb.amazonaws.com"  # ensure you remove this internal dns and replcace with yours
+# IMPORTANT: Put your ALB DNS or App EC2 IP here
+APP_ALB_DNS="internal-app-tier-alb-2037459119.us-east-1.elb.amazonaws.com"
 
 # 3. CONFIGURE MAIN NGINX (Core Settings)
 sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
@@ -328,13 +343,14 @@ if [ -d "/usr/share/nginx/html/dist" ]; then
     sudo rm -rf /usr/share/nginx/html/dist
 fi
 
-# 6. THE CRITICAL FIX: Replace hardcoded Localhost with Relative Path
-sudo find /usr/share/nginx/html/ -type f -name "*.js" -exec sed -i 's|http://localhost:3000/api|/api|g' {} +
+# 6. THE CRITICAL FIX: Replace Placeholder with Relative Path
+sudo find /usr/share/nginx/html/ -type f -name "*.js" -exec sed -i 's|http://<YOUR_BACKEND_EC2_IP>:3000/api|/api|g' {} +
 
-# 7. NEW: Create Dynamic test.html with Metadata (Using Absolute Path)
-TOKEN=$(curl -X PUT "http://169.254.169.254" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
-INSTANCE_ID=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254)
-AVAIL_ZONE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254)
+# 7. Metadata (Correct IMDSv2 paths)
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+INSTANCE_ID=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/instance-id)
+AVAIL_ZONE=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/availability-zone)
+PUBLIC_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" "http://169.254.169.254/latest/meta-data/public-ipv4")
 
 sudo tee /usr/share/nginx/html/test.html <<EOF
 <!DOCTYPE html>
@@ -365,7 +381,7 @@ sudo chown -R nginx:nginx /usr/share/nginx/html/
 sudo find /usr/share/nginx/html/ -type d -exec chmod 755 {} +
 sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} +
 
-# 9. Create Server-Specific Configuration (With explicit /test.html block)
+# 9. Create Server-Specific Configuration (USING 'EOF' TO PREVENT BASH ERRORS)
 cat << 'EOF' | sudo tee /etc/nginx/conf.d/default.conf
 server {
     listen 80 default_server;
@@ -373,33 +389,22 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
-    # EXPLICIT RULE for test.html to prevent React Router from hijacking it
     location = /test.html {
         try_files /test.html =404;
     }
 
-    # Forward API calls to the App ALB
     location /api/ {
-        proxy_pass http://REPLACE_ME_ALB_DNS:3000;
+        # We use a placeholder here and swap it in Step 10
+        proxy_pass http://REPLACE_WITH_ALB_DNS:3000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    # Handle React/Vite Routing
     location / {
         try_files $uri $uri/ /index.html;
     }
-
-    location /assets/ {
-        include /etc/nginx/mime.types;
-        types {
-            application/javascript js;
-            text/css css;
-        }
-    }
-
+    
     location /health {
         return 200 'OK';
         add_header Content-Type text/plain;
@@ -407,11 +412,12 @@ server {
 }
 EOF
 
-# 10. Inject ALB DNS and Start
-sudo sed -i "s|REPLACE_ME_ALB_DNS|${APP_ALB_DNS}|g" /etc/nginx/conf.d/default.conf
+# 10. Inject the Variable into the Placeholder and Start
+sudo sed -i "s|REPLACE_WITH_ALB_DNS|${APP_ALB_DNS}|g" /etc/nginx/conf.d/default.conf
+
+# 11. Final Validation and Start
 sudo nginx -t
-sudo systemctl enable nginx
-sudo systemctl restart nginx
+sudo systemctl enable --now nginx
 ```
   
   
@@ -454,7 +460,7 @@ sudo dnf install -y nodejs npm unzip awscli mariadb105
 sudo npm install -g pm2
 
 # 3. Variables
-S3_BUCKET="paul-3tier-artifacts"
+S3_BUCKET="paul-3tier-zip"
 ZIP_FILE="backend-build.zip"
 APP_DIR="/home/ec2-user/app"
 DB_HOST="three-tier-db-books.c4j4kiq2ck9b.us-east-1.rds.amazonaws.com" # ensure you remove this RDS endpoint and replcace with yours
@@ -513,9 +519,12 @@ module.exports = db;
 EOF
 
 # 9. DYNAMIC DATABASE INITIALIZATION
-# This runs your SQL schema and seeds the data automatically
-SQL_DATA=$(cat <<EOF
-CREATE TABLE IF NOT EXISTS authors (
+# This version uses SINGULAR table names to match the Node.js code
+mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+
+mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" << 'EOF'
+-- 1. Create Tables (SINGULAR names to match BooksController.js)
+CREATE TABLE IF NOT EXISTS author (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   birthday date NOT NULL,
@@ -525,7 +534,7 @@ CREATE TABLE IF NOT EXISTS authors (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS books (
+CREATE TABLE IF NOT EXISTS book (
   id int NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   releaseDate date NOT NULL,
@@ -533,23 +542,21 @@ CREATE TABLE IF NOT EXISTS books (
   pages int NOT NULL,
   createdAt date NOT NULL,
   updatedAt date NOT NULL,
-  authorsId int DEFAULT NULL,
+  authorId int DEFAULT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_authors FOREIGN KEY (authorsId) REFERENCES authors (id)
+  CONSTRAINT FK_author_link FOREIGN KEY (authorId) REFERENCES author (id)
 ) ENGINE=InnoDB;
 
--- Only insert if the table is empty to avoid duplicate errors
-INSERT INTO authors (id, name, birthday, bio, createdAt, updatedAt) 
-SELECT 1, 'J.K. Rowling', '1965-07-31', 'British authors...', '2024-05-29', '2024-05-29'
-WHERE NOT EXISTS (SELECT 1 FROM authors WHERE id = 1);
+-- 2. Seed Data
+INSERT INTO author (id, name, birthday, bio, createdAt, updatedAt) 
+SELECT 1, 'J.K. Rowling', '1965-07-31', 'British author of the Harry Potter series.', '2024-05-29', '2024-05-29'
+WHERE NOT EXISTS (SELECT 1 FROM author WHERE id = 1);
 
-INSERT INTO books (id, title, releaseDate, description, pages, createdAt, updatedAt, authorsId)
-SELECT 1, 'Harry Potter and the Sorcerer''s Stone', '1997-07-26', 'Magical powers...', 223, '2024-05-29', '2024-05-29', 1
-WHERE NOT EXISTS (SELECT 1 FROM books WHERE id = 1);
+INSERT INTO book (id, title, releaseDate, description, pages, createdAt, updatedAt, authorId)
+SELECT 1, 'Harry Potter and the Sorcerer''s Stone', '1997-07-26', 'A young wizard discovers his heritage.', 223, '2024-05-29', '2024-05-29', 1
+WHERE NOT EXISTS (SELECT 1 FROM book WHERE id = 1);
 EOF
-)
 
-mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -e "$SQL_DATA"
 
 # 10. Start with PM2
 sudo -u ec2-user pm2 delete all || true
@@ -558,6 +565,12 @@ sudo -u ec2-user pm2 save
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
 ```
  
+
+
+
+
+
+
   ![alt_image](img/19a.app_user_data.png)
   ![alt_image](img/19b.app_ec2_isntances.png)
   ![alt_image](img/19c.app_sg.png)
