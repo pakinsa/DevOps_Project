@@ -1,0 +1,28 @@
+# The Service API version (v1 is the stable standard for networking)
+apiVersion: v1
+
+# Tells Kubernetes this is a 'Service' (an internal load balancer)
+kind: Service
+
+metadata:
+  # The name you will use to find this service (e.g., in 'kubectl get svc')
+  name: frontend-service
+
+spec:
+  # 'ClusterIP' means this service is only reachable from INSIDE the cluster.
+  # This is the default type.
+  type: ClusterIP
+
+  # This is the 'Glue'. It looks for any Pods that have the 'app: frontend-app' label.
+  # This MUST match the label you used in your deployment.yaml!
+  selector:
+    app: frontend-app
+
+  # This section defines how the "door" (port) works
+  ports:
+    # The list starts here with a hyphen
+    - protocol: TCP
+      # The port number users/services inside the cluster use to talk to this service
+      port: 80
+      # The actual port number where your Nginx app is listening inside the Pod
+      targetPort: 80

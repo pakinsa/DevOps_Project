@@ -1,0 +1,44 @@
+# Specifies the version of the Kubernetes API to use
+apiVersion: apps/v1
+
+# Tells Kubernetes this is a Deployment (manages your Pods)
+kind: Deployment
+
+metadata:
+  # The unique name for this deployment in your cluster
+  name: frontend-deployment
+
+spec:
+  # This tells K8s to always keep 3 copies (Pods) of your app running
+  replicas: 3
+
+  # Defines how the deployment finds which Pods to manage
+  selector:
+    matchLabels:
+      # This MUST match the 'labels' in the template below AND the 'selector' in service.yaml. This is your app label.
+      app: frontend-app
+
+  # This is the "blueprint" for the Pods that will be created
+  template:
+    metadata:
+      labels:
+        # The ID card for your Pods so the Service can find them
+        app: frontend-app
+    spec:
+      containers:
+      # The name of the specific container inside the Pod & The hyphen (-) starts the first item in the container list
+      - name: landing-page
+        
+        # The image you built in Podman and pushed to Docker Hub
+        # IMPORTANT: Replace 'brostle' with your real Docker Hub ID
+        # This is the image you pushed to dockerHub
+        image: brostle/frontend-k8s-demo:latest
+        imagePullPolicy: Always  # <--- Add this line 
+        
+        ports:
+        # Nginx (inside the image) listens on port 80 by default
+        - containerPort: 80
+
+
+
+ 

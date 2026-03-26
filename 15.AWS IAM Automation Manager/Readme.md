@@ -4,7 +4,7 @@
 *(Functions • Arrays • Environment Variables • Command-Line Arguments • Error Handling • AWS CLI • Secure Authentication • IAM Management)*
 
 **Project Scenario**  
-CloudOps Solutions has adopted AWS and needs to automate IAM resource management for new DevOps hires. We extended the existing `aws_cloud_manager.sh` script (from previous mini-projects) to create 5 IAM users, a "devOps_admin" group, attach the `AdministratorAccess` managed policy, and assign users to the group — all via shell scripting.
+CloudOps Solutions has adopted AWS and needs to automate IAM resource management for new DevOps hires. We extended the existing `aws_cloud_manager.sh` script to create 5 IAM users, a "devOps_admin" group, attach the `AdministratorAccess` managed policy, and assign users to the group — all via shell scripting.
 
 
 **Objectives Achieved in One Script**
@@ -151,7 +151,7 @@ aws ec2 describe-regions --output table
 
 ### Phase C: The Logic (Scripting Side)
 **Step 1: Objective and structure of Script**
-- I need to create by a script that does the following:
+- I need to create a script that does the following:
   * Define Variables: Create an array of 5 usernames.
   * The "Check" Logic: A function that asks AWS "Does user X exist?"
   * The "Action" Logic: The command to create the user only if the answer to last step was "No."
